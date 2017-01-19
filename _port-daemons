@@ -1,0 +1,13 @@
+#compdef port-deamons
+#autoload
+
+_port_deamons() {
+  local expl
+  declare -a deamons
+  for f in /opt/local/etc/LaunchDaemons/org.macports.*(/:t); do
+    deamons+=("${${(s:.:)f}[3]}")
+  done
+  _wanted daemons expl daemon compadd $* - $deamons
+}
+
+_port_deamons "$@"
