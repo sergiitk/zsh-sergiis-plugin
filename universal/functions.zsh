@@ -83,3 +83,10 @@ json-to-serialize-and-copy() {
   echo $result
   echo
 }
+
+siege-to-spreadsheet() {
+  local result=""
+  result=$(pbpaste | cut -d":" -f2 | awk {'print $1'} | xargs -n1 -I{} printf '{}\t' | sed 's/;$//')
+  echo -n $result | pbcopy
+  echo $result
+}

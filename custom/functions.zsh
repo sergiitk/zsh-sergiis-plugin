@@ -246,7 +246,24 @@ lc() {
 }
 alias lc="noglob lc"
 
+getDead() {
+  if [[ -z $1 ]]; then
+    pe "usage: $0 <login:password> <count>"
+    return 1
+  fi
+  local payload
+  local result
 
-a-s() {
+  payload="{\"count\":$2,\"requeue\":true,\"encoding\":\"base64\"}"
+  result=($(curl -s -u $1 -d ${payload} https://rabbit.dosomething.org/api/queues/dosomething/deadLetterQueue/get?columns=payload | python -m json.tool | grep payload | cut -d'"' -f4))
+  echo "["
+  for (( f = 1; f <= ${#result}; f += 1 )); do
+    echo ${result[f]} | base64 --decode
+    (( $f ==  ${#result})) || echo ","
+  done
+  echo "]"
 
+  # echo $result
+   # | xargs -p -L1 -I{} sh -c 'echo {} | base64 --decode | python -m json.tool; echo;'
+   # getDead login:pass 255 |jq '.[].metadata.error.message' | sort | uniq -c | sort -rn
 }

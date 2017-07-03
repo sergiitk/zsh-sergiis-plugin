@@ -4,6 +4,8 @@
 # BSD version of find is just pathetic.
 alias find=gfind
 compdef gfind=find
+alias xargs=gxargs
+compdef gxargs=xargs
 # BSD version doesn't assign default group when it's omitted (`chown user:`).
 alias chown=gchown
 compdef gchown=chown

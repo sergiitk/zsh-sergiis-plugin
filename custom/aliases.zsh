@@ -80,7 +80,14 @@ alias gcd='git checkout dev'
 # alias b='b | grep -v 0d04f84'
 # Up
 alias gup='gcd; gpl; gpl upstream; gpl upstream dev; gf; gf upstream; b'
-alias t='npm -s t'
+alias tl='yarn lint'
+alias t='yarn test'
+alias tu='yarn test:unit'
+alias ti='yarn test:integration'
+alias tcc='yarn coverage'
+alias tcch='yarn html-coverage-report && open ./coverage/index.html'
+alias ta='yarn all-tests'
+alias ts='yarn web'
 
 # Other
 # alias cr='noglob php --php-ini /opt/local/etc/php56/xdebug-disabled-php.ini ~/bin/composer';
@@ -89,9 +96,9 @@ alias t='npm -s t'
 # Pry
 # alias bsh='bundle console'
 # unalias pry
-qsload() {
+mqload() {
   local dkdir
-  dkdir=~/Development/quicksilver-api
+  dkdir=~/Development/blink
 
   # Load and wait for docker.
   docker ps &> /dev/null || (echo -n "Loading Docker " && open -a Docker)
@@ -103,8 +110,10 @@ qsload() {
   echo " done"
 
   # Do stuff.
-  docker-compose -f $dkdir/docker-compose-development-host-only.yml down
-  docker-compose -f $dkdir/docker-compose-development-host-only.yml up -d
+  docker-compose -f $dkdir/docker-compose.yml down
+  docker-compose -f $dkdir/docker-compose.yml up -d
+  # docker-compose -f $dkdir/docker-compose-development-host-only.yml down
+  # docker-compose -f $dkdir/docker-compose-development-host-only.yml up -d
 }
 
 ###################### Android ######################
