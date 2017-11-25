@@ -90,3 +90,5 @@ siege-to-spreadsheet() {
   echo -n $result | pbcopy
   echo $result
 }
+
+alias make="nocorrect make"

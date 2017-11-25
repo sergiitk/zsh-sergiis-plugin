@@ -80,14 +80,14 @@ alias gcd='git checkout dev'
 # alias b='b | grep -v 0d04f84'
 # Up
 alias gup='gcd; gpl; gpl upstream; gpl upstream dev; gf; gf upstream; b'
-alias tl='yarn lint'
+
 alias t='yarn test'
+alias tl='yarn lint'
 alias tu='yarn test:unit'
 alias ti='yarn test:integration'
-alias tcc='yarn coverage'
-alias tcch='yarn html-coverage-report && open ./coverage/index.html'
-alias ta='yarn all-tests'
-alias ts='yarn web'
+alias tc='yarn coverage'
+alias tch='yarn coverage:report:html && open ./coverage/index.html'
+alias tf='yarn test:full'
 
 # Other
 # alias cr='noglob php --php-ini /opt/local/etc/php56/xdebug-disabled-php.ini ~/bin/composer';

@@ -267,3 +267,18 @@ getDead() {
    # | xargs -p -L1 -I{} sh -c 'echo {} | base64 --decode | python -m json.tool; echo;'
    # getDead login:pass 255 |jq '.[].metadata.error.message' | sort | uniq -c | sort -rn
 }
+
+cleanupRabbit() {
+  if [[ -z $1 ]]; then
+    pe "usage: $0 <login:password>"
+    return 1
+  fi
+
+  local oldqs;
+  oldqs=(userRegistrationQueue activityStatsQueue mailchimpCampaignSignupQueue userAPIRegistrationQueue userAPICampaignActivityQueue imageProcessingQueue)
+  for i in $oldqs; do
+    echo "Deleting $i"
+    curl -s -u $1 -X DELETE https://rabbit.dosomething.org/api/queues/dosomething/$i
+    echo
+  done
+}
