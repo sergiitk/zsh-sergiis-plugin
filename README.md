@@ -15,7 +15,7 @@ mv ~/.zshrc ~/.zshrc.orig
 cp ~/.oh-my-zsh/custom/plugins/zsh-sergiis-plugin/dotfiles/.zshrc ~/.zshrc
 
 # .profile
-mv ~/.profile ~/.profile.orig
+cp ~/.profile ~/.profile.orig
 mkdir ~/bin
 mkdir ~/.npm-packages
 cp ~/.oh-my-zsh/custom/plugins/zsh-sergiis-plugin/dotfiles/.profile ~/.profile
