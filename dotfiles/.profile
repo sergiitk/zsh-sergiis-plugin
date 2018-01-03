@@ -1,7 +1,7 @@
 # SSH
-ssh-add -K > /dev/null 2>&1
+# ssh-add -K > /dev/null 2>&1
 
-# MacPorts Installer addition on 2014-11-05_at_01:04:42: adding an appropriate PATH variable for use with MacPorts.
+# MacPorts Installer addition on 2017-07-02_at_13:22:29: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
@@ -49,15 +49,15 @@ export EDITOR="sublw"
 # export GISTY_DIR="$HOME/Development/Archive/gists"
 # export GISTY_ACCESS_TOKEN="1c9d9c1cc4f25f61903e570840952f03198c40e5"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Python
-export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin"
-export PIPENV_SHELL_COMPAT=true
+# export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin"
+# export PIPENV_SHELL_COMPAT=true
 # export PATH="$PATH:$HOME/Library/Python/2.7/bin" # Add RVM to PATH for scripting
 # /opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin
 
 # PHP
-export PATH="$PATH:$HOME/.composer/vendor/bin" # Add RVM to PATH for scripting
+# export PATH="$PATH:$HOME/.composer/vendor/bin" # Add RVM to PATH for scripting
