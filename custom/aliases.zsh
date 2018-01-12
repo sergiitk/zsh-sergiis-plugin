@@ -21,6 +21,10 @@ cdpath=($cdpath $HOME/Development)
 # alias -s module=st
 
 #################### Docker #########################
+alias dk='nocorrect docker'
+alias dkp='docker ps -a'
+alias dki='docker images'
+alias dkr='docker run -it --rm'
 alias dcrr='docker-compose run --rm'
 
 #################### DoSomething ####################
@@ -36,10 +40,6 @@ alias dcrr='docker-compose run --rm'
 # alias avd='ansible-vault decrypt --vault-password-file=.vault.txt'
 # alias ave='ansible-vault encrypt --vault-password-file=.vault.txt'
 
-# alias dk='nocorrect docker'
-# alias dkr='docker run -it --rm'
-# alias dkp='docker ps -a'
-# alias dki='docker images'
 # dkb() {
 #   docker build -t $(basename $(pwd)) .
 # }
