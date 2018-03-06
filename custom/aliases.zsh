@@ -11,6 +11,7 @@ hash -d icl="$HOME/Library/Mobile Documents/com~apple~CloudDocs/"
 
 # Easy cd to project directories.
 cdpath=($cdpath $HOME/Development)
+alias de='cd ~/Development'
 
 ################## Custom variables #################
 # export PHP_SKEL_REPO=$GISTY_DIR/a5fc0f30080a086aabd9
@@ -21,11 +22,15 @@ cdpath=($cdpath $HOME/Development)
 # alias -s module=st
 
 #################### Docker #########################
+alias dcup='docker-compose up -d'
 alias dk='nocorrect docker'
 alias dkp='docker ps -a'
+alias dkpe='docker ps -a -q --filter "status=exited"'
 alias dki='docker images'
+# alias dkrm='docker rm --force'
 alias dkr='docker run -it --rm'
-alias dcrr='docker-compose run --rm'
+alias dcrr='nocorrect docker-compose run --rm'
+alias dcre='docker-compose down; docker-compose up -d'
 
 #################### DoSomething ####################
 # alias v='vagrant';
