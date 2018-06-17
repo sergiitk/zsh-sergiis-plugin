@@ -46,9 +46,9 @@ alias gclo='git clean -id'
 alias glc='git rev-parse --short'
 
 ### Git Flow
-alias f='git flow'
-alias ff='git flow feature'
-alias fs='git flow feature start'
+# alias f='git flow'
+# alias ff='git flow feature'
+# alias fs='git flow feature start'
 # alias fr='git flow release'
 
 # Svn

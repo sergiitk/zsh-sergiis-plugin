@@ -15,6 +15,8 @@ compdef gchmod=chmod
 # Stupid BSD head just can't accept negative nubers count, so it's not possible
 # to skip just last line.
 alias head=ghead
+# Again, BSD tr is incompatible.
+# alias tr=gtr
 # Uninstall leaves
 alias pul='sudo port uninstall leaves'
 
