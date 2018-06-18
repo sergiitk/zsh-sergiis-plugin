@@ -60,8 +60,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(osx macports sublime \
          colored-man history history-substring-search extract \
          git\
-         jsontools vagrant \
-         yarn heroku \
+         docker docker-compose \
+         aws \
          zsh-sergiis-plugin
          )
 
@@ -79,6 +79,8 @@ plugins=(osx macports sublime \
 
 source ~/.profile
 source $ZSH/oh-my-zsh.sh
+
+setopt nonomatch
 
 # END=$(/opt/local/bin/gdate +%s.%N)
 # echo "$END - $START" | bc
@@ -117,6 +119,7 @@ source $ZSH/oh-my-zsh.sh
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-# source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
+# TL;DR autocomplete
+source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
