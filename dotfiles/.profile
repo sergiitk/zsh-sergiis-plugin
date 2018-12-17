@@ -54,6 +54,8 @@ export EDITOR="sublw"
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Python
+export PYTHONUSERBASE="/Users/sergii/Development/python/userbase"
+export PATH="/Users/sergii/Development/python/userbase/bin:$PATH"
 # export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin"
 # export PIPENV_SHELL_COMPAT=true
 # export PATH="$PATH:$HOME/Library/Python/2.7/bin" # Add RVM to PATH for scripting
