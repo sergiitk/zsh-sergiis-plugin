@@ -8,7 +8,10 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Home.
 PATH=$HOME/.bin:$PATH
 
-# https://rvm.io/
+# Env.
+export LANG="en_US.UTF-8"
+export LC_ALL=$LANG
+export EDITOR="sublw"
 
 # Android.
 # SDK
@@ -30,29 +33,6 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 # Tell Node about these packages
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
-
-# Composer.
-# https://getcomposer.org/doc/03-cli.md#composer-home
-# export COMPOSER_HOME="$HOME/Development/PHP/Composer"
-
-# Env.
-export LANG="en_US.UTF-8"
-export LC_ALL=$LANG
-export EDITOR="sublw"
-
-# Gems.
-# export GEM_HOME=/Users/sergii/.rubygems
-# export GEM_PATH=/Users/sergii/.rubygems:/opt/local/lib/ruby1.9/gems/1.9.1
-
-# Gisty.
-# https://github.com/swdyh/gisty
-# export GISTY_DIR="$HOME/Development/Archive/gists"
-# export GISTY_ACCESS_TOKEN="1c9d9c1cc4f25f61903e570840952f03198c40e5"
-
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # Python
 export PYTHONUSERBASE="/Users/sergii/Development/python/userbase"
 export PATH="/Users/sergii/Development/python/userbase/bin:$PATH"
@@ -61,5 +41,8 @@ export PATH="/Users/sergii/Development/python/userbase/bin:$PATH"
 # export PATH="$PATH:$HOME/Library/Python/2.7/bin" # Add RVM to PATH for scripting
 # /opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin
 
-# PHP
-# export PATH="$PATH:$HOME/.composer/vendor/bin" # Add RVM to PATH for scripting
+# Gems.
+# export GEM_HOME=/Users/sergii/.rubygems
+# export GEM_PATH=/Users/sergii/.rubygems:/opt/local/lib/ruby1.9/gems/1.9.1
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
