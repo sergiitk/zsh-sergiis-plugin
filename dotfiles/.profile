@@ -1,6 +1,3 @@
-# SSH
-# ssh-add -K > /dev/null 2>&1
-
 # MacPorts Installer addition on 2017-07-02_at_13:22:29: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
@@ -46,3 +43,6 @@ export PATH="/Users/sergii/Development/python/userbase/bin:$PATH"
 # export GEM_PATH=/Users/sergii/.rubygems:/opt/local/lib/ruby1.9/gems/1.9.1
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# SSH
+# ssh-add -K > /dev/null 2>&1
