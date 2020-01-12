@@ -16,7 +16,7 @@ cp ~/.oh-my-zsh/custom/plugins/zsh-sergiis-plugin/dotfiles/.zshrc ~/.zshrc
 
 # .profile
 cp ~/.profile ~/.profile.orig
-mkdir ~/bin
+mkdir ~/.bin
 mkdir ~/.npm-packages
 cp ~/.oh-my-zsh/custom/plugins/zsh-sergiis-plugin/dotfiles/.profile ~/.profile
 ```
