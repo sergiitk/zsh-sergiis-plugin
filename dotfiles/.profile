@@ -31,8 +31,11 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 # Python
-export PYTHONUSERBASE="/Users/sergii/Development/python/userbase"
-export PATH="/Users/sergii/Development/python/userbase/bin:$PATH"
+export PATH="/Users/sergii/Library/Python/3.7/bin:$PATH"
+export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin"
+
+# export PYTHONUSERBASE="/Users/sergii/Development/python/userbase"
+# export PATH="/Users/sergii/Development/python/userbase/bin:$PATH"
 # export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin"
 # export PIPENV_SHELL_COMPAT=true
 # export PATH="$PATH:$HOME/Library/Python/2.7/bin" # Add RVM to PATH for scripting
