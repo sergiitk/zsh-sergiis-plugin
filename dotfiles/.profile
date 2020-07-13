@@ -31,8 +31,8 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 # Python
-export PATH="/Users/sergii/Library/Python/3.7/bin:$PATH"
-export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin"
+export PATH="/Users/sergii/Library/Python/3.8/bin:$PATH"
+export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
 
 # export PYTHONUSERBASE="/Users/sergii/Development/python/userbase"
 # export PATH="/Users/sergii/Development/python/userbase/bin:$PATH"
