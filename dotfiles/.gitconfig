@@ -1,0 +1,76 @@
+# User settings.
+[user]
+  email = hi@sergii.org
+  name  = Sergii Tkachenko
+	signingkey = 4E8B4FCE
+
+# Core settings.
+[core]
+  # `-S` — vertical overflow.
+  pager = less -S
+  excludesfile = ~/.gitignore_global
+#	excludesfile = /Users/sergii/.gitignore_global
+
+# Aliases.
+[alias]
+  dt      = difftool -t opendiff
+
+# Pretty formats.
+[format]
+  pretty = cool
+[pretty]
+  # Add newline at the end: `format` places newlines between commits,
+  #`tformat` places newlines after each commit, thus also after the last one.
+  cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green)(%cr)%C(auto,reset)
+  graph = tformat:%C(auto,magenta dim)%h%C(auto)%d %C(auto,reset)%s %C(auto,black dim)%cd%C(auto,reset)
+[log]
+  abbrevCommit = true
+
+# Merge and diff tools.
+[mergetool "sublime"]
+  cmd           = subl -w $MERGED
+  trustExitCode = false
+[mergetool "filemerge"]
+  cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED 2> /dev/null
+[mergetool]
+  prompt = false
+[merge]
+  tool = filemerge
+[difftool]
+  prompt = false
+[diff]
+  # wordRegex
+  # Anything between matches is considered whitespace and ignored(!)
+  # for the purposes of finding differences.
+
+  # http://stackoverflow.com/questions/8483041/git-color-words-excluding
+  # The following expression will make a word be any string of characters
+  # and underscore, or any non-whitespace character.
+   wordRegex = \\w+|[^[:space:]]
+  #wordRegex = [^[:space:]()<>]+
+
+  # default (myers), minimal, patience, histogram
+  algorithm = patience
+  # No numbers, underscore.
+  # wordRegex = [a-zA-Z]+|[^[:space:]]
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[push]
+	default = simple
+[fetch]
+	prune = true
+
+# Svn.
+[svn]
+  # Remove directories from the SVN tree if there are no files left behind.
+  rmdir = true
+#[difftool "sourcetree"]
+# cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+# path =
+#[mergetool "sourcetree"]
+# cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+# trustExitCode = true
+
+[pager]
+	branch = false
