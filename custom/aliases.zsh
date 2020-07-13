@@ -90,9 +90,9 @@ alias dcre='docker-compose down; docker-compose up -d'
 # alias gup='gcd; gpl; gpl upstream; gpl upstream dev; gf; gf upstream; b'
 
 # Yarn tests
-alias y='yarn'
-alias yl='yarn lint'
-alias yt='yarn test'
+# alias y='yarn'
+# alias yl='yarn lint'
+# alias yt='yarn test'
 alias ytf='yarn test:full'
 # alias t='yarn test'
 # alias tl='yarn lint'

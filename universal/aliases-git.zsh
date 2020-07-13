@@ -16,6 +16,9 @@ alias gpf='git push --force-with-lease'
 alias grb='git rebase'
 alias gbd='git branch -d'
 
+alias gu='git restore --staged'
+alias gu.='git restore --staged .'
+
 ### Log
 # Just git log.
 alias gl='git log'
