@@ -17,7 +17,7 @@ ZSH_THEME="robbyrussell"
 # ZSH_THEME="wedisagree" 5/2
 # ZSH_THEME="nicoulaj" 5+/3
 # ZSH_THEME="rich"
-# ZSH_THEME="sergii2"
+ZSH_THEME="sergii2"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

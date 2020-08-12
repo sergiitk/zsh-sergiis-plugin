@@ -39,7 +39,7 @@ prompt_vcs=("%{$FG[081]%}%b "
 # Set vcs_info parameters.
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*:*' check-for-changes true # Can be slow on big repos.
-zstyle ':vcs_info:*:*' unstagedstr '⚡'
+zstyle ':vcs_info:*:*' unstagedstr $'\U26a1'
 zstyle ':vcs_info:*:*' stagedstr '＋'
 zstyle ':vcs_info:*:*' actionformats "%S" "${(j::)prompt_vcs} (%a)"
 zstyle ':vcs_info:*:*' formats "%S" "${(j::)prompt_vcs}"
