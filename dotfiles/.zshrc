@@ -62,6 +62,7 @@ plugins=(osx macports sublime \
          git\
          docker docker-compose \
          yarn \
+         gradle \
          zsh-sergiis-plugin
 )
 
