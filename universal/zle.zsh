@@ -19,11 +19,6 @@ bindkey "^[[6~" history-beginning-search-forward
 # Otherwise kills all line
 bindkey "^U" backward-kill-line
 
-# Navigating words
-# "^[[1;9D" option+left, "[[1;9C" option+right
-bindkey "^[[1;9D" backward-word
-bindkey "^[[1;9C" forward-word
-
 # Move to where the arguments belong. "^[[1;10D" is shift+option+right.
 after-first-word() {
   zle beginning-of-line
