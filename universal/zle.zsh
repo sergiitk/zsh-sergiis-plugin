@@ -1,25 +1,28 @@
 ####################### ZSH/ZLE #####################
 
-# ZLE: The editor’s idea of a word: controls moves over words.
-export WORDCHARS='*?_-.[]~&;!#$%^(){}<>|'
-# Colorize correction request.
-export SPROMPT="Correct $fg[red]%R$reset_color to $fg[green]%r$reset_color (Yes, No, Abort, Edit)? "
-# Colorize stderr. I don't know how it works, but it's awesome!
-# exec 2>>( while read X; do print "\e[48;5;236m"${X}$reset_color > /dev/tty; done & )
-
-# Pass grep color to less.
-# export GREP_OPTIONS="--color=always"
-# Temp
-unset GREP_OPTIONS
-
-# Bind keys.
-bindkey "^[[5~" history-beginning-search-backward
-bindkey "^[[6~" history-beginning-search-forward
-bindkey "^U" backward-kill-line
-bindkey '^L' push-input
-
 # Opts.
 setopt nobeep
+
+# ZLE: The editor’s idea of a word: controls moves over words.
+export WORDCHARS='*?_-.[]~&;!#$%^(){}<>|'
+
+# Bind keys.
+# Use `read` to read keys, or press ctrl-v then char.
+# See infocmp
+# ctrl+l Push input
+bindkey '^L' push-input
+
+# "^[[5~" page up, "^[[6~" page down
+bindkey "^[[5~" history-beginning-search-backward
+bindkey "^[[6~" history-beginning-search-forward
+
+# Otherwise kills all line
+bindkey "^U" backward-kill-line
+
+# Navigating words
+# "^[[1;9D" option+left, "[[1;9C" option+right
+bindkey "^[[1;9D" backward-word
+bindkey "^[[1;9C" forward-word
 
 # Move to where the arguments belong. "^[[1;10D" is shift+option+right.
 after-first-word() {
