@@ -2,10 +2,10 @@
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
-# Home.
+# Home
 PATH=$HOME/.bin:$PATH
 
-# Env.
+# Env
 export LANG="en_US.UTF-8"
 export LC_ALL=$LANG
 export EDITOR="sublw"

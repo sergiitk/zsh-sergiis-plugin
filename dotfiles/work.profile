@@ -2,10 +2,14 @@
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
-# Home.
+# Home
 PATH=$HOME/.bin:$PATH
 
-# Env.
+# Java Macports
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk14/Contents/Home"
+
+# Env
 export LANG="en_US.UTF-8"
 export LC_ALL=$LANG
 export EDITOR="sublw"
