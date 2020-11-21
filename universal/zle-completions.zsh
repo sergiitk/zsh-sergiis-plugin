@@ -32,10 +32,38 @@
  # zstyle ':completion::*:(git|less|rm|emacs)' ignore-line true
 
  # SSH Completion
+# zstyle ':completion:*:(ssh|scp|ftp|sftp):*' hosts $hosts
+# zstyle ':completion:*:(ssh|scp|ftp|sftp):*' users $users
+
  # zstyle ':completion:*:scp:*' tag-order files 'hosts:-domain:domain'
  # zstyle ':completion:*:scp:*' group-order files all-files users hosts-domain hosts-host hosts-ipaddr
  # zstyle ':completion:*:ssh:*' tag-order 'hosts:-domain:domain'
  # zstyle ':completion:*:ssh:*' group-order hosts-domain hosts-host users hosts-ipaddr
+ # Highlight the current autocomplete option
+# zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# # Better SSH/Rsync/SCP Autocomplete
+# zstyle ':completion:*:(scp|rsync):*' tag-order ' hosts:-ipaddr:ip\ address hosts:-host:host files'
+# zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
+# zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
+
+# # Allow for autocomplete to be case insensitive
+# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
+#   '+l:|?=** r:|?=**'
+
+# Initialize the autocompletion
+# autoload -Uz compinit && compinit -i
+# _sshosts=()
+# # if [[ -r ~/.ssh/config ]]; then
+# #   _sshosts=($_sshosts ${${${(@M)${(f)"$(cat ~/.ssh/config)"}:#Host *}#Host }:#*[*?]*})
+# # fi
+# if [[ -r ~/.ssh/known_hosts ]]; then
+#   _sshosts=($_sshosts ${${${(f)"$(cat ~/.ssh/known_hosts || true)"}%%\ *}%%,*}) 2>/dev/null
+# fi
+# if [[ $#_sshosts -gt 0 ]]; then
+#   zstyle ':completion:*:ssh:*' hosts $_sshosts
+#   zstyle ':completion:*:slogin:*' hosts $_sshosts
+# fi
 
  ### highlight parameters with uncommon names
  # zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[red]"

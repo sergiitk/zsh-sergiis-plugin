@@ -4,6 +4,7 @@ hash -d o=/opt/local
 hash -d oe=/opt/local/etc
 hash -d ol=/opt/local/var/log
 hash -d dev=$HOME/Development
+hash -d play=$HOME/Development/playground
 hash -d icl="$HOME/Library/Mobile Documents/com~apple~CloudDocs/"
 # hash -d p=$HOME/Projects
 # hash -d b=$HOME/Projects/backup
@@ -11,7 +12,7 @@ hash -d icl="$HOME/Library/Mobile Documents/com~apple~CloudDocs/"
 
 # Easy cd to project directories.
 cdpath=($cdpath $HOME/Development)
-alias de='cd ~/Development'
+alias dev='cd ~/Development'
 
 ################## Custom variables #################
 # export PHP_SKEL_REPO=$GISTY_DIR/a5fc0f30080a086aabd9
@@ -109,25 +110,25 @@ alias ytf='yarn test:full'
 # Pry
 # alias bsh='bundle console'
 # unalias pry
-mqload() {
-  local dkdir
-  dkdir=~/Development/blink
+# mqload() {
+#   local dkdir
+#   dkdir=~/Development/blink
 
-  # Load and wait for docker.
-  docker ps &> /dev/null || (echo -n "Loading Docker " && open -a Docker)
-  until docker info &> /dev/null
-  do
-    echo -n "."
-    sleep 1
-  done
-  echo " done"
+#   # Load and wait for docker.
+#   docker ps &> /dev/null || (echo -n "Loading Docker " && open -a Docker)
+#   until docker info &> /dev/null
+#   do
+#     echo -n "."
+#     sleep 1
+#   done
+#   echo " done"
 
-  # Do stuff.
-  docker-compose -f $dkdir/docker-compose.yml down
-  docker-compose -f $dkdir/docker-compose.yml up -d
-  # docker-compose -f $dkdir/docker-compose-development-host-only.yml down
-  # docker-compose -f $dkdir/docker-compose-development-host-only.yml up -d
-}
+#   # Do stuff.
+#   docker-compose -f $dkdir/docker-compose.yml down
+#   docker-compose -f $dkdir/docker-compose.yml up -d
+#   # docker-compose -f $dkdir/docker-compose-development-host-only.yml down
+#   # docker-compose -f $dkdir/docker-compose-development-host-only.yml up -d
+# }
 
 ###################### Android ######################
 # alias lcdb='lc l AndroidRuntime:e budgetking.db BudgetApplication_ TableUtils BaseMappedStatement StatementExecutor MappedCreate'

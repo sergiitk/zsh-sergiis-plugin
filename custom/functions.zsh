@@ -1,5 +1,75 @@
 ################## Custom Functions  ##################
 
+##################### tmux ##########################
+alias t='tmux'
+alias tc='tmux -CC'
+alias ta='tmux -CC attach -t'
+alias tl='tmux list-sessions'
+tn() {
+  if [[ $1 == '-h' ]]; then
+    pe "usage: [session name] [window name]"
+    return 1
+  fi
+  tmux -CC new -A -s ${1:=tmux} -n ${2:=work}
+}
+
+tt() {
+  if [[ -z $1 ]]; then
+    pe "usage: <session name> [window name]"
+    return 1
+  fi
+  tmux rename-session $1
+  if [[ ! -z $2 ]]; then
+    tmux rename-window $2
+  fi
+}
+
+tw() {
+  if [[ -z $1 ]]; then
+    pe "usage: <window name>"
+    return 1
+  fi
+  tmux rename-window $1
+}
+
+# https://github.com/romkatv/powerlevel10k#why-some-prompt-segments-appear-and-disappear-as-im-typing
+function ps-kube() {
+  if (( ${+POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND} )); then
+    unset POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND
+    POWERLEVEL9K_VCS_SHOW_ON_COMMAND='git'
+    POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
+  else
+    POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile'
+    unset POWERLEVEL9K_VCS_SHOW_ON_COMMAND
+    POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
+  fi
+  p10k reload
+  if zle; then
+    zle push-input
+    zle accept-line
+  fi
+}
+
+function ps-gcloud() {
+  if (( ${+POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND} )); then
+    unset POWERLEVEL9K_GCLOUD_SHOW_ON_COMMAND
+    POWERLEVEL9K_VCS_SHOW_ON_COMMAND='git'
+    POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
+  else
+    POWERLEVEL9K_GCLOUD_SHOW_ON_COMMAND='gcloud|gcs'
+    unset POWERLEVEL9K_VCS_SHOW_ON_COMMAND
+    POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
+  fi
+  p10k reload
+  if zle; then
+    zle push-input
+    zle accept-line
+  fi
+}
+
+# zle -N kube-toggle
+# bindkey '^]' kube-toggle  # ctrl-] to toggle kubecontext in powerlevel10k prompt
+
 
 # # Send grown message.
 # growl() {
@@ -47,7 +117,7 @@
 # compctl -W ~ -g '.*(D)' hello
 # compctl -W ~ -g '.*(D)' hello
 
-local dtfiles="gitconfig gitignore_global gemrc profile ssh/config ssh/known_hosts  vimrc wgetrc zshrc zlogin"
+local dtfiles="gitconfig gitignore_global gemrc profile ssh/config ssh/known_hosts vimrc wgetrc zshrc zlogin tmux.conf p10k.zsh"
 function dt() {
   if [[ -z $1 ]]; then
     print $dtfiles

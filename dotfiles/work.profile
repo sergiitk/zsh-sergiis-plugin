@@ -2,12 +2,23 @@
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+# Macport libs
+export CXXFLAGS="-I/opt/local/include"
+export LDFLAGS="-L/opt/local/lib"
+
+
 # Home
 PATH=$HOME/.bin:$PATH
 
-# Java Macports
+# Java MacPorts
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk11/Contents/Home
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk14/Contents/Home"
+
+# Android MacPorts
+export ANDROID_HOME=$HOME/Development/Android/sdk/
+PATH=$PATH:$HOME/Development/Android/sdk/cmdline-tools/latest/bin/
+PATH=$PATH:$HOME/Development/Android/sdk/platform-tools
 
 # Env
 export LANG="en_US.UTF-8"
@@ -17,6 +28,9 @@ export EDITOR="sublw"
 # Python
 export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
 # export PATH="/Users/sergii/Library/Python/3.8/bin:$PATH"
+
+# authrefresh
+export AUTH_HOST=sergiitk.c.googlers.com
 
 # SSH
 # Load SSH keys stored in the Keychain using native OSX ssh agent

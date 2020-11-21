@@ -2,27 +2,27 @@
 ######################### Git  ########################
 
 ### Functions
-b() {
+bb() {
   git branch --color=always --all -vv | grep -v origin/HEAD | cut -c3- | gsed -r 's#([^ ]*).* ([a-f0-9]{6,}) (\[([^]]*)\])?.*#\2\x1b[m \1\x1b[m \4#' | sort -t"/" -k3,1
 }
 
+alias b='git branch -vv'
+
 ### Productivity
 alias g.='git add .'
-alias gs='git status --short'
-alias gf='git fetch -p'
-alias gaa='git add --all .'
 alias gpl='git pull'
-alias gpf='git push --force-with-lease'
-alias grb='git rebase'
-alias gbd='git branch -d'
 
-alias gu='git restore --staged'
-alias gu.='git restore --staged .'
+alias gr='git restore'
+alias gr.='git restore .'
+alias grs='git restore --staged'
+alias grs.='git restore --staged .'
+# alias grs='git restore --staged'
+# alias grs.='git restore --staged .'
 
 ### Log
 # Just git log.
 alias gl='git log'
-alias glln='git --no-pager log'
+# alias glln='git --no-pager log'
 
 # Git log from origins to current.
 # alias gll='git log @{u}..'

@@ -26,7 +26,7 @@ export ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="rich"
 # ZSH_THEME="sergii2"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-ZLE_RPROMPT_INDENT=0
+ZLE_RPROMPT_INDENT=1
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -67,19 +67,43 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# FXF
+# FZF
 export FZF_BASE=/opt/local/share/fzf
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
+# Because completions is in unusual place
+export DISABLE_FZF_AUTO_COMPLETION='true'
+export FZF_COMPLETION_TRIGGER='\\'
+source /opt/local/share/zsh/site-functions/fzf
+
+# Gcloud
+export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
+
+# Tmux
+# export ZSH_TMUX_ITERM2=true
+# export ZSH_TMUX_FIXTERM=false
+# export ZSH_TMUX_FIXTERM_WITHOUT_256COLOR=xterm
+# export ZSH_TMUX_FIXTERM_WITH_256COLOR=xterm-256color
 
 plugins=(osx macports sublime \
          colored-man-pages history history-substring-search extract \
+         zsh-autosuggestions zsh-syntax-highlighting fzf \
          git\
-         docker docker-compose \
-         zsh-autosuggestions \
-         zsh-syntax-highlighting \
-         fzf \
+         gradle gcloud kubectl \
          zsh-sergiis-plugin
 )
+
+### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+### Fix slowness of pastes
 
 # NPM takes up to .5ms
 

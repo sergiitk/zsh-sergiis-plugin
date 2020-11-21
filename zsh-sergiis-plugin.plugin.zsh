@@ -6,7 +6,11 @@ ZSH_SERGII=`dirname $0`
 # see checkdot and checkdotdirs
 setopt kshglob
 
+# setopt inc_append_history
+setopt share_history
+
 source $ZSH_SERGII/universal/zle.zsh
+# source $ZSH_SERGII/universal/zle-completions.zsh
 source $ZSH_SERGII/universal/aliases.zsh
 source $ZSH_SERGII/universal/aliases-git.zsh
 source $ZSH_SERGII/universal/functions.zsh
