@@ -87,7 +87,7 @@ export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
 plugins=(osx macports sublime \
          colored-man-pages history history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
-         git\
+         git \
          gradle gcloud kubectl \
          zsh-sergiis-plugin
 )
@@ -166,3 +166,6 @@ source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Proprietary costumizations
+source ~/.work-custom.zshrc
