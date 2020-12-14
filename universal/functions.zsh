@@ -35,12 +35,62 @@ oh-my-changes() {
 
 # Check dot files.
 checkdot() {
-  print -l ~/.!(netextender|DS_Store|CFUserTextEncoding|curlrc|gemrc|gitconfig|irb-history|lesshst|mysql_history|netrc|pearrc|profile|pry_history|psql_history|rdebug_hist|rnd|sqlite_history|viminfo|vimrc|wgetrc|zcompdump-*|zlogin|zsh-update|zsh_history|zshrc|npmrc|gitignore_global)(.N)
+  local -a dotfile_allow=(
+    CFUserTextEncoding
+    curlrc
+    DS_Store
+    gitconfig
+    gitignore_global
+    hgrc
+    hushlogin
+    lesshst
+    mysql_history
+    npmrc
+    profile
+    psql_history
+    python_history
+    sqlite_history
+    viminfo
+    vimrc
+    wget-hsts
+    wgetrc
+    work-custom.zshrc
+    zcompdump*
+    zlogin
+    zsh-update
+    zsh_history
+    zshrc
+    zshrc.orig
+  )
+  local dotfile_join="${(j:|:)dotfile_allow}"
+  print -l  ~/.!($~dotfile_join)(.N)
 }
 
 # Check dot files.
 checkdotdirs() {
-  print -l ~/.!(ansible|adobe|bundle|config|cups|composer|drush|dropbox|dropbox-master|gem|heroku|oh-my-zsh|rvm|ssh|subversion|Trash|vim|vagrant.d|npm)(/N)
+  local -a dotdir_allow=(
+    android
+    bin
+    cache
+    config
+    cups
+    docker
+    gem
+    gradle
+    gsutil
+    heroku
+    kube
+    m2
+    minikube
+    npm
+    oh-my-zsh
+    ssh
+    tldrc
+    Trash
+    vim
+  )
+  local dotdir_join="${(j:|:)dotdir_allow}"
+  print -l  ~/.!($~dotdir_join)(/N)
 }
 
 gdu.() {
