@@ -32,13 +32,17 @@ alias gl='git log'
 alias 'g-'='git log --pretty=graph --branches --remotes --tags --graph --date=short'
 
 ### Per word diffs
-alias gdw='git diff -U0 --abbrev --color-words'
+alias gdww='git diff -U0 --abbrev --color-words'
+# alias gds='git diff -U0 --abbrev --color-words'
 
-# Cached
-alias gdwc='gdw --cached'
+# Staged
+# alias gdwc='gdw --cached'
+alias gdsw='git diff --staged --word-diff'
+alias gdsww='git diff --staged -U0 --abbrev --color-words'
 
 # Show.
-alias gsw='git show -U1 --color-words --abbrev-commit --pretty=medium'
+alias gsw='git show'
+alias gsww='git show -U1 --color-words --abbrev-commit --pretty=medium'
 
 ### Tools
 # Interactive clean.

@@ -20,7 +20,7 @@ alias s='ssh'
 # alias -g ßß='| less'
 # Turn off word wrapping.
 # alias -g ßß='| less -S'
-alias -g G='| grep'
+# alias -g G='| grep'
 # Follow file with tailf.
 alias tailf='tail -f'
 alias tf='tail -f'
@@ -30,11 +30,6 @@ alias 'exif?'="exiftool-5.22 -a -u -g1"
 
 
 ### Miscellaneous apps.
-alias r=rails
-alias ru='rvm use'
-alias rug='rvm use @global'
-# Or gemsets.
-alias ge='rvm gemset list'
 # alias h=heroku
 
 ### Print
@@ -54,7 +49,6 @@ alias pe='print -u2'
 # Easy decimal dump.
 alias od1='od -ctd1'
 
-
 ### Paths
 # Resolve what is the command.
 alias '?'='nocorrect whence -asvf'
@@ -69,4 +63,3 @@ alias pbgen='pwgen --symbol 15 1 | tr -d "\n" > >(pbcopy) > >(cat); echo'
 alias openports='_ lsof -Pn -i4TCP -sTCP:LISTEN | sort -t":" -k2n | grep -P "(?<=:)[0-9]+ "'
 # Serve current folder at :8000 with python HTTP Server.
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
-

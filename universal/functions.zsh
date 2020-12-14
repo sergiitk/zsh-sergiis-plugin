@@ -58,32 +58,6 @@ cmn() {
   awk "{ print ${result} }" - | column -t
 }
 
-serialize-to-json() {
-  php -R 'echo json_encode(unserialize($argn), JSON_PRETTY_PRINT);'
-  echo
-}
-
-serialize-to-json-and-copy() {
-  local result=""
-  result=$(pbpaste | php -R 'echo json_encode(unserialize($argn), JSON_PRETTY_PRINT);')
-  echo $result | pbcopy
-  echo $result
-  echo
-}
-
-json-to-serialize() {
-  php -R 'var_export(json_decode($argn));'
-  echo
-}
-
-json-to-serialize-and-copy() {
-  local result=""
-  result=$(pbpaste | php -R 'var_export(json_decode($argn));')
-  echo $result | pbcopy
-  echo $result
-  echo
-}
-
 siege-to-spreadsheet() {
   local result=""
   result=$(pbpaste | cut -d":" -f2 | awk {'print $1'} | xargs -n1 -I{} printf '{}\t' | sed 's/;$//')

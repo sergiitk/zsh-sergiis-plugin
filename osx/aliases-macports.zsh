@@ -6,6 +6,8 @@ alias find=gfind
 compdef gfind=find
 alias xargs=gxargs
 compdef gxargs=xargs
+alias realpath='greadlink -f'
+
 # BSD version doesn't assign default group when it's omitted (`chown user:`).
 alias chown=gchown
 compdef gchown=chown
