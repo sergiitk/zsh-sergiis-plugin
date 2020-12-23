@@ -84,6 +84,9 @@ export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
 # export ZSH_TMUX_FIXTERM_WITHOUT_256COLOR=xterm
 # export ZSH_TMUX_FIXTERM_WITH_256COLOR=xterm-256color
 
+# https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
+
 plugins=(osx macports sublime \
          colored-man-pages history history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
@@ -164,8 +167,8 @@ source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Proprietary costumizations
 source ~/.work-custom.zshrc
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
