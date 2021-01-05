@@ -13,6 +13,8 @@ alias sudo='sudo '
 alias l='ls -laF'
 # Cat
 alias c='cat'
+alias cat='bat --paging=never'
+# alias cat='bat'
 # SSH
 alias s='ssh'
 # Less

@@ -34,7 +34,14 @@ alias dkr='docker run -it --rm'
 alias dcrr='nocorrect docker-compose run --rm'
 alias dcre='docker-compose down; docker-compose up -d'
 
-###################### Nodejs ######################
+#################### Kubernetes extra ###############
+# plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
+alias kd='kubernetes describe'
+
+#################### Services #######################
+# alias cld='gcloud'
+
+###################### Nodejs #######################
 
 # Yarn tests
 # alias y='yarn'

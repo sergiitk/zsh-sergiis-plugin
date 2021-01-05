@@ -46,11 +46,11 @@ alias gsww='git show -U1 --color-words --abbrev-commit --pretty=medium'
 
 ### Tools
 # Interactive clean.
-alias gclo='git clean -id'
+# alias gclo='git clean -id'
 
 ### Info
 # Last commit
-alias glc='git rev-parse --short'
+alias glc='git rev-parse --short HEAD'
 
 ### Git Flow
 # alias f='git flow'

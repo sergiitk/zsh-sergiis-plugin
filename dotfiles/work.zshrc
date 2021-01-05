@@ -167,8 +167,9 @@ source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Proprietary costumizations
-source ~/.work-custom.zshrc
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Proprietary costumizations
+source ~/.work-custom.zshrc
+# contains MDPROXY-ZSHRC

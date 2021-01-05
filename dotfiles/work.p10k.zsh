@@ -35,9 +35,9 @@
     # =========================[ Line #1 ]=========================
     os_icon                 # os identifier
     dir                     # current directory
-    vcs                     # git status
     gcloud                  # google cloud cli account and project (https://cloud.google.com/)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
+    vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
