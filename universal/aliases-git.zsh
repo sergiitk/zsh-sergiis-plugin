@@ -2,16 +2,20 @@
 ######################### Git  ########################
 
 ### Functions
-bb() {
-  git branch --color=always --all -vv | grep -v origin/HEAD | cut -c3- | gsed -r 's#([^ ]*).* ([a-f0-9]{6,}) (\[([^]]*)\])?.*#\2\x1b[m \1\x1b[m \4#' | sort -t"/" -k3,1
-}
-
-alias b='git branch -vv --sort=objectname'
-
 ### Productivity
 alias g.='git add .'
 alias gpl='git pull'
 
+# Branches
+alias b='git branch -vv --sort=objectname'
+bb() {
+  git branch --color=always --all -vv | grep -v origin/HEAD | cut -c3- | gsed -r 's#([^ ]*).* ([a-f0-9]{6,}) (\[([^]]*)\])?.*#\2\x1b[m \1\x1b[m \4#' | sort -t"/" -k3,1
+}
+
+# give gcl to gcloud
+alias gcln='git clone --recurse-submodules'
+
+# Restore
 alias gr='git restore'
 alias gr.='git restore .'
 alias grs='git restore --staged'

@@ -17,13 +17,18 @@ hash -d ol=/opt/local/var/log
 # Easy cd to project directories.
 cdpath=($cdpath $HOME/Development)
 
-##################### Bat ###########################
-alias yml='bat -pp -l yaml -'
-alias ymlp='bat -p -l yaml -'
-alias jsn='bat -pp -l json -'
-alias jsnp='bat -p -l json -'
+##################### bat ###########################
+# https://github.com/sharkdp/bat
+# Syntax shortcurts, useful as colorized less
+alias yml='bat -l yaml -p'
+alias jsn='bat -l json -p'
+alias ini='bat -l ini -p'
+# No-pager versions
+alias ymlp='yml --paging=never'
+alias jsnp='jsn --paging=never'
+alias inip='ini --paging=never'
 
-#################### Docker #########################
+#################### docker #########################
 alias dcup='docker-compose up -d'
 alias dk='nocorrect docker'
 alias dkp='docker ps -a'
@@ -34,12 +39,17 @@ alias dkr='docker run -it --rm'
 alias dcrr='nocorrect docker-compose run --rm'
 alias dcre='docker-compose down; docker-compose up -d'
 
-#################### Kubernetes extra ###############
+#################### kubectl #########################
 # plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
-alias kd='kubernetes describe'
+alias kd='kubectl describe'
+alias kc='kubectl config'
+alias kcv='kubectl config view --minify | ymlp'
 
-#################### Services #######################
-# alias cld='gcloud'
+#################### gcloud ##########################
+# plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud
+alias gcl='gcloud'
+alias gclcv="gcloud config list 2>&1 | inip"
+alias gclcl="gcloud config configurations list"
 
 ###################### Nodejs #######################
 
