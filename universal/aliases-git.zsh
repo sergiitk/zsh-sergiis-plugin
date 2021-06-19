@@ -47,6 +47,7 @@ alias gdsww='git diff --staged -U0 --abbrev --color-words'
 # Show.
 alias gsw='git show'
 alias gsww='git show -U1 --color-words --abbrev-commit --pretty=medium'
+alias gswf='git show --name-only'
 
 ### Tools
 # Interactive clean.

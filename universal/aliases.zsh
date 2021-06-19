@@ -31,10 +31,8 @@ alias tf='tail -f'
 alias 'exif?'="exiftool-5.22 -a -u -g1"
 
 
-### Miscellaneous apps.
-# alias h=heroku
-
-### Print
+### Printing
+alias e='echo'
 # Print the arguments separated by newlines instead of spaces.
 alias p='print -l'
 # compdef p=print
@@ -49,7 +47,9 @@ alias pe='print -u2'
 
 ### Text
 # Easy decimal dump.
-alias od1='od -ctd1'
+alias od1='od -tc -td1'
+alias ud1='iconv -f UTF-8 -t UCS-2 | od -tc -tx1'
+alias udx='iconv -f UTF-8 -t UCS-2 | xxd'
 
 ### Paths
 # Resolve what is the command.

@@ -5,6 +5,9 @@ ZSH_SERGII=`dirname $0`
 # Advaned globbing using ksh patterns,
 # see checkdot and checkdotdirs
 setopt kshglob
+# Advanced zsh globbing:
+# man zshexpn -> FILENAME GENERATION
+setopt EXTENDED_GLOB
 
 # setopt inc_append_history
 setopt share_history

@@ -32,6 +32,33 @@ tw() {
   tmux rename-window $1
 }
 
+idea-set-file-colors() {
+  if [[ -z $2 ]]; then
+    pe "usage: <non-project-color> <tests-color>"
+    return 1
+  fi
+  xmllint --shell "${HOME}/Library/Application Support/JetBrains/IdeaIC2020.3/options/other.xml" &> /dev/null << EOF
+  cd /application/component[@name='PropertiesComponent']/property[@name='file.colors.enable.non.project']/@value
+  set $1
+  cd /application/component[@name='PropertiesComponent']/property[@name='file.colors.enable.tests']/@value
+  set $2
+  save
+EOF
+  if (( $? == 0 )); then
+      echo "OK"
+  else
+      echo "Fail"
+  fi
+}
+
+idea-dark() {
+  idea-set-file-colors 292b34 434d48
+}
+
+idea-light() {
+  idea-set-file-colors eff1f6 f1f6ef
+}
+
 ##################### powerlevel10k ##########################
 
 # https://github.com/romkatv/powerlevel10k#why-some-prompt-segments-appear-and-disappear-as-im-typing

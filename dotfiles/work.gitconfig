@@ -32,6 +32,7 @@
   cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED 2> /dev/null
 [mergetool]
   prompt = false
+	keepBackup = false
 [merge]
   tool = filemerge
 [difftool]
@@ -60,3 +61,5 @@
   prune = true
 [pager]
   branch = false
+[init]
+	defaultBranch = main

@@ -8,6 +8,7 @@ hash -d libas="$HOME/Library/Application Support/"
 alias dev='cd ~/Development'
 hash -d dev=$HOME/Development
 hash -d play=$HOME/Development/playground
+hash -d p=$HOME/Development/projects
 
 # MacPorts
 hash -d o=/opt/local
@@ -20,13 +21,13 @@ cdpath=($cdpath $HOME/Development)
 ##################### bat ###########################
 # https://github.com/sharkdp/bat
 # Syntax shortcurts, useful as colorized less
-alias yml='bat -l yaml -p'
-alias jsn='bat -l json -p'
-alias ini='bat -l ini -p'
-# No-pager versions
-alias ymlp='yml --paging=never'
-alias jsnp='jsn --paging=never'
-alias inip='ini --paging=never'
+alias yml='bat -l yaml --plain --paging=never --color=always'
+alias jsn='bat -l json --plain --paging=never --color=always'
+alias ini='bat -l ini --plain --paging=never --color=always'
+# Pager versions
+# alias yml-l='bat -l yaml -p'
+# alias jsn-l='bat -l json -p'
+# alias ini-l='bat -l ini -p'
 
 #################### docker #########################
 alias dcup='docker-compose up -d'
@@ -43,12 +44,12 @@ alias dcre='docker-compose down; docker-compose up -d'
 # plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
 alias kd='kubectl describe'
 alias kc='kubectl config'
-alias kcv='kubectl config view --minify | ymlp'
+alias kcv='kubectl config view --minify | yml'
 
 #################### gcloud ##########################
 # plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud
 alias gcl='gcloud'
-alias gclcv="gcloud config list 2>&1 | inip"
+alias gclcv="gcloud config list 2>&1 | ini"
 alias gclcl="gcloud config configurations list"
 
 ###################### Nodejs #######################
