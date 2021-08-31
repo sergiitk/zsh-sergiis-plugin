@@ -37,7 +37,7 @@ idea-set-file-colors() {
     pe "usage: <non-project-color> <tests-color>"
     return 1
   fi
-  xmllint --shell "${HOME}/Library/Application Support/JetBrains/IdeaIC2020.3/options/other.xml" &> /dev/null << EOF
+  xmllint --shell "${HOME}/Library/Application Support/JetBrains/IdeaIC2021.1/options/other.xml" &> /dev/null << EOF
   cd /application/component[@name='PropertiesComponent']/property[@name='file.colors.enable.non.project']/@value
   set $1
   cd /application/component[@name='PropertiesComponent']/property[@name='file.colors.enable.tests']/@value
@@ -57,6 +57,14 @@ idea-dark() {
 
 idea-light() {
   idea-set-file-colors eff1f6 f1f6ef
+}
+
+ls-except() {
+  if [[ -z $2 ]]; then
+    pe "usage: <path/to/list> <dir-name-to-exclude>"
+    return 1
+  fi
+  print -l "$1"*~"$1$2"(/)
 }
 
 ##################### powerlevel10k ##########################

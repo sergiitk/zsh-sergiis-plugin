@@ -9,22 +9,6 @@ fi
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
-# ZSH_THEME="crunch" 4/3
-# ZSH_THEME="nanotech" 4/4
-# ZSH_THEME="miloshadzic" 4/4
-# ZSH_THEME="muse" 5/2
-# ZSH_THEME="mh" 5-/5
-# ZSH_THEME="terminalparty" 5-/5
-# ZSH_THEME="robbyrussell" 5/5
-# ZSH_THEME="fwalch" 5/5
-# ZSH_THEME="wedisagree" 5/2
-# ZSH_THEME="nicoulaj" 5+/3
-# ZSH_THEME="rich"
-# ZSH_THEME="sergii2"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZLE_RPROMPT_INDENT=1
 
@@ -70,10 +54,10 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # FZF
 export FZF_BASE=/opt/local/share/fzf
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
+export FZF_COMPLETION_TRIGGER='\\'
 # Because completions is in unusual place
 export DISABLE_FZF_AUTO_COMPLETION='true'
-export FZF_COMPLETION_TRIGGER='\\'
-source /opt/local/share/zsh/site-functions/fzf
+source /opt/local/share/zsh/site-functions/_fzf
 
 # Gcloud
 export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
@@ -108,9 +92,6 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-# NPM takes up to .5ms
-
-# npm jsontools vagrant docker \
 # catimg
 # plugins/jump/jump.plugin.zsh
 # plugins/common-aliases/common-aliases.plugin.zsh
@@ -120,6 +101,9 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # START=$(/opt/local/bin/gdate +%s.%N)
 
+# Load macports autocomplete
+fpath=(/opt/local/share/zsh/site-functions $fpath)
+
 source ~/.profile
 source $ZSH/oh-my-zsh.sh
 
@@ -127,6 +111,7 @@ setopt nonomatch
 
 # END=$(/opt/local/bin/gdate +%s.%N)
 # echo "$END - $START" | bc
+
 # Docker
 # eval $(docker-machine env default 2> /dev/null)
 
