@@ -11,7 +11,8 @@ export LDFLAGS="-L/opt/local/lib"
 PATH=$HOME/.bin:$PATH
 
 # Java MacPorts
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8-temurin/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk11/Contents/Home
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk14/Contents/Home"
 
@@ -28,9 +29,6 @@ export EDITOR="sublw"
 # Python
 export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
 # export PATH="/Users/sergii/Library/Python/3.8/bin:$PATH"
-
-# authrefresh
-export AUTH_HOST=sergiitk.c.googlers.com
 
 # SSH
 # Load SSH keys stored in the Keychain using native OSX ssh agent
