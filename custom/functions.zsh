@@ -67,6 +67,14 @@ ls-except() {
   print -l "$1"*~"$1$2"(/)
 }
 
+b-preview() {
+  if [[ -z $1 || ! -r $1 ]]; then
+    pe "usage: <file/to/preview>"
+    return 1
+  fi
+  bat --list-themes | fzf --preview="bat --theme={} --color=always ${1}"
+}
+
 ##################### powerlevel10k ##########################
 
 # https://github.com/romkatv/powerlevel10k#why-some-prompt-segments-appear-and-disappear-as-im-typing
