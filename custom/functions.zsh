@@ -37,7 +37,7 @@ idea-set-file-colors() {
     pe "usage: <non-project-color> <tests-color>"
     return 1
   fi
-  xmllint --shell "${HOME}/Library/Application Support/JetBrains/IdeaIC2021.1/options/other.xml" &> /dev/null << EOF
+  xmllint --shell "${HOME}/Library/Application Support/JetBrains/IdeaIC2021.3/options/other.xml" &> /dev/null << EOF
   cd /application/component[@name='PropertiesComponent']/property[@name='file.colors.enable.non.project']/@value
   set $1
   cd /application/component[@name='PropertiesComponent']/property[@name='file.colors.enable.tests']/@value

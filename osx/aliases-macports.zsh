@@ -21,3 +21,4 @@ alias head=ghead
 # alias tr=gtr
 # Uninstall leaves
 alias pul='sudo port uninstall leaves'
+alias pu='sudo port uninstall'

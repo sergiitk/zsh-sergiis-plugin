@@ -56,8 +56,9 @@ export FZF_BASE=/opt/local/share/fzf
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
 export FZF_COMPLETION_TRIGGER='\\'
 # Because completions is in unusual place
-export DISABLE_FZF_AUTO_COMPLETION='true'
-source /opt/local/share/zsh/site-functions/_fzf
+# export DISABLE_FZF_AUTO_COMPLETION='true'
+# source /opt/local/share/zsh/site-functions/_fzf
+# source /opt/local/share/fzf/shell/completion.zsh
 
 # Gcloud
 export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
@@ -71,7 +72,7 @@ export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
 # https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 
-plugins=(osx macports sublime \
+plugins=(macos macports sublime \
          colored-man-pages history history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
          git \

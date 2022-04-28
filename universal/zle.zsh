@@ -4,7 +4,7 @@
 setopt nobeep
 
 # ZLE: The editor’s idea of a word: controls moves over words.
-export WORDCHARS='*?_-.[]~&;!#$%^(){}<>|'
+export WORDCHARS='*?_-.[]~&;!#$%^(){}<>|@'
 
 # Bind keys.
 # Use `read` to read keys, or press ctrl-v then char.

@@ -18,7 +18,10 @@ hash -d ol=/opt/local/var/log
 # Easy cd to project directories.
 cdpath=($cdpath $HOME/Development)
 
-##################### bat ###########################
+#################### noglob #########################
+alias bazel='noglob bazel'
+
+################## highlighting #####################
 # https://github.com/sharkdp/bat
 # Syntax shortcurts, useful as colorized less
 alias yml='bat -l yaml --plain --paging=never --color=always'
@@ -28,6 +31,8 @@ alias ini='bat -l ini --plain --paging=never --color=always'
 # alias yml-l='bat -l yaml -p'
 # alias jsn-l='bat -l json -p'
 # alias ini-l='bat -l ini -p'
+
+alias dl='delta'
 
 #################### docker #########################
 alias dcup='docker-compose up -d'
