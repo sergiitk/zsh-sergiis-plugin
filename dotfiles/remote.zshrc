@@ -9,22 +9,6 @@ fi
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
-# ZSH_THEME="crunch" 4/3
-# ZSH_THEME="nanotech" 4/4
-# ZSH_THEME="miloshadzic" 4/4
-# ZSH_THEME="muse" 5/2
-# ZSH_THEME="mh" 5-/5
-# ZSH_THEME="terminalparty" 5-/5
-# ZSH_THEME="robbyrussell" 5/5
-# ZSH_THEME="fwalch" 5/5
-# ZSH_THEME="wedisagree" 5/2
-# ZSH_THEME="nicoulaj" 5+/3
-# ZSH_THEME="rich"
-# ZSH_THEME="sergii2"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZLE_RPROMPT_INDENT=1
 
@@ -70,10 +54,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # FZF
 export FZF_BASE=/opt/local/share/fzf
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
+export FZF_COMPLETION_TRIGGER='\\'
 # Because completions is in unusual place
 # export DISABLE_FZF_AUTO_COMPLETION='true'
-export FZF_COMPLETION_TRIGGER='\\'
-# source /opt/local/share/zsh/site-functions/fzf
+# source /opt/local/share/zsh/site-functions/_fzf
+# source /opt/local/share/fzf/shell/completion.zsh
 
 # Gcloud
 # export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
@@ -83,6 +68,9 @@ export FZF_COMPLETION_TRIGGER='\\'
 # export ZSH_TMUX_FIXTERM=false
 # export ZSH_TMUX_FIXTERM_WITHOUT_256COLOR=xterm
 # export ZSH_TMUX_FIXTERM_WITH_256COLOR=xterm-256color
+
+# https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 
 plugins=(debian
          colored-man-pages history history-substring-search extract \
@@ -118,6 +106,7 @@ setopt nonomatch
 
 # END=$(/opt/local/bin/gdate +%s.%N)
 # echo "$END - $START" | bc
+
 # Docker
 # eval $(docker-machine env default 2> /dev/null)
 
