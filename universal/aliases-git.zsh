@@ -7,7 +7,7 @@ alias g.='git add .'
 alias gpl='git pull'
 
 # Branches
-alias b='git branch -vv --sort=objectname'
+alias b='git branch -vv --sort=refname'
 bb() {
   git branch --color=always --all -vv | grep -v origin/HEAD | cut -c3- | gsed -r 's#([^ ]*).* ([a-f0-9]{6,}) (\[([^]]*)\])?.*#\2\x1b[m \1\x1b[m \4#' | sort -t"/" -k3,1
 }
@@ -35,6 +35,11 @@ alias gl='git log'
 
 alias 'g-'='git log --pretty=graph --branches --remotes --tags --graph --date=short'
 
+glb() {
+  gl $(git merge-base $(git_main_branch) $1)..$1
+}
+compdef _git glb=git-branch
+
 ### Per word diffs
 alias gdww='git diff -U0 --abbrev --color-words'
 # alias gds='git diff -U0 --abbrev --color-words'
@@ -45,8 +50,8 @@ alias gdsw='git diff --staged --word-diff'
 alias gdsww='git diff --staged -U0 --abbrev --color-words'
 
 # Show.
-alias gsw='git show'
-alias gsww='git show -U1 --color-words --abbrev-commit --pretty=medium'
+alias gsw='git show --format=fuller'
+alias gsww='git show -U1 --color-words --abbrev-commit --pretty=fuller'
 alias gswf='git show --name-only'
 
 ### Tools

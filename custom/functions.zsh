@@ -1,6 +1,30 @@
-################## Custom Functions  ##################
+######################################## Custom Functions  ########################################
 
-##################### tmux ##########################
+
+########################### Misc helpers ##############################
+
+fzf-alias() {
+  ls-alias "${argv}" | fzf --header-first --header="ls-alias ${argv}"
+}
+alias fzf-alias="nocorrect fzf-alias"
+
+ls-except() {
+  if [[ -z $2 ]]; then
+    pe "usage: <path/to/list> <dir-name-to-exclude>"
+    return 1
+  fi
+  print -l "$1"*~"$1$2"(/)
+}
+
+b-preview() {
+  if [[ -z $1 || ! -r $1 ]]; then
+    pe "usage: <file/to/preview>"
+    return 1
+  fi
+  bat --list-themes | fzf --preview="bat --theme={} --color=always ${1}"
+}
+
+############################# tmux ##################################
 alias t='tmux'
 alias tc='tmux -CC'
 alias ta='tmux -CC attach -t'
@@ -32,6 +56,8 @@ tw() {
   tmux rename-window $1
 }
 
+############################## Idea #################################
+
 idea-set-file-colors() {
   if [[ -z $2 ]]; then
     pe "usage: <non-project-color> <tests-color>"
@@ -59,23 +85,7 @@ idea-light() {
   idea-set-file-colors eff1f6 f1f6ef
 }
 
-ls-except() {
-  if [[ -z $2 ]]; then
-    pe "usage: <path/to/list> <dir-name-to-exclude>"
-    return 1
-  fi
-  print -l "$1"*~"$1$2"(/)
-}
-
-b-preview() {
-  if [[ -z $1 || ! -r $1 ]]; then
-    pe "usage: <file/to/preview>"
-    return 1
-  fi
-  bat --list-themes | fzf --preview="bat --theme={} --color=always ${1}"
-}
-
-##################### powerlevel10k ##########################
+########################## powerlevel10k ############################
 
 # https://github.com/romkatv/powerlevel10k#why-some-prompt-segments-appear-and-disappear-as-im-typing
 function ps-kube() {
