@@ -57,6 +57,10 @@ alias gswf='git show --name-only'
 ### Tools
 # Interactive clean.
 # alias gclo='git clean -id'
+# Clean gone branches
+alias gone='git branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)" | grep -Ev "\$^"'
+alias goneD='gone | gxargs -r -n1 -p git branch -D'
+# alias gone='git branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)" | xargs -p git branch -D'
 
 ### Info
 # Last commit

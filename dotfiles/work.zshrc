@@ -12,14 +12,16 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZLE_RPROMPT_INDENT=1
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -28,9 +30,12 @@ ZLE_RPROMPT_INDENT=1
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="false"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -40,16 +45,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+### Plugins config
 
 # FZF
 export FZF_BASE=/opt/local/share/fzf
@@ -72,6 +74,11 @@ export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
 # https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
 plugins=(macos macports sublime \
          colored-man-pages history history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
@@ -93,15 +100,6 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-# catimg
-# plugins/jump/jump.plugin.zsh
-# plugins/common-aliases/common-aliases.plugin.zsh
-# plugins/frontend-search/README.md
-# plugins/systemadmin/systemadmin.plugin.zsh
-# plugins/xcode/xcode.plugin.zsh
-
-# START=$(/opt/local/bin/gdate +%s.%N)
-
 # Load macports autocomplete
 fpath=(/opt/local/share/zsh/site-functions $fpath)
 
@@ -110,15 +108,8 @@ source $ZSH/oh-my-zsh.sh
 
 setopt nonomatch
 
-# END=$(/opt/local/bin/gdate +%s.%N)
-# echo "$END - $START" | bc
+### User configuration
 
-# Docker
-# eval $(docker-machine env default 2> /dev/null)
-
-# User configuration
-
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -146,13 +137,10 @@ setopt nonomatch
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 # TL;DR autocomplete
 source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
 
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+# https://github.com/romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
