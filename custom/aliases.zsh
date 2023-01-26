@@ -56,8 +56,8 @@ alias kcv='kubectl config view --minify | yml'
 alias gcl='gcloud'
 alias gclcfg="gcloud config list 2>&1 | ini"
 alias gclcfgl="gcloud config configurations list"
-alias gclcc='gclouf container clusters'
-alias gclccl='gclouf container clusters'
+alias gclcc='gcloud container clusters'
+alias gclccl='gcloud container clusters'
 ###################### Nodejs #######################
 
 # Yarn tests
