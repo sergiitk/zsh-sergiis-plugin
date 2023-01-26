@@ -57,7 +57,7 @@ alias gcl='gcloud'
 alias gclcfg="gcloud config list 2>&1 | ini"
 alias gclcfgl="gcloud config configurations list"
 alias gclcc='gcloud container clusters'
-alias gclccl='gcloud container clusters'
+alias gclccl='gcloud container clusters list'
 ###################### Nodejs #######################
 
 # Yarn tests
