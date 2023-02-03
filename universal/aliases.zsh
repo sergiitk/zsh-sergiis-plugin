@@ -26,10 +26,18 @@ alias s='ssh'
 # Follow file with tailf.
 alias tailf='tail -f'
 alias tf='tail -f'
+# cpuinfo
+# envvars
+# fstab
+# hs
+# log
+# properties
+# toml
+# vy
+alias hl='history -r -i | bat --style="header,grid" -l vy'
 
 # Exif
 alias 'exif?'="exiftool-5.22 -a -u -g1"
-
 
 ### Printing
 alias e='echo'

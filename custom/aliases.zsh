@@ -27,6 +27,7 @@ alias bazel='noglob bazel'
 alias yml='bat -l yaml --plain --paging=never --color=always'
 alias jsn='bat -l json --plain --paging=never --color=always'
 alias ini='bat -l ini --plain --paging=never --color=always'
+alias hlp='bat -l help --plain --paging=never --color=always'
 # Pager versions
 # alias yml-l='bat -l yaml -p'
 # alias jsn-l='bat -l json -p'
@@ -54,8 +55,8 @@ alias kcv='kubectl config view --minify | yml'
 #################### gcloud ##########################
 # plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud
 alias gcl='gcloud'
-alias gclcfg="gcloud config list 2>&1 | ini"
-alias gclcfgl="gcloud config configurations list"
+alias gcl-cfg="gcloud config list 2>&1 | ini"
+alias gcl-cfgl="gcloud config configurations list"
 alias gclcc='gcloud container clusters'
 alias gclccl='gcloud container clusters list'
 ###################### Nodejs #######################

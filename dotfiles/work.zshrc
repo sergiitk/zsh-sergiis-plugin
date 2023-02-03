@@ -80,12 +80,14 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(macos macports sublime \
-         colored-man-pages history history-substring-search extract \
+         history history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
          git \
          gradle gcloud kubectl \
          zsh-sergiis-plugin
 )
+# Use bat instead of colored-man-pages plugin
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
