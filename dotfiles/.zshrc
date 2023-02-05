@@ -64,7 +64,7 @@ export FZF_COMPLETION_TRIGGER='\\'
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 
 plugins=(macos macports sublime \
-         colored-man-pages history history-substring-search extract \
+         history history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
          git\
          docker docker-compose \
@@ -72,6 +72,9 @@ plugins=(macos macports sublime \
          gradle \
          zsh-sergiis-plugin
 )
+# Use bat instead of colored-man-pages plugin
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # npm jsontools vagrant docker \
 # NPM takes up to .5ms
 

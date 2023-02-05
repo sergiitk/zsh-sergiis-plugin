@@ -37,7 +37,7 @@ alias tf='tail -f'
 alias hl='history -r -i | bat --style="header,grid" -l vy'
 
 # Exif
-alias 'exif?'="exiftool-5.22 -a -u -g1"
+alias 'exif?'="exiftool -a -u -g1"
 
 ### Printing
 alias e='echo'
