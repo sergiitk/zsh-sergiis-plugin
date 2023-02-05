@@ -1,22 +1,16 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="crunch" 4/3
-# ZSH_THEME="nanotech" 4/4
-# ZSH_THEME="miloshadzic" 4/4
-# ZSH_THEME="muse" 5/2
-# ZSH_THEME="mh" 5-/5
-# ZSH_THEME="terminalparty" 5-/5
-# ZSH_THEME="robbyrussell" 5/5
-# ZSH_THEME="fwalch" 5/5
-# ZSH_THEME="wedisagree" 5/2
-# ZSH_THEME="nicoulaj" 5+/3
-# ZSH_THEME="rich"
-ZSH_THEME="sergii2"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+ZLE_RPROMPT_INDENT=1
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -57,18 +51,43 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(osx macports sublime \
+# FZF
+export FZF_BASE=/opt/local/share/fzf
+export FZF_DEFAULT_OPTS='--layout=reverse --border'
+export FZF_COMPLETION_TRIGGER='\\'
+# Because completions is in unusual place
+# export DISABLE_FZF_AUTO_COMPLETION='true'
+# source /opt/local/share/zsh/site-functions/_fzf
+# source /opt/local/share/fzf/shell/completion.zsh
+
+# https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
+
+plugins=(macos macports sublime \
          colored-man-pages history history-substring-search extract \
+         zsh-autosuggestions zsh-syntax-highlighting fzf \
          git\
          docker docker-compose \
          yarn \
          gradle \
          zsh-sergiis-plugin
 )
-
+# npm jsontools vagrant docker \
 # NPM takes up to .5ms
 
-# npm jsontools vagrant docker \
+### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+### Fix slowness of pastes
+
 # catimg
 # plugins/jump/jump.plugin.zsh
 # plugins/common-aliases/common-aliases.plugin.zsh
@@ -77,6 +96,9 @@ plugins=(osx macports sublime \
 # plugins/xcode/xcode.plugin.zsh
 
 # START=$(/opt/local/bin/gdate +%s.%N)
+
+# Load macports autocomplete
+fpath=(/opt/local/share/zsh/site-functions $fpath)
 
 source ~/.profile
 source $ZSH/oh-my-zsh.sh
@@ -121,6 +143,11 @@ setopt nonomatch
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # TL;DR autocomplete
-source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
+if [[ -f /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh ]]; then
+  source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
