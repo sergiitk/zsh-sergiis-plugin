@@ -73,12 +73,14 @@ export FZF_COMPLETION_TRIGGER='\\'
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 
 plugins=(debian
-         colored-man-pages history history-substring-search extract \
+         history history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
          git \
          gradle gcloud kubectl \
          zsh-sergiis-plugin
 )
+# Use bat instead of colored-man-pages plugin
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
