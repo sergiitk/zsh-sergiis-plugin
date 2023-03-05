@@ -11,8 +11,9 @@ export LC_ALL=$LANG
 export EDITOR="sublw"
 
 # Java Macports
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk14/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk17/Contents/Home"
 
 # Node
 # NPM packages in homedir
@@ -26,5 +27,5 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 # Python
-export PATH="/Users/sergii/Library/Python/3.8/bin:$PATH"
-export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
+# export PATH="/Users/sergii/Library/Python/3.8/bin:$PATH"
+# export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
