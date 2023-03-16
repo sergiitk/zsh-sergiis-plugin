@@ -73,7 +73,7 @@ plugins=(macos macports sublime \
          zsh-sergiis-plugin
 )
 # Use bat instead of colored-man-pages plugin
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
 
 # npm jsontools vagrant docker \
 # NPM takes up to .5ms

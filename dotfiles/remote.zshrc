@@ -80,7 +80,7 @@ plugins=(debian
          zsh-sergiis-plugin
 )
 # Use bat instead of colored-man-pages plugin
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
