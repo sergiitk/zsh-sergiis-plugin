@@ -119,6 +119,7 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=227'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=204'
 ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=215,bold'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=215,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=69,underline'
 ZSH_HIGHLIGHT_STYLES[default]='fg=195'
 
 
