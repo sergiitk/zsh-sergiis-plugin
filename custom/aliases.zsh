@@ -49,6 +49,7 @@ alias dcre='docker-compose down; docker-compose up -d'
 #################### kubectl #########################
 # plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
 alias kd='kubectl describe'
+alias kg='kubectl get'
 alias kc='kubectl config'
 alias kcv='kubectl config view --minify | yml'
 

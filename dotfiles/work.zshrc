@@ -80,7 +80,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(macos macports sublime \
-         history history-substring-search extract \
+         history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
          git \
          gradle gcloud kubectl \
@@ -109,6 +109,21 @@ source ~/.profile
 source $ZSH/oh-my-zsh.sh
 
 setopt nonomatch
+
+# zsh-syntax-highlighting settings
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
+ZSH_HIGHLIGHT_STYLES[command]='fg=010,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=010,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=010,bold,underline'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=051,bold'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=087'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=087,bold'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=229'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=227'
+ZSH_HIGHLIGHT_STYLES[assign]='fg=204'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=215,bold'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=215,bold'
+ZSH_HIGHLIGHT_STYLES[default]='fg=195'
 
 ### User configuration
 

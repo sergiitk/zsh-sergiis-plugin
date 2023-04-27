@@ -18,6 +18,7 @@ alias cat='bat --paging=never'
 # SSH
 alias s='ssh'
 # Less
+alias le='less'
 # alias ß='less'
 # alias -g ßß='| less'
 # Turn off word wrapping.
@@ -34,6 +35,21 @@ alias tf='tail -f'
 # properties
 # toml
 # vy
+
+# See man zshbuiltins
+# history: Same as fc -l.
+alias h='history'
+alias hs='history -rn | grep -Ei'
+# Search full words.
+hsw() {
+  history -rn | grep -P "(?<!(\w|-))$argv(?!\w)"
+}
+# Search from the beginning
+hss() {
+  history -rn | grep -Ei "^${argv}"
+}
+
+alias hsd='history -rni | grep -Ei'
 alias hl='history -r -i | bat --style="header,grid" -l vy'
 
 # Exif
