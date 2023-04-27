@@ -28,6 +28,12 @@ alias yml='bat -l yaml --plain --paging=never --color=always'
 alias jsn='bat -l json --plain --paging=never --color=always'
 alias ini='bat -l ini --plain --paging=never --color=always'
 alias hlp='bat -l help --plain --paging=never --color=always'
+hj() {
+  local cmd
+  cmd=$(echo "$@" | sed "s/ --help//")
+  zsh -ic "$cmd --help" |& bat -l help --plain --paging=never --color=always
+}
+
 # Pager versions
 # alias yml-l='bat -l yaml -p'
 # alias jsn-l='bat -l json -p'
