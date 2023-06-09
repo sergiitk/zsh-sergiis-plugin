@@ -28,6 +28,8 @@
   graph = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
 [log]
   abbrevCommit = true
+[blame]
+  ignoreRevsFile = .git-blame-ignore-revs
 
 # Merge and diff tools.
 [mergetool "sublime"]
