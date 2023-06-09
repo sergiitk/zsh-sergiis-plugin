@@ -2,14 +2,14 @@
 [user]
   email = hi@sergii.org
   name  = Sergii Tkachenko
-	signingkey = 4E8B4FCE
+  signingkey = 4E8B4FCE
 
 # Core settings.
 [core]
   # `-S` — vertical overflow.
   pager = less -S
   excludesfile = ~/.gitignore_global
-#	excludesfile = /Users/sergii/.gitignore_global
+# excludesfile = /Users/sergii/.gitignore_global
 
 # Aliases.
 [alias]
@@ -54,12 +54,12 @@
   # No numbers, underscore.
   # wordRegex = [a-zA-Z]+|[^[:space:]]
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
 [push]
-	default = simple
+  default = simple
 [fetch]
-	prune = true
+  prune = true
 
 # Svn.
 [svn]
@@ -73,4 +73,4 @@
 # trustExitCode = true
 
 [pager]
-	branch = false
+  branch = false

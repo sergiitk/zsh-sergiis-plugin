@@ -13,10 +13,10 @@
 [alias]
   dt = difftool -t opendiff
 
-# https://git-scm.com/book/en/v2/Git-Tools-Rerere 
+# https://git-scm.com/book/en/v2/Git-Tools-Rerere
 [rerere]
   enabled = true
-	autoupdate = true
+  autoupdate = true
 
 # Pretty formats.
 [format]
@@ -37,7 +37,7 @@
   cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED 2> /dev/null
 [mergetool]
   prompt = false
-	keepBackup = false
+  keepBackup = false
 [merge]
   tool = filemerge
 [difftool]
@@ -79,7 +79,7 @@
   show = delta
   branch = false
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [color]
   # Pass colorMoved color sequences for delta to color by overwriting
