@@ -12,8 +12,8 @@ alias sudo='sudo '
 # Replace oh-my-zsh's alias l='ls -la': append file type indicators.
 alias l='ls -laF'
 # Cat
-alias c='cat'
-alias cat='bat --paging=never'
+alias c='bat --paging=never'
+# alias cat='bat --paging=never'
 # alias cat='bat'
 # SSH
 alias s='ssh'

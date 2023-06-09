@@ -23,6 +23,25 @@ alias grs.='git restore --staged .'
 # alias grs='git restore --staged'
 # alias grs.='git restore --staged .'
 
+### Info
+# Last commit
+alias grpl='git rev-parse --short HEAD'
+
+# Rev-parse short
+# Nice Usages:
+# grp "python-black@{1 day ago}"
+# grp "@{1 month ago}"
+# grp @{1} - one commit ago
+# grp @{u} - upstream
+alias grp='git rev-parse --short'
+
+# Branch fork
+alias gbb="git merge-base --fork-point $(git_main_branch)"
+alias -g '$gbb'='$(gbb)'
+
+# Rebase
+alias grbb='git rebase --interactive $(gbb)'
+
 ### Log
 # Just git log.
 alias gl='git log'
@@ -35,8 +54,12 @@ alias gl='git log'
 
 alias 'g-'='git log --pretty=graph --branches --remotes --tags --graph --date=short'
 
+# Log commits in the current branch.
+# alias glb='git --no-pager log --pretty=graph --date=human --reverse $(gbb)..'
 glb() {
-  gl $(git merge-base $(git_main_branch) $1)..$1
+  local branch="${1:-}"
+  local fork_point=$(git merge-base --fork-point $(git_main_branch) ${branch})
+  git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}"
 }
 compdef _git glb=git-branch
 
@@ -61,24 +84,3 @@ alias gswf='git show --name-only'
 alias gone='git branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)" | grep -Ev "\$^"'
 alias goneD='gone | gxargs -r -n1 -p git branch -D'
 # alias gone='git branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)" | xargs -p git branch -D'
-
-### Info
-# Last commit
-alias glc='git rev-parse --short HEAD'
-
-### Git Flow
-# alias f='git flow'
-# alias ff='git flow feature'
-# alias fs='git flow feature start'
-# alias fr='git flow release'
-
-# Svn
-# # Return the current svn branch name, define a global alias calling it.
-# # Example: `grbi trunk` = `grbi $gs`; `gll trunk..` = `gll $gss`
-# alias gsb='echo ${$(g config --get svn-remote.svn.fetch | cut -d: -f2)#refs/remotes/}'
-# # alias -g '$gs'='$(gsb)'
-# # alias -g '$gss'='$(gsb)".."'
-
-# # gll, grbi from current svn remote to HEAD. Completion is not needed.
-# alias glls='git log $(gsb)..'
-# alias grbis='git rebase -i $(gsb)'

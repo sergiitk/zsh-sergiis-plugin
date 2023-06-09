@@ -177,3 +177,13 @@ alias dt='nocorrect dt'
 #   fi
 # }
 # alias lc="noglob lc"
+
+############################## ffmpeg #################################
+
+ff-frames() {
+  if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
+    echo "Usage: ff-frames <file>"
+    return
+  fi
+  ffprobe -loglevel error -select_streams v:0 -show_entries packet=pts_time,flags -of csv=print_section=0 "$1" | awk -F',' '/K/ {print $1}'
+}
