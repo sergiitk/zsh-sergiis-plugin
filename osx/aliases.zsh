@@ -10,6 +10,7 @@ alias pbc='tee >(pbcopy)'
 alias lf='l "$(pfd)"'
 # Open finder in current dir
 alias f="open ${PWD}"
+alias o="open"
 
 # Port.
 alias pup='sudo port selfupdate && sudo port echo outdated && sudo port upgrade outdated'

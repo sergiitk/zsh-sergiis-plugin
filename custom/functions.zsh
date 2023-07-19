@@ -187,3 +187,41 @@ ff-frames() {
   fi
   ffprobe -loglevel error -select_streams v:0 -show_entries packet=pts_time,flags -of csv=print_section=0 "$1" | awk -F',' '/K/ {print $1}'
 }
+
+
+ff-luf() {
+  if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
+    echo "Usage: ff-luf <file>"
+    return
+  fi
+  ffmpeg -i "$1" -hide_banner -af loudnorm=I=-16:dual_mono=true:TP=-1.5:LRA=11:print_format=summary -f null -
+}
+
+
+ff-ebur128() {
+  if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
+    echo "Usage: ff-ebur128 <file>"
+    return
+  fi
+  ffmpeg -i "$1" -hide_banner -af ebur128=framelog=verbose:target=-16:peak=true -f null -
+}
+
+
+ff-ebur128-v() {
+  if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
+    echo "Usage: ff-ebur128-v <file>"
+    return
+  fi
+  # ffmpeg -i "$1" -y -hide_banner -filter_complex "[0:a]ebur128=size=960x540:video=1:meter=18:target=-16:peak=true[v][a]" -map '[v]' -map '[a]' "ebur128-log.mp4"
+  local out="${1%.*}-ebur128-$(gdate -I)-${RANDOM}.mp4"
+  ffmpeg -i "$1" -y -hide_banner -filter_complex "[0:a]ebur128=size=960x540:video=1:meter=18:target=-16:peak=true[v][a]" -map '[v]' -map '[a]' "${out}"
+}
+
+
+# ff-ebur128-pl() {
+#   if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
+#     echo "Usage: ff-ebur128-v <file>"
+#     return
+#   fi
+#   ffplay -f lavfi -i "amovie=$1,ebur128=video=1:meter=18:target=-16:peak=true [out0][out1]"
+# }

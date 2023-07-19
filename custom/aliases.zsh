@@ -35,9 +35,9 @@ hj() {
 }
 
 # Pager versions
-# alias yml-l='bat -l yaml -p'
-# alias jsn-l='bat -l json -p'
-# alias ini-l='bat -l ini -p'
+alias ymll='bat -l yaml -p'
+alias jsnl='bat -l json -p'
+alias inil='bat -l ini -p'
 
 alias dl='delta'
 
