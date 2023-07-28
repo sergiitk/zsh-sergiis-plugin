@@ -156,7 +156,9 @@ ZSH_HIGHLIGHT_STYLES[default]='fg=195'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # TL;DR autocomplete
-source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
+if [[ -f /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh ]]; then
+  source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
+fi
 
 # https://github.com/romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

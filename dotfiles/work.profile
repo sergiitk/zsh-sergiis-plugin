@@ -5,6 +5,11 @@ export LDFLAGS="-L/opt/local/lib"
 # Home
 PATH=$HOME/.bin:$PATH
 
+# Env
+export LANG="en_US.UTF-8"
+export LC_ALL=$LANG
+export EDITOR="sublw"
+
 # Java MacPorts
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8-temurin/Contents/Home
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk11/Contents/Home
@@ -13,11 +18,6 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk11/Contents/Home
 export ANDROID_HOME=$HOME/Development/Android/sdk
 PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Env
-export LANG="en_US.UTF-8"
-export LC_ALL=$LANG
-export EDITOR="sublw"
 
 # Python
 # export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"

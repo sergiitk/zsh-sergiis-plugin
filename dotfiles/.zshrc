@@ -12,14 +12,20 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZLE_RPROMPT_INDENT=1
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -31,6 +37,9 @@ ZLE_RPROMPT_INDENT=1
 ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -40,7 +49,10 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -63,20 +75,17 @@ export FZF_COMPLETION_TRIGGER='\\'
 # https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
 
+# docker docker-compose \
+# yarn \
 plugins=(macos macports sublime \
-         history history-substring-search extract \
+         history-substring-search extract \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
          git\
-         docker docker-compose \
-         yarn \
          gradle \
          zsh-sergiis-plugin
 )
 # Use bat instead of colored-man-pages plugin
 export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
-
-# npm jsontools vagrant docker \
-# NPM takes up to .5ms
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
@@ -91,15 +100,6 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-# catimg
-# plugins/jump/jump.plugin.zsh
-# plugins/common-aliases/common-aliases.plugin.zsh
-# plugins/frontend-search/README.md
-# plugins/systemadmin/systemadmin.plugin.zsh
-# plugins/xcode/xcode.plugin.zsh
-
-# START=$(/opt/local/bin/gdate +%s.%N)
-
 # Load macports autocomplete
 fpath=(/opt/local/share/zsh/site-functions $fpath)
 
@@ -108,12 +108,14 @@ source $ZSH/oh-my-zsh.sh
 
 setopt nonomatch
 
+# User configuration
+
+# START=$(/opt/local/bin/gdate +%s.%N)
 # END=$(/opt/local/bin/gdate +%s.%N)
 # echo "$END - $START" | bc
 # Docker
 # eval $(docker-machine env default 2> /dev/null)
 
-# User configuration
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
