@@ -9,7 +9,7 @@ alias pbc='tee >(pbcopy)'
 # Finder.
 alias lf='l "$(pfd)"'
 # Open finder in current dir
-alias f="open ${PWD}"
+alias f='open "$(pwd)"'
 alias o="open"
 
 # Port.

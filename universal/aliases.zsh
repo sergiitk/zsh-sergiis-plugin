@@ -87,5 +87,6 @@ alias '?'='nocorrect whence -asvf'
 alias pbgen='pwgen --symbol 15 1 | tr -d "\n" > >(pbcopy) > >(cat); echo'
 # Show open ports.
 alias openports='_ lsof -Pn -i4TCP -sTCP:LISTEN | sort -t":" -k2n | grep -P "(?<=:)[0-9]+ "'
+alias showport='lsof -Pn -i'
 # Serve current folder at :8000 with python HTTP Server.
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"

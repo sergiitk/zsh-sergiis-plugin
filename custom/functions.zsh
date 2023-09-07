@@ -189,21 +189,39 @@ ff-frames() {
 }
 
 
+# https://ffmpeg.org/ffmpeg-filters.html#volumedetect
+ff-volume() {
+  if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
+    echo "Usage: ff-volume <file>"
+    return
+  fi
+  ffmpeg -i "$1" -hide_banner -af "volumedetect" -f null -
+}
+
+# https://ffmpeg.org/ffmpeg-filters.html#loudnorm
 ff-luf() {
   if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
     echo "Usage: ff-luf <file>"
     return
   fi
-  ffmpeg -i "$1" -hide_banner -af loudnorm=I=-16:dual_mono=true:TP=-1.5:LRA=11:print_format=summary -f null -
+  ffmpeg -i "$1" -hide_banner -af "loudnorm=I=-19:dual_mono=true:TP=-1.5:LRA=11:print_format=summary" -f null -
 }
 
-
+# https://ffmpeg.org/ffmpeg-filters.html#ebur128-1
 ff-ebur128() {
   if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
     echo "Usage: ff-ebur128 <file>"
     return
   fi
-  ffmpeg -i "$1" -hide_banner -af ebur128=framelog=verbose:target=-16:peak=true -f null -
+  ffmpeg -i "$1" -hide_banner -af "ebur128=framelog=verbose:target=-19:peak=true+sample" -f null -
+}
+
+ff-nebur128() {
+  if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
+    echo "Usage: ff-nebur128 <file>"
+    return
+  fi
+  echo $(awk '{ ORS=" " } NR!=9 && !/^$/ && !/:$/  { print $(NF-1) }' =(ffmpeg -hide_banner -i $1 -af "ebur128=framelog=verbose:target=-19:peak=true" -f null - 2>&1 | tailf -n 14))  "\n\n       " | tee >(pbcopy) | head -n 1
 }
 
 
@@ -212,9 +230,10 @@ ff-ebur128-v() {
     echo "Usage: ff-ebur128-v <file>"
     return
   fi
-  # ffmpeg -i "$1" -y -hide_banner -filter_complex "[0:a]ebur128=size=960x540:video=1:meter=18:target=-16:peak=true[v][a]" -map '[v]' -map '[a]' "ebur128-log.mp4"
-  local out="${1%.*}-ebur128-$(gdate -I)-${RANDOM}.mp4"
-  ffmpeg -i "$1" -y -hide_banner -filter_complex "[0:a]ebur128=size=960x540:video=1:meter=18:target=-16:peak=true[v][a]" -map '[v]' -map '[a]' "${out}"
+  local out="${1%.*}-ebur128-$(date '+%Y%m%d-%H%M').mp4"
+  # scale=absolute not working?
+  # peak=true+sample not showing anything
+  ffmpeg -i "$1" -y -hide_banner -filter_complex "[0:a]ebur128=video=1:target=-19:scale=absolute:size=hd720[v][a]" -map '[v]' -map '[a]' -c:v libx265 -tag:v hvc1 -preset superfast -vsync vfr "${out}"
 }
 
 
@@ -223,5 +242,5 @@ ff-ebur128-v() {
 #     echo "Usage: ff-ebur128-v <file>"
 #     return
 #   fi
-#   ffplay -f lavfi -i "amovie=$1,ebur128=video=1:meter=18:target=-16:peak=true [out0][out1]"
+#   ffplay -f lavfi -i "amovie=$1,ebur128=video=1:meter=18:target=-19:peak=true [out0][out1]"
 # }

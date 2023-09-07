@@ -36,7 +36,7 @@ alias grpl='git rev-parse --short HEAD'
 alias grp='git rev-parse --short'
 
 # Branch fork
-alias gbb="git merge-base --fork-point $(git_main_branch)"
+alias gbb="git merge-base $(git_main_branch) HEAD"
 alias -g '$gbb'='$(gbb)'
 
 # Rebase
@@ -57,8 +57,8 @@ alias 'g-'='git log --pretty=graph --branches --remotes --tags --graph --date=sh
 # Log commits in the current branch.
 # alias glb='git --no-pager log --pretty=graph --date=human --reverse $(gbb)..'
 glb() {
-  local branch="${1:-}"
-  local fork_point=$(git merge-base --fork-point $(git_main_branch) ${branch})
+  local branch="${1:-HEAD}"
+  local fork_point=$(git merge-base $(git_main_branch) ${branch})
   git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}"
 }
 compdef _git glb=git-branch
