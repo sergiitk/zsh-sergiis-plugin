@@ -66,6 +66,10 @@ alias gcl-cfg="gcloud config list 2>&1 | ini"
 alias gcl-cfgl="gcloud config configurations list"
 alias gclcc='gcloud container clusters'
 alias gclccl='gcloud container clusters list'
+
+###################### Python #######################
+alias v='source ./venv/bin/activate'
+
 ###################### Nodejs #######################
 
 # Yarn tests

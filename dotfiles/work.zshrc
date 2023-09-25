@@ -126,6 +126,10 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=215,bold'
 ZSH_HIGHLIGHT_STYLES[path]='fg=69,underline'
 ZSH_HIGHLIGHT_STYLES[default]='fg=195'
 
+# https://github.com/ohmyzsh/ohmyzsh/issues/11416
+# https://github.com/ohmyzsh/ohmyzsh/issues/11454
+compdef _files diff
+
 ### User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
