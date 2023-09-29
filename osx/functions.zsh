@@ -118,3 +118,15 @@ get-adapter-power() {
    plutil -extract '0.BatteryData.AdapterPower' raw - |\
    python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read())))[0], ".2f"), "W")'
 }
+
+get-system-power() {
+  ioreg -rw0 -a -c AppleSmartBattery |\
+   plutil -extract '0.BatteryData.SystemPower' raw - |\
+   python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read())))[0], ".2f"), "W")'
+}
+
+
+get-power() {
+  echo "Using:    $(get-system-power)"
+  echo "Charging: $(get-adapter-power)"
+}
