@@ -125,7 +125,6 @@ get-system-power() {
    python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read())))[0], ".2f"), "W")'
 }
 
-
 get-power() {
   echo "Using:    $(get-system-power)"
   echo "Charging: $(get-adapter-power)"
