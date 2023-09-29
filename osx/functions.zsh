@@ -114,5 +114,7 @@ iterm-toggle-mode() {
 }
 
 get-adapter-power() {
-  ioreg -rw0 -a -c AppleSmartBattery | plutil -extract '0.BatteryData.AdapterPower' raw - | python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read())))[0], ".2f"), "W")'
+  ioreg -rw0 -a -c AppleSmartBattery |\
+   plutil -extract '0.BatteryData.AdapterPower' raw - |\
+   python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read())))[0], ".2f"), "W")'
 }
