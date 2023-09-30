@@ -128,7 +128,13 @@ get-system-power() {
 }
 
 get-adapter-mode() {
-  ioreg -rw0 -a -c AppleSmartBattery | plutil -extract '0.AdapterDetails.Watts' raw -
+  local watts
+  watts=$(ioreg -rw0 -a -c AppleSmartBattery | plutil -extract '0.AdapterDetails.Watts' raw - 2> /dev/null)
+  if (( $? == 0 )); then
+    echo $watts
+  else
+    echo "-1"
+  fi
 }
 
 
