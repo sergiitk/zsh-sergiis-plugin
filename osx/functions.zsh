@@ -114,7 +114,7 @@ iterm-toggle-mode() {
 }
 
 int-to-float() {
-  python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read())))[0], ".2f"), "W")'
+  python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read())))[0], ".2f"))'
 }
 
 get-adapter-power() {
@@ -127,7 +127,14 @@ get-system-power() {
    plutil -extract '0.BatteryData.SystemPower' raw - | int-to-float
 }
 
+get-adapter-mode() {
+  ioreg -rw0 -a -c AppleSmartBattery | plutil -extract '0.AdapterDetails.Watts' raw -
+}
+
+
 get-power() {
-  echo "Using:    $(get-system-power)"
-  echo "Charging: $(get-adapter-power)"
+
+  echo "Adapter:  $(get-adapter-mode) W"
+  echo "Using:    $(get-system-power) W"
+  echo "Charging: $(get-adapter-power) W"
 }
