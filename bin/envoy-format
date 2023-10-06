@@ -1,0 +1,14 @@
+#!/bin/sh
+
+export CLANG_TOOLCHAIN="$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr"
+export CLANG_FORMAT="/opt/local/bin/clang-format-mp-14"
+export BUILDIFIER_BIN="/Users/sergiitk/.bin/buildifier"
+export BUILDOZER_BIN="/usr/local/bin/buildozer"
+
+set -ex
+
+./tools/code_format/check_format.py \
+  --clang_format_path="${CLANG_FORMAT}" \
+  --buildifier_path="${BUILDIFIER_BIN}" \
+  --buildozer_path="${BUILDOZER_BIN}" \
+  $*

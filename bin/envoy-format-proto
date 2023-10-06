@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# export CLANG_TOOLCHAIN="$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr"
+export CLANG_FORMAT="/opt/local/bin/clang-format-mp-14"
+
+set -ex -o pipefail
+
+# FORCE_PROTO_FORMAT=yes
+./tools/proto_format/proto_format.sh $*

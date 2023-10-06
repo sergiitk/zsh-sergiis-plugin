@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# export CLANG_TOOLCHAIN="$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr"
+export CLANG_FORMAT="/opt/local/bin/clang-format-mp-14"
+# export BUILDIFIER_BIN="/usr/local/bin/buildifier"
+export BUILDIFIER_BIN="/Users/sergiitk/.bin/buildifier"
+export BUILDOZER_BIN="/usr/local/bin/buildozer"
+
+set -e -o pipefail
+
+source ./venv/bin/activate
+
+echo "================= check_format ================="
+set -x
+time ./tools/code_format/check_format.py \
+  --clang_format_path="${CLANG_FORMAT}" \
+  --buildifier_path="${BUILDIFIER_BIN}" \
+  --buildozer_path="${BUILDOZER_BIN}" \
+  $*
+set +x
+
+echo "================= code_format/check_format_test_helper.sh ================="
+set -x
+# ./tools/code_format/check_format_test_helper.sh --log=WARN
+set +x
+
+echo "================= check_spelling_pedantic ================="
+set -x
+./tools/spelling/check_spelling_pedantic.py check
+set +x
+
+# Check extensions, etc.
+code_check_log=/tmp/envoy_code_check.log
+echo "================= bazel run //tools/code:check: see ${code_check_log} for details ... ================="
+set -x
+bazel run //tools/code:check >& "$code_check_log"
+set +x
+
+proto_format_log=/tmp/envoy_proto_format.log
+echo "============== proto_format: see ${proto_format_log} for details ... =============="
+set -x
+# >& "$proto_format_log" || echo "FAIL"
+./tools/proto_format/proto_format.sh check > "$proto_format_log"
+set +x
+
+echo "###################################### envoy-lint done ######################################"

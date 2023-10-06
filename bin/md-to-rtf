@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+REAL_PATH=$(realpath "${0}")
+CURRENT_DIR=$(dirname "${REAL_PATH}" )
+readonly CURRENT_DIR
+
+if [ -t 0 ]; then
+  echo "Expected stdin. Pipe in me, do it." >&2
+  exit 1
+fi
+
+exec pandoc --standalone \
+    --wrap="none" \
+    --from commonmark_x+hard_line_breaks-smart \
+    --to "${CURRENT_DIR}/rtf-writer.lua" \
+    --template="${CURRENT_DIR}/template.rtf" \
+    --lua-filter="${CURRENT_DIR}/b-links.lua"

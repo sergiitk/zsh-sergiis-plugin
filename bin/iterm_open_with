@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# iTerm2 Preferences -> Profiles -> Default -> Advanced -> Semantic History
+# Run command... $HOME/.bin/iterm_open_with \1 \2
+
+# source $HOME/.profile
+
+# echo "$1" > ~/.bin/s.log
+
+if [[ -f $1 ]]; then
+    "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" "$1:$2"
+else
+    open "$1"
+fi

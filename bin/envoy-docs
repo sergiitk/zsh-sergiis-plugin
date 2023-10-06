@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -ex -o pipefail
+
+export BUILD_SHA="st$(date -u +'%m%d')"
+
+
+export SPHINX_SKIP_CONFIG_VALIDATION="true"
+bazel build --verbose_failures --sandbox_debug --action_env=DOCS_TAG --action_env=BUILD_SHA --action_env=SPHINX_SKIP_CONFIG_VALIDATION //docs:html
+
+# Unpack
+[[ -z "${DOCS_OUTPUT_DIR}" ]] && DOCS_OUTPUT_DIR=generated/docs
+rm -rf "${DOCS_OUTPUT_DIR}"
+mkdir -p "${DOCS_OUTPUT_DIR}"
+tar -xf bazel-bin/docs/html.tar.gz -C "$DOCS_OUTPUT_DIR"
