@@ -63,6 +63,9 @@ glb() {
 }
 compdef _git glb=git-branch
 
+# Diff the current branch
+alias gdb='git diff $(gbb)...HEAD'
+
 ### Per word diffs
 alias gdww='git diff -U0 --abbrev --color-words'
 # alias gds='git diff -U0 --abbrev --color-words'

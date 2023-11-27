@@ -5,6 +5,10 @@ export CLANG_FORMAT="/opt/local/bin/clang-format-mp-14"
 export BUILDIFIER_BIN="/Users/sergiitk/.bin/buildifier"
 export BUILDOZER_BIN="/usr/local/bin/buildozer"
 
+if [[ -f "./venv/bin/activate" ]]; then
+  source ./venv/bin/activate
+fi
+
 set -ex
 
 ./tools/code_format/check_format.py \

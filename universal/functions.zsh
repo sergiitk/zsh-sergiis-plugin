@@ -17,6 +17,19 @@ ls-bin() {
   CLICOLOR_FORCE=1 ls -l ${^path}/*$1*(N) | awk '{ print $9" "$10" "$11 }'
 }
 
+touchx() {
+  if [[ $# -ne 1 || -d "$1" ]]; then
+    echo "Usage: touchx <file>"
+    return
+  fi
+  touch "$1" && chmod u+x "$1"
+}
+
+ff-luf() {
+
+  ffmpeg -i "$1" -hide_banner -af "loudnorm=I=-19:dual_mono=true:TP=-1.5:LRA=11:print_format=summary" -f null -
+}
+
 ############ Other utilities.
 # Show oh-my-zsh changes.
 oh-my-changes() {
