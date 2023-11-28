@@ -100,11 +100,6 @@ source $ZSH/oh-my-zsh.sh
 
 # ---
 
-# TL;DR autocomplete
-if [[ -f /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh ]]; then
-  source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
-fi
-
 # https://github.com/romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

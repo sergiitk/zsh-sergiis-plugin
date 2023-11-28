@@ -16,7 +16,7 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
-# Fix navigation
+# Fix word navigation
 # When forward-navigation words, don't skip over the last character
 # https://github.com/zsh-users/zsh/blob/master/Functions/Zle/select-word-style
 # https://github.com/zsh-users/zsh/blob/master/Functions/Zle/forward-word-match

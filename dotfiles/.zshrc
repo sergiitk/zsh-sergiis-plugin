@@ -110,11 +110,6 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# TL;DR autocomplete
-if [[ -f /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh ]]; then
-  source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
-fi
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
