@@ -63,18 +63,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# FZF
-export FZF_BASE=/opt/local/share/fzf
-export FZF_DEFAULT_OPTS='--layout=reverse --border'
-export FZF_COMPLETION_TRIGGER='\\'
-# Because completions is in unusual place
-# export DISABLE_FZF_AUTO_COMPLETION='true'
-# source /opt/local/share/zsh/site-functions/_fzf
-# source /opt/local/share/fzf/shell/completion.zsh
-
-# https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
-
 # docker docker-compose \
 # yarn \
 plugins=(macos macports sublime \
@@ -84,40 +72,15 @@ plugins=(macos macports sublime \
          gradle \
          zsh-sergiis-plugin
 )
-# Use bat instead of colored-man-pages plugin
-export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
 
-### Fix slowness of pastes with zsh-syntax-highlighting.zsh
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
-}
+if [[ -f "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh" ]]; then
+  source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
+fi
 
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
-### Fix slowness of pastes
-
-# Load macports autocomplete
-fpath=(/opt/local/share/zsh/site-functions $fpath)
-
-source ~/.profile
 source $ZSH/oh-my-zsh.sh
-
-setopt nonomatch
 
 # User configuration
 
-# START=$(/opt/local/bin/gdate +%s.%N)
-# END=$(/opt/local/bin/gdate +%s.%N)
-# echo "$END - $START" | bc
-# Docker
-# eval $(docker-machine env default 2> /dev/null)
-
-
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -133,9 +96,6 @@ setopt nonomatch
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -145,7 +105,10 @@ setopt nonomatch
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# ---
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # TL;DR autocomplete
 if [[ -f /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh ]]; then

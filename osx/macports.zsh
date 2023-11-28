@@ -1,6 +1,8 @@
-################## Specific aliases  #################
-################## OSX-only section  #################
-######## MacPorts GNU utilities.
+# Macports customizations
+
+# Load macports autocomplete
+fpath=(/opt/local/share/zsh/site-functions $fpath)
+
 # BSD version of find is just pathetic.
 alias find=gfind
 compdef gfind=find
@@ -19,6 +21,9 @@ compdef gchmod=chmod
 alias head=ghead
 # Again, BSD tr is incompatible.
 # alias tr=gtr
+
+
 # Uninstall leaves
 alias pul='sudo port uninstall leaves'
 alias pu='sudo port uninstall'
+

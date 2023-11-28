@@ -53,27 +53,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 ### Plugins config
 
-# FZF
-export FZF_BASE=/opt/local/share/fzf
-export FZF_DEFAULT_OPTS='--layout=reverse --border'
-export FZF_COMPLETION_TRIGGER='\\'
-# Because completions is in unusual place
-# export DISABLE_FZF_AUTO_COMPLETION='true'
-# source /opt/local/share/zsh/site-functions/_fzf
-# source /opt/local/share/fzf/shell/completion.zsh
-
-# Gcloud
-export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
-
-# Tmux
-# export ZSH_TMUX_ITERM2=true
-# export ZSH_TMUX_FIXTERM=false
-# export ZSH_TMUX_FIXTERM_WITHOUT_256COLOR=xterm
-# export ZSH_TMUX_FIXTERM_WITH_256COLOR=xterm-256color
-
-# https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -86,51 +65,14 @@ plugins=(macos macports sublime \
          gradle gcloud kubectl \
          zsh-sergiis-plugin
 )
-# Use bat instead of colored-man-pages plugin
-export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
 
-### Fix slowness of pastes with zsh-syntax-highlighting.zsh
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
-}
+if [[ -f "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh" ]]; then
+  source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
+fi
 
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
-### Fix slowness of pastes
-
-# Load macports autocomplete
-fpath=(/opt/local/share/zsh/site-functions $fpath)
-
-source ~/.profile
 source $ZSH/oh-my-zsh.sh
 
-setopt nonomatch
-
-# zsh-syntax-highlighting settings
-# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
-ZSH_HIGHLIGHT_STYLES[command]='fg=010,bold'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=010,bold'
-ZSH_HIGHLIGHT_STYLES[function]='fg=010,bold,underline'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=051,bold'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=087'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=087,bold'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=229'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=227'
-ZSH_HIGHLIGHT_STYLES[assign]='fg=204'
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=215,bold'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=215,bold'
-ZSH_HIGHLIGHT_STYLES[path]='fg=69,underline'
-ZSH_HIGHLIGHT_STYLES[default]='fg=195'
-
-# https://github.com/ohmyzsh/ohmyzsh/issues/11416
-# https://github.com/ohmyzsh/ohmyzsh/issues/11454
-compdef _files diff
-
-### User configuration
+# User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -147,9 +89,6 @@ compdef _files diff
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -158,6 +97,8 @@ compdef _files diff
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# ---
 
 # TL;DR autocomplete
 if [[ -f /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh ]]; then

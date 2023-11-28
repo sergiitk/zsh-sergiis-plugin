@@ -4,7 +4,10 @@
 setopt nobeep
 
 # ZLE: The editor’s idea of a word: controls moves over words.
-export WORDCHARS='*?_-.[]~&;!#$%^(){}<>|@'
+export WORDCHARS='*?_[]~&;!#$%^(){}<>|@'
+
+# zstyle ':zle:*' skip-whitespace-first true
+# zstyle '*' skip-whitespace-first true
 
 # Bind keys.
 # Use `read` to read keys, or press ctrl-v then char.
@@ -23,6 +26,9 @@ bindkey "^U" backward-kill-line
 after-first-word() {
   zle beginning-of-line
   zle forward-word
+  zle forward-char
 }
 zle -N after-first-word
 bindkey "^[[1;10D" after-first-word
+
+# ln -vfs /Users/sergiitk/.config/grpc/xds-k8s/local-sergiitk.cfg config

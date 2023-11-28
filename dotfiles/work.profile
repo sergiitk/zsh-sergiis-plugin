@@ -19,6 +19,9 @@ export ANDROID_HOME=$HOME/Development/Android/sdk
 PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# Gcloud
+export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
+
 # Python
 # export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
 export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.10/bin"
