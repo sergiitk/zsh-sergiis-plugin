@@ -9,11 +9,15 @@
   # `-S` — vertical overflow.
   pager = less -S
   excludesfile = ~/.gitignore_global
-# excludesfile = /Users/sergii/.gitignore_global
 
 # Aliases.
 [alias]
-  dt      = difftool -t opendiff
+  dt = difftool -t opendiff
+
+# https://git-scm.com/book/en/v2/Git-Tools-Rerere
+[rerere]
+  enabled = true
+  autoupdate = true
 
 # Pretty formats.
 [format]
@@ -21,24 +25,37 @@
 [pretty]
   # Add newline at the end: `format` places newlines between commits,
   #`tformat` places newlines after each commit, thus also after the last one.
-  cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green)(%cr)%C(auto,reset)
-  graph = tformat:%C(auto,magenta dim)%h%C(auto)%d %C(auto,reset)%s %C(auto,black dim)%cd%C(auto,reset)
+  cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cr]%C(auto,reset)
+  graph = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
 [log]
   abbrevCommit = true
+[blame]
+  ignoreRevsFile = .git-blame-ignore-revs
 
 # Merge and diff tools.
 [mergetool "sublime"]
-  cmd           = subl -w $MERGED
+  cmd = subl -w $MERGED
   trustExitCode = false
 [mergetool "filemerge"]
   cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED 2> /dev/null
 [mergetool]
   prompt = false
+  keepBackup = false
 [merge]
   tool = filemerge
 [difftool]
   prompt = false
 [diff]
+  # Colorize moved lines differently
+  # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---color-movedltmodegt
+  colorMoved = default
+  # colorMoved = plain
+  colorMovedWS = allow-indentation-change
+
+  # Join hunks that are close to each other as far as 3 lines apart
+  # https://git-scm.com/docs/diff-config#Documentation/diff-config.txt-diffinterHunkContext
+  interHunkContext = 3
+
   # wordRegex
   # Anything between matches is considered whitespace and ignored(!)
   # for the purposes of finding differences.
@@ -46,31 +63,54 @@
   # http://stackoverflow.com/questions/8483041/git-color-words-excluding
   # The following expression will make a word be any string of characters
   # and underscore, or any non-whitespace character.
-   wordRegex = \\w+|[^[:space:]]
+  wordRegex = \\w+|[^[:space:]]
   #wordRegex = [^[:space:]()<>]+
 
   # default (myers), minimal, patience, histogram
-  algorithm = patience
+  # algorithm = patience
   # No numbers, underscore.
   # wordRegex = [a-zA-Z]+|[^[:space:]]
-[filter "media"]
-  clean = git-media-clean %f
-  smudge = git-media-smudge %f
+
+[pull]
+  rebase = true
 [push]
   default = simple
 [fetch]
   prune = true
-
-# Svn.
-[svn]
-  # Remove directories from the SVN tree if there are no files left behind.
-  rmdir = true
-#[difftool "sourcetree"]
-# cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-# path =
-#[mergetool "sourcetree"]
-# cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-# trustExitCode = true
-
 [pager]
+  diff = delta
+  show = delta
   branch = false
+[init]
+  defaultBranch = main
+
+[color]
+  # Pass colorMoved color sequences for delta to color by overwriting
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-colordiff
+  diff = always
+
+#  https://dandavison.github.io/delta/configuration.html
+[delta]
+  syntax-theme = Coldark-Dark
+  features = zebra-dark
+  paging = always
+  navigate = true
+  hunk-header-style = omit
+  file-style = bold yellow "#7299df"
+  file-decoration-style = royalblue cornflowerblue ol
+  # word-diff-regex = \\w+|[^[:space:]]
+  # line-numbers = true
+
+# [include]
+  # extra delta themes and features
+   # path = /opt/local/share/git-delta/themes.gitconfig
+
+# used instead of include: map-styles breaks p10
+[delta "zebra-light"]
+  minus-style = syntax "#fbdada"
+  minus-emph-style = syntax "#f6b6b6"
+  plus-style = syntax "#d6ffd6"
+  plus-emph-style = syntax "#adffad"
+  map-styles = bold purple => syntax "#feecf7", bold blue => syntax "#e5dff6", bold cyan => syntax "#d8fdf6", bold yellow => syntax "#f4ffe0"
+  zero-style = syntax
+  whitespace-error-style = "#aaaaaa"
