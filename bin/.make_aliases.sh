@@ -8,12 +8,12 @@ readonly CURRENT_DIR
 
 cd "${CURRENT_DIR}"
 
-find * -type f | xargs -I{} echo ln -vsf $(realpath {}) ~/.bin/{}
+find * -type f | xargs -I% echo ln -vsf ${CURRENT_DIR}/% ~/.bin/%
 
 read -n 1 -p "Continue? (y/N) " answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then
   echo
-  find * -type f | xargs -I{} ln -vsf $(realpath {}) ~/.bin/{}
+  find * -type f | xargs -I% ln -vsf ${CURRENT_DIR}/% ~/.bin/%
 else
   echo
   echo "Exit"
