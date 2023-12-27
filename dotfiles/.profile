@@ -13,7 +13,8 @@ export EDITOR="sublw"
 # Java Macports
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk14/Contents/Home"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk17/Contents/Home"
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk17/Contents/Home"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk17-zulu/Contents/Home
 
 # Node
 # # NPM packages in homedir
