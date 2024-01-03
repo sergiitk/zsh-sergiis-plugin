@@ -12,7 +12,8 @@ export EDITOR="sublw"
 
 # Java MacPorts
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8-temurin/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk11/Contents/Home
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk11/Contents/Home"
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk17-temurin/Contents/Home"
 
 # Android
 export ANDROID_HOME=$HOME/Development/Android/sdk

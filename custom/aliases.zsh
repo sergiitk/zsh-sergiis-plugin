@@ -6,9 +6,10 @@ hash -d libas="$HOME/Library/Application Support/"
 
 # Development
 alias dev='cd ~/Development'
-hash -d dev=$HOME/Development
-hash -d play=$HOME/Development/playground
-hash -d p=$HOME/Development/projects
+hash -d dev="${HOME}/Development"
+hash -d b="${HOME}/.bin"
+hash -d play="${HOME}/Development/playground"
+hash -d p="${HOME}/Development/projects"
 
 # MacPorts
 hash -d o=/opt/local
