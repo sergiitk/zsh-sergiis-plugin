@@ -80,6 +80,7 @@
   diff = delta
   show = delta
   branch = false
+  grep = false
 [init]
   defaultBranch = main
 

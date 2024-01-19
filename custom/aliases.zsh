@@ -63,13 +63,16 @@ alias kcv='kubectl config view --minify | yml'
 #################### gcloud ##########################
 # plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud
 alias gcl='gcloud'
+
+alias gcla='gcloud config configurations activate'
+alias gcll="gcloud config configurations list"
 alias gcl-cfg="gcloud config list 2>&1 | ini"
-alias gcl-cfgl="gcloud config configurations list"
+
 alias gclcc='gcloud container clusters'
 alias gclccl='gcloud container clusters list'
 
 ###################### Python #######################
-alias v='source ./venv/bin/activate'
+alias pv='source ./venv/bin/activate'
 
 ###################### Nodejs #######################
 
