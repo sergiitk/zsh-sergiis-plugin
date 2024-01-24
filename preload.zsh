@@ -26,7 +26,7 @@ select-word-style bash
 ### Plugins config
 
 # https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247,bold"
 
 # Use bat instead of colored-man-pages plugin
 export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
@@ -34,7 +34,12 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
 # FZF
 export FZF_BASE=/opt/local/share/fzf
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
-export FZF_COMPLETION_TRIGGER='\\'
+export FZF_COMPLETION_TRIGGER='~~'
+# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+# ? for log line preview window
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+
+
 # Because completions is in unusual place
 # export DISABLE_FZF_AUTO_COMPLETION='true'
 # source /opt/local/share/zsh/site-functions/_fzf
