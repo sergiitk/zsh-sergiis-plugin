@@ -1,5 +1,6 @@
 # In case loading goes wrong. (defaults 64000 1000)
 export HISTSIZE="16777216" SAVEHIST="16777216"
+unsetopt HIST_EXPIRE_DUPS_FIRST
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

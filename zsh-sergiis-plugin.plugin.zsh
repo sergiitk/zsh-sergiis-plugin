@@ -14,11 +14,9 @@ setopt EXTENDED_GLOB
 # Allow passing the unexpanded glob.
 setopt NO_NOMATCH
 
-# Zsh history sharing cross-terminals.
-# When SHARE_HISTORY is enabled, it reads and writes to the history file.
-# When INC_APPEND_HISTORY is enabled, it only writes to the history file.
-setopt SHARE_HISTORY
-# setopt INC_APPEND_HISTORY
+# --- history
+# zsh: https://zsh.sourceforge.io/Doc/Release/Options.html#History
+# oh my zsh: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/history.zsh
 
 # History size.
 # The maximum number of events stored in the internal history list.
@@ -30,6 +28,21 @@ export HISTSIZE=16777216  # 16,777,216 == 2^24
 # The maximum number of history events to save in the history file.
 # https://zsh.sourceforge.io/Doc/Release/Parameters.html#index-SAVEHIST
 export SAVEHIST="${HISTSIZE}"
+
+# Zsh history sharing cross-terminals.
+# When SHARE_HISTORY is enabled, it reads and writes to the history file.
+# When INC_APPEND_HISTORY is enabled, it only writes to the history file.
+setopt SHARE_HISTORY
+# setopt INC_APPEND_HISTORY
+
+# Remove superfluous blanks from each command line being added
+# to the history list.
+setopt HIST_REDUCE_BLANKS
+
+# unset oh-my-zsh
+unsetopt HIST_EXPIRE_DUPS_FIRST
+
+# / --- history
 
 source $ZSH_SERGII/universal/zle.zsh
 # source $ZSH_SERGII/universal/zle-completions.zsh
