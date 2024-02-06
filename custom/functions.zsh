@@ -24,6 +24,19 @@ b-preview() {
   bat --list-themes | fzf --preview="bat --theme={} --color=always ${1}"
 }
 
+check-history() {
+  echo -n "# "
+  date
+  wc -l ~/.zsh_history
+  du -h --time ~/.zsh_history | sed 's/\t/  /'
+  history -i | head -n 3 | grep -F "${CHECK_HISTORY_EARLIEST:?}" > /dev/null
+  if (( $? == 0 )); then
+      echo "Earliest event OK"
+  else
+      echo 'Earliest event IS MISSING!!!'
+  fi
+}
+
 ############################# tmux ##################################
 alias t='tmux'
 alias tc='tmux -CC'
