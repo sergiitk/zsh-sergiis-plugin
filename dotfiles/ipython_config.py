@@ -46,7 +46,6 @@ c = get_config()  #noqa
 c.InteractiveShellApp.extensions = ['autoreload']
 c.InteractiveShellApp.exec_lines = ['%autoreload 2']
 
-
 ## Dotted module name(s) of one or more IPython extensions to load.
 #
 #  For specifying extra extensions to load on the command-line.
@@ -253,6 +252,9 @@ c.InteractiveShellApp.exec_lines = ['%autoreload 2']
 #  See also: BaseIPythonApplication.add_ipython_dir_to_sys_path
 # c.TerminalIPythonApp.add_ipython_dir_to_sys_path = False
 
+#  Default: True
+# c.TerminalIPythonApp.auto_create = True
+
 ## Execute the given command string.
 #  See also: InteractiveShellApp.code_to_run
 # c.TerminalIPythonApp.code_to_run = ''
@@ -421,8 +423,8 @@ c.InteractiveShellApp.exec_lines = ['%autoreload 2']
 # c.InteractiveShell.automagic = True
 
 ## The part of the banner to be printed before the profile
-#  Default: "Python 3.9.18 (main, Aug 25 2023, 02:32:18) \nType 'copyright', 'credits' or 'license' for more information\nIPython 8.18.1 -- An enhanced Interactive Python. Type '?' for help.\n"
-# c.InteractiveShell.banner1 = "Python 3.9.18 (main, Aug 25 2023, 02:32:18) \nType 'copyright', 'credits' or 'license' for more information\nIPython 8.18.1 -- An enhanced Interactive Python. Type '?' for help.\n"
+#  Default: "Python 3.12.1 (main, Dec  9 2023, 08:07:48) [Clang 15.0.0 (clang-1500.0.40.1)]\nType 'copyright', 'credits' or 'license' for more information\nIPython 8.21.0 -- An enhanced Interactive Python. Type '?' for help.\n"
+# c.InteractiveShell.banner1 = "Python 3.12.1 (main, Dec  9 2023, 08:07:48) [Clang 15.0.0 (clang-1500.0.40.1)]\nType 'copyright', 'credits' or 'license' for more information\nIPython 8.21.0 -- An enhanced Interactive Python. Type '?' for help.\n"
 c.InteractiveShell.banner1 = ""
 
 ## The part of the banner to be printed after the profile
@@ -587,7 +589,7 @@ c.InteractiveShell.colors = 'Linux'
 
 ## The part of the banner to be printed before the profile
 #  See also: InteractiveShell.banner1
-# c.TerminalInteractiveShell.banner1 = "Python 3.9.18 (main, Aug 25 2023, 02:32:18) \nType 'copyright', 'credits' or 'license' for more information\nIPython 8.18.1 -- An enhanced Interactive Python. Type '?' for help.\n"
+# c.TerminalInteractiveShell.banner1 = "Python 3.12.1 (main, Dec  9 2023, 08:07:48) [Clang 15.0.0 (clang-1500.0.40.1)]\nType 'copyright', 'credits' or 'license' for more information\nIPython 8.21.0 -- An enhanced Interactive Python. Type '?' for help.\n"
 
 ## The part of the banner to be printed after the profile
 #  See also: InteractiveShell.banner2
@@ -741,6 +743,17 @@ ultratb.VerboseTB._tb_highlight = 'bg:#62130E'  # ls-colors #052
 ## Display the current vi mode (when using vi editing mode).
 #  Default: True
 # c.TerminalInteractiveShell.prompt_includes_vi_mode = True
+
+## The format for line numbering, will be passed `line` (int, 1 based) the
+#  current line number and `rel_line` the relative line number. for example to
+#  display both you can use the following template string :
+#  c.TerminalInteractiveShell.prompt_line_number_format='{line:
+#  4d}/{rel_line:+03d} | ' This will display the current line number, with
+#  leading space and a width of at least 4 character, as well as the relative
+#  line number 0 padded and always with a + or - sign. Note that when using Emacs
+#  mode the prompt of the first line may not update.
+#  Default: ''
+# c.TerminalInteractiveShell.prompt_line_number_format = ''
 
 ## Class used to generate Prompt token for prompt_toolkit
 #  Default: 'IPython.terminal.prompts.Prompts'
