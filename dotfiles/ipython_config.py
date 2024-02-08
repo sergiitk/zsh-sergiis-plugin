@@ -423,6 +423,7 @@ c.InteractiveShellApp.exec_lines = ['%autoreload 2']
 ## The part of the banner to be printed before the profile
 #  Default: "Python 3.9.18 (main, Aug 25 2023, 02:32:18) \nType 'copyright', 'credits' or 'license' for more information\nIPython 8.18.1 -- An enhanced Interactive Python. Type '?' for help.\n"
 # c.InteractiveShell.banner1 = "Python 3.9.18 (main, Aug 25 2023, 02:32:18) \nType 'copyright', 'credits' or 'license' for more information\nIPython 8.18.1 -- An enhanced Interactive Python. Type '?' for help.\n"
+c.InteractiveShell.banner1 = ""
 
 ## The part of the banner to be printed after the profile
 #  Default: ''

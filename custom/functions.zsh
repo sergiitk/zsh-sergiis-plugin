@@ -29,7 +29,7 @@ check-history() {
   date
   wc -l ~/.zsh_history
   du -h --time ~/.zsh_history | sed 's/\t/  /'
-  history -i | head -n 3 | grep -F "${CHECK_HISTORY_EARLIEST:?}" > /dev/null
+  history -i 1 1 | grep -F "${CHECK_HISTORY_EARLIEST:?}" > /dev/null
   if (( $? == 0 )); then
       echo "Earliest event OK"
   else
