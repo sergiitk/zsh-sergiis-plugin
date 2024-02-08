@@ -265,7 +265,7 @@ c.InteractiveShellApp.exec_lines = ['%autoreload 2']
 
 ## Whether to display a banner upon starting IPython.
 #  Default: True
-# c.TerminalIPythonApp.display_banner = True
+# c.TerminalIPythonApp.display_banner = False
 
 ## Run the file referenced by the PYTHONSTARTUP environment
 #  See also: InteractiveShellApp.exec_PYTHONSTARTUP
@@ -425,7 +425,6 @@ c.InteractiveShellApp.exec_lines = ['%autoreload 2']
 ## The part of the banner to be printed before the profile
 #  Default: "Python 3.12.1 (main, Dec  9 2023, 08:07:48) [Clang 15.0.0 (clang-1500.0.40.1)]\nType 'copyright', 'credits' or 'license' for more information\nIPython 8.21.0 -- An enhanced Interactive Python. Type '?' for help.\n"
 # c.InteractiveShell.banner1 = "Python 3.12.1 (main, Dec  9 2023, 08:07:48) [Clang 15.0.0 (clang-1500.0.40.1)]\nType 'copyright', 'credits' or 'license' for more information\nIPython 8.21.0 -- An enhanced Interactive Python. Type '?' for help.\n"
-c.InteractiveShell.banner1 = ""
 
 ## The part of the banner to be printed after the profile
 #  Default: ''
