@@ -28,7 +28,7 @@ alias bazel='noglob bazel'
 alias yml='bat -l yaml --plain --paging=never --color=always'
 alias jsn='bat -l json --plain --paging=never --color=always'
 alias ini='bat -l ini --plain --paging=never --color=always'
-alias hlp='bat -l help --plain --paging=never --color=always'
+alias hlp='bat -l help -pp --color=always'
 hj() {
   local cmd
   cmd=$(echo "$@" | sed "s/ --help//")
@@ -39,6 +39,7 @@ hj() {
 alias ymll='bat -l yaml -p'
 alias jsnl='bat -l json -p'
 alias inil='bat -l ini -p'
+alias hlpl='bat -l help -p'
 
 alias dl='delta'
 
