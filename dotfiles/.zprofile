@@ -2,7 +2,7 @@
 # (2) .zprofile - login shells, sourced before .zshrc
 # ---------------
 
-# In case loading goes wrong. (defaults 64000 1000)
+# Set as early as possible case zsh loading is interrupted. (defaults 64000 1000)
 export HISTSIZE="16777216" SAVEHIST="16777216"
 unsetopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY

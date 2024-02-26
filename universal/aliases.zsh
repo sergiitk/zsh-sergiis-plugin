@@ -39,7 +39,13 @@ alias tf='tail -f'
 # See man zshbuiltins
 # history: Same as fc -l.
 alias h='history'
+# Highlighted, reversed, with timestamp and dates.
+alias hl='history -r -iD | bat --style="header,grid" -l vy'
+
+# History search, without line number.
 alias hs='history -rn | grep -Ei'
+# Search with date and duration.
+alias hsd='history -rn -iD | grep -Ei'
 # Search full words.
 hsw() {
   history -rn | grep -P "(?<!(\w|-))$argv(?!\w)"
@@ -48,9 +54,6 @@ hsw() {
 hss() {
   history -rn | grep -Ei "^${argv}"
 }
-
-alias hsd='history -rni | grep -Ei'
-alias hl='history -r -i | bat --style="header,grid" -l vy'
 
 # Exif
 alias 'exif?'="exiftool -a -u -g1"

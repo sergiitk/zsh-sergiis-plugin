@@ -59,12 +59,12 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(macos macports sublime \
-         history-substring-search extract \
+         extract git \
          zsh-autosuggestions zsh-syntax-highlighting fzf \
-         git \
          gradle gcloud kubectl \
          zsh-sergiis-plugin
 )
+# Previously used: history-substring-search
 
 if [[ -f "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh" ]]; then
   source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
