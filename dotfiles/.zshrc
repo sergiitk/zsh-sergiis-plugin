@@ -29,7 +29,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-DISABLE_MAGIC_FUNCTIONS="true"
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -38,7 +38,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="false"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -66,17 +66,19 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-
-# docker docker-compose \
-# yarn \
-plugins=(macos macports sublime \
-         history-substring-search extract \
-         zsh-autosuggestions zsh-syntax-highlighting fzf \
-         git\
-         gradle \
-         zsh-sergiis-plugin
+plugins=(
+  ## mac
+  macos macports sublime
+  ## common tools
+  extract git fzf
+  ## zsh custom plugins
+  zsh-autosuggestions zsh-syntax-highlighting
+  ## work stuff
+  gradle
 )
+# Previously used: yarn docker docker-compose
 
+plugins+=(zsh-sergiis-plugin) # Load my plugin last
 if [[ -f "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh" ]]; then
   source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
 fi
@@ -116,5 +118,8 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Home not in source control
+[[ ! -f ~/.home-custom.zshrc ]] || source ~/.home-custom.zshrc
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

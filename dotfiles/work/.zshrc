@@ -113,5 +113,5 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Proprietary costumizations
-source ~/.work-custom.zshrc
+[[ ! -f ~/.work-custom.zshrc ]] || source ~/.work-custom.zshrc
 # contains MDPROXY-ZSHRC
