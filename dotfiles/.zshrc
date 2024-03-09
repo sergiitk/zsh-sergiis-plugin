@@ -73,6 +73,7 @@ plugins=(
   extract git fzf
   ## zsh custom plugins
   zsh-autosuggestions zsh-syntax-highlighting
+  fzf-tab
   ## work stuff
   gradle
 )

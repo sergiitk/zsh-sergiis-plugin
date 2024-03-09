@@ -75,6 +75,9 @@ fi
 source $ZSH_SERGII/custom/aliases.zsh
 source $ZSH_SERGII/custom/functions.zsh
 
+# tldr
+export TLDR_AUTO_UPDATE_DISABLED=yes
+
 # zsh-syntax-highlighting settings
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
 ZSH_HIGHLIGHT_STYLES[command]='fg=010,bold'
@@ -90,3 +93,25 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=215,bold'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=215,bold'
 ZSH_HIGHLIGHT_STYLES[path]='fg=69,underline'
 ZSH_HIGHLIGHT_STYLES[default]='fg=195'
+
+## fzf-tab
+# zstyle ':completion:*' menu no
+zstyle ':completion:*:descriptions' format '[%d]'
+# style
+zstyle ':fzf-tab:*' fzf-pad 4
+# https://www.mankier.com/1/fzf#Key/Event_Bindings
+# zstyle ':fzf-tab:*' fzf-bindings 'enter:accept'
+zstyle ':fzf-tab:*' accept-line ctrl-space
+# zstyle ':fzf-tab:*' print-query alt-right
+zstyle ':fzf-tab:*' switch-group ',' '.'
+# git
+zstyle ':completion:*:git-checkout:*' sort false
+# fzf-tab preview
+# https://github.com/Aloxaf/fzf-tab/wiki/Preview
+# kill
+# zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+# zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
+#   '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+# zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
+# tldr
+# zstyle ':fzf-tab:complete:tldr:argument-1' fzf-preview 'tldr --color always $word'
