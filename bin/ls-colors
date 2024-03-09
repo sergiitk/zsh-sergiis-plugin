@@ -5,7 +5,7 @@
 #  colortest
 # https://askubuntu.com/questions/27314/script-to-display-all-terminal-colors
 
-echo "256 color test"
+echo "== 256 color test =="
 
 awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{
     s="/\\";
@@ -21,7 +21,8 @@ awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{
     printf "\n";
 }'
 
-echo "16 color test"
+echo
+echo "== 16 color test =="
 
 echo -e "\033[0mNC (No color)"
 echo -e "\033[1;37mWHITE\t\033[0;30mBLACK"
@@ -35,7 +36,8 @@ echo -e "\033[1;30mGRAY\t\033[0;37mLIGHT_GRAY"
 
 # iTerm2
 # https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/tools/screenshotTable.sh
-echo "iTerm2 color table"
+echo
+echo "== iTerm2 color table =="
 
 #
 #   This file echoes a bunch of color codes to the
@@ -46,9 +48,9 @@ echo "iTerm2 color table"
 #   colors (default + 8 escapes).
 #
 #   Copied from http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
-T='gYw'   # The test text
+T='hai'   # The test text
 
-printf "\n         def     40m     41m     42m     43m     44m     45m     46m     47m\n";
+printf "         def     40m     41m     42m     43m     44m     45m     46m     47m\n";
 
 for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
            '1;32m' '  33m' '1;33m' '  34m' '1;34m' '  35m' '1;35m' \
@@ -62,12 +64,22 @@ for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
   done
   echo;
 done
-echo
 
 # powerlevel
 # https://github.com/romkatv/powerlevel10k/blob/master/README.md#set-colors-through-powerlevel10k-configuration-parameters
-echo "powerlevel10k colors"
+echo
+echo "== powerlevel10k colors =="
 
 for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 
 # Also xterm-256-color chart https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
+
+# 24 bit (truecolor)
+# https://dandavison.github.io/delta/tips-and-tricks/using-delta-with-tmux.html
+if [[  -f "${HOME}/.bin/24-bit-color.sh" ]]; then
+  echo
+  echo "== 24 bit color test =="
+  # see 24-bit-color.sh
+  "${HOME}/.bin/24-bit-color.sh"
+fi
+

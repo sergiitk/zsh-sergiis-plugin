@@ -58,14 +58,22 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(macos macports sublime \
-         extract git \
-         zsh-autosuggestions zsh-syntax-highlighting fzf \
-         gradle gcloud kubectl \
-         zsh-sergiis-plugin
+plugins=(
+  ## mac
+  macos macports sublime
+  ## common tools
+  extract git fzf
+  ## zsh custom plugins
+  zsh-autosuggestions zsh-syntax-highlighting
+  ## work stuff
+  gcloud
+  kubectl
+  # gradle
+  # gradle-completion
 )
 # Previously used: history-substring-search
 
+plugins+=(zsh-sergiis-plugin) # Load my plugin last
 if [[ -f "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh" ]]; then
   source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
 fi

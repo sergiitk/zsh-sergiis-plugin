@@ -9,7 +9,8 @@ alias ls-alias="nocorrect ls-alias"
 # Searches in vars.
 # Please make sure GNU version is used: `port echo installed | grep grep`.
 ls-vars() {
-  set | grep --color=always -ia $1 | grep -Ev "(_comps|^\@|^'\*'|^argv|^_history_substring_|^portlist)"
+  set | grep -Ev "(_comps|^@|^'\*'|^argv|^_history_substring_|^portlist|_p9k_|^_ZSH_AUTOSUGGEST_BIND_COUNTS)"\
+      | grep --color=always -iaF $1
 }
 
 # Search through all binaries.

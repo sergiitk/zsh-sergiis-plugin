@@ -4,6 +4,9 @@
 #   source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
 # fi
 
+# omz settings
+zstyle ':omz:lib:theme-and-appearance' gnu-ls yes
+
 # Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}

@@ -9,8 +9,12 @@ alias sudo='sudo '
 
 ######## ZSH helpers
 ### Vital overrides
-# Replace oh-my-zsh's alias l='ls -la': append file type indicators.
-alias l='ls -laF'
+# presume we're using the gnu version
+# alias  l='ls -lA --classify --group-directories-first --sort=version -h'
+alias ll='ls -l --classify --group-directories-first --sort=version'
+alias  l='ll -Ah'
+alias la='ll -a'
+
 # Cat
 alias c='bat --paging=never'
 # alias cat='bat --paging=never'
