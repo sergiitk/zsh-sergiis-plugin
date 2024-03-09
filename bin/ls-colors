@@ -67,12 +67,18 @@ done
 
 # powerlevel
 # https://github.com/romkatv/powerlevel10k/blob/master/README.md#set-colors-through-powerlevel10k-configuration-parameters
+# Also xterm-256-color chart https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
 echo
 echo "== powerlevel10k colors =="
 
 for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 
-# Also xterm-256-color chart https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
+# iterm
+# https://iterm2.com/faq.html
+echo
+echo "== bold text test =="
+printf '\e[0;31mplain\n\e[1;31mbold\n\e[0;91mhighlight\n\e[1;91mbold+highlight\n\e[0m'
+
 
 # 24 bit (truecolor)
 # https://dandavison.github.io/delta/tips-and-tricks/using-delta-with-tmux.html
