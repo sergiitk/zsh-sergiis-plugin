@@ -1,9 +1,8 @@
-####################### ZSH/ZLE #####################
+## Configure Zsh Line Editor (ZLE)
+## man zshzle
+## -------------------------------------------------------------------------------------------------
 
-# Opts.
-setopt nobeep
-
-# ZLE: The editor’s idea of a word: controls moves over words.
+# The editor’s idea of a word: controls moves over words.
 export WORDCHARS='*?_[]~&;!#$%^(){}<>|@'
 
 # zstyle ':zle:*' skip-whitespace-first true
@@ -30,5 +29,3 @@ after-first-word() {
 }
 zle -N after-first-word
 bindkey "^[[1;10D" after-first-word
-
-# ln -vfs /Users/sergiitk/.config/grpc/xds-k8s/local-sergiitk.cfg config

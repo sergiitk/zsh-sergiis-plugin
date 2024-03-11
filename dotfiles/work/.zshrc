@@ -1,3 +1,6 @@
+## Work Profile
+## -------------------------------------------------------------------------------------------------
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -65,6 +68,7 @@ plugins=(
   extract git fzf
   ## zsh custom plugins
   zsh-autosuggestions zsh-syntax-highlighting
+  fzf-tab
   ## work stuff
   gcloud
   kubectl

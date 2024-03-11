@@ -1,3 +1,6 @@
+## Home/default profile
+## -------------------------------------------------------------------------------------------------
+
 # In case loading goes wrong. (defaults 64000 1000)
 export HISTSIZE="16777216" SAVEHIST="16777216"
 unsetopt HIST_EXPIRE_DUPS_FIRST
