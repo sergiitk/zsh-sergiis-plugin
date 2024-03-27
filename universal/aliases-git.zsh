@@ -36,7 +36,7 @@ alias grpl='git rev-parse --short HEAD'
 alias grp='git rev-parse --short'
 
 # Branch fork
-alias gbb="git merge-base $(git_main_branch) HEAD"
+alias gbb='git merge-base $(git_main_branch) HEAD'
 alias -g '$gbb'='$(gbb)'
 
 # Rebase
