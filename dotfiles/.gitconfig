@@ -91,6 +91,7 @@
 
 #  https://dandavison.github.io/delta/configuration.html
 [delta]
+  dark = true
   syntax-theme = Coldark-Dark
   features = zebra-dark
   paging = always
