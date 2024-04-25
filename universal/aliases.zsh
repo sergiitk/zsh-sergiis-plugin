@@ -44,19 +44,19 @@ alias tf='tail -f'
 # history: Same as fc -l.
 alias h='history'
 # Highlighted, reversed, with timestamp and dates.
-alias hl='history -r -iD | bat --style="header,grid" -l vy'
+alias hl='history -r -iD 1 | bat --style="header,grid" -l vy'
 
 # History search, without line number.
-alias hs='history -rn | grep -Ei'
+alias hs='history -rn 1 | grep -Ei'
 # Search with date and duration.
-alias hsd='history -rn -iD | grep -Ei'
+alias hsd='history -rn -iD 1 | grep -Ei'
 # Search full words.
 hsw() {
-  history -rn | grep -P "(?<!(\w|-))$argv(?!\w)"
+  history -rn 1 | grep -P "(?<!(\w|-))$argv(?!\w)"
 }
 # Search from the beginning
 hss() {
-  history -rn | grep -Ei "^${argv}"
+  history -rn 1 | grep -Ei "^${argv}"
 }
 
 # Exif
@@ -86,6 +86,14 @@ alias udx='iconv -f UTF-8 -t UCS-2 | xxd'
 # Resolve what is the command.
 alias '?'='nocorrect whence -asvf'
 # alias whf='whence -asvf'
+
+
+# processes
+alias pkill="noglob pkill"
+alias pgrep="noglob pgrep"
+alias pkl="noglob pkill -f"
+alias pgr="noglob pgrep -lf"
+
 
 # compdef wh=whence
 
