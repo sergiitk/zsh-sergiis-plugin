@@ -15,37 +15,38 @@ alias ll='ls -l --classify --group-directories-first --sort=version'
 alias  l='ll -Ah'
 alias la='ll -a'
 
+### Productivity
+# symbolic, verbose, no-dereference
+# lk realpath symlinkpath
+alias lk='ln -svn'
+
 # Cat
 alias c='bat --paging=never'
 # alias cat='bat --paging=never'
 # alias cat='bat'
+
 # SSH
 alias s='ssh'
-# Less
+
+# less
 alias le='less'
 # alias ß='less'
 alias -g ¬='| less'
 # Turn off word wrapping.
 # alias -g ßß='| less -S'
 # alias -g G='| grep'
-# Follow file with tailf.
+
+# tail
 alias tailf='tail -f'
 alias tf='tail -f'
-# cpuinfo
-# envvars
-# fstab
-# hs
-# log
-# properties
-# toml
-# vy
 
+# history
 # See man zshbuiltins
 # history: Same as fc -l.
 alias h='history'
 # Highlighted, reversed, with timestamp and dates.
+# alt highlight options: cpuinfo, envvars, fstab, hs, log, properties, toml, vy
 alias hl='history -r -iD 1 | bat --style="header,grid" -l vy'
-
 # History search, without line number.
 alias hs='history -rn 1 | grep -Ei'
 # Search with date and duration.
