@@ -92,7 +92,7 @@ alias '?'='nocorrect whence -asvf'
 # processes
 alias pkill="noglob pkill"
 alias pgrep="noglob pgrep"
-alias pkl="noglob pkill -f"
+alias pkl="noglob pkill -lf"
 alias pgr="noglob pgrep -lf"
 
 
