@@ -60,6 +60,10 @@ alias kd='kubectl describe'
 alias kg='kubectl get'
 alias kc='kubectl config'
 alias kcv='kubectl config view --minify | yml'
+function kgy() {
+  local name="${1?:missing the api_resource argument}"
+  kubectl get "$@" -o yaml | bat -l yaml --paging=never --style="grid,header" --file-name="${name}"
+}
 
 #################### gcloud ##########################
 # plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud

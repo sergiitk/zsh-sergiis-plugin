@@ -21,7 +21,7 @@ alias la='ll -a'
 alias lk='ln -svn'
 
 # Cat
-alias c='bat --paging=never'
+alias c='bat -pp' # plain, no pager
 # alias cat='bat --paging=never'
 # alias cat='bat'
 
