@@ -61,7 +61,7 @@ alias kg='kubectl get'
 alias kc='kubectl config'
 alias kcv='kubectl config view --minify | yml'
 function kgy() {
-  local name="${1?:missing the api_resource argument}"
+  local name="${1:?missing the api_resource argument}"
   kubectl get "$@" -o yaml | bat -l yaml --paging=never --style="grid,header" --file-name="${name}"
 }
 
@@ -71,7 +71,12 @@ alias gcl='gcloud'
 
 alias gcla='gcloud config configurations activate'
 alias gcll="gcloud config configurations list"
-alias gcl-cfg="gcloud config list 2>&1 | ini"
+# bat -l yaml --paging=never --style="grid,header" --file-name="${name}"
+# alias gcl-cfg="gcloud config list 2>&1 | ini"
+function gcl-cfg() {
+  local file_name="${P9K_GCLOUD_PROJECT_ID:-gcloud_config_list}.ini"
+  gcloud config list 2>/dev/null | bat --paging=never --style="grid,header" --file-name="${file_name}"
+}
 
 alias gclcc='gcloud container clusters'
 alias gclccl='gcloud container clusters list'

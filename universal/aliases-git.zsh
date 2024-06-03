@@ -20,6 +20,7 @@ alias gr='git restore'
 alias gr.='git restore .'
 alias grs='git restore --staged'
 alias grs.='git restore --staged .'
+alias grr='git restore --staged --worktree --'
 # alias grs='git restore --staged'
 # alias grs.='git restore --staged .'
 
