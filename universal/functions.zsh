@@ -18,6 +18,23 @@ ls-bin() {
   CLICOLOR_FORCE=1 ls -l ${^path}/*$1*(N) | awk '{ print $9" "$10" "$11 }'
 }
 
+ls-comp() {
+  print -aC2 ${(kv)_comps}
+  # which _hg
+  # which $_comps[hg]
+  # https://repo.mercurial-scm.org/hg/file/tip/contrib/zsh_completion
+}
+
+ls-autoload() {
+  print -l ${^fpath}/*$1*(N)
+  echo "---------"
+  echo "fpath dirs:"
+  print -l $fpath
+  # which _hg
+  # which $_comps[hg]
+  # print $fpath
+}
+
 touchx() {
   if [[ $# -ne 1 || -d "$1" ]]; then
     echo "Usage: touchx <file>"

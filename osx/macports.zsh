@@ -4,11 +4,20 @@
 fpath=(/opt/local/share/zsh/site-functions $fpath)
 
 # BSD version of find is just pathetic.
-alias find=gfind
-compdef gfind=find
-alias xargs=gxargs
-compdef gxargs=xargs
-alias realpath='greadlink -f'
+
+# (use symlinks instead)
+# ln -vsn /opt/local/bin/gfind ~/.bin/find
+# alias find=gfind
+# compdef gfind=find
+
+# (use symlinks instead)
+# ln -vsn /opt/local/bin/gxargs ~/.bin/xargs
+# alias xargs=gxargs
+# compdef gxargs=xargs
+
+# (use symlinks instead)
+# ln -vsn /opt/local/bin/grealpath ~/.bin/realpath
+# alias realpath='greadlink -f'
 
 # BSD version doesn't assign default group when it's omitted (`chown user:`).
 alias chown=gchown

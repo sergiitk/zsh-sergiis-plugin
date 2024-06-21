@@ -47,6 +47,7 @@ alias h='history'
 # Highlighted, reversed, with timestamp and dates.
 # alt highlight options: cpuinfo, envvars, fstab, hs, log, properties, toml, vy
 alias hl='history -r -iD 1 | bat --style="header,grid" -l vy'
+alias hlr='history -iD 1 | bat --style="header,grid" -l vy'
 # History search, without line number.
 alias hs='history -rn 1 | grep -Ei'
 # Search with date and duration.
@@ -106,3 +107,7 @@ alias openports='_ lsof -Pn -i4TCP -sTCP:LISTEN | sort -t":" -k2n | grep -P "(?<
 alias showport='lsof -Pn -i'
 # Serve current folder at :8000 with python HTTP Server.
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+
+### Noglob commands
+alias tldr='noglob tldr'
+alias man='noglob man'

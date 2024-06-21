@@ -140,7 +140,21 @@ function ps-gcloud() {
 
 ##################### Dotfiles ##########################
 
-local dtfiles="gitconfig gitignore_global gemrc profile ssh/config ssh/known_hosts vimrc wgetrc zshrc zlogin tmux.conf p10k.zsh config/bat/config"
+local dtfiles=(
+  config/bat/config
+  gitconfig
+  gitignore_global
+  hgrc
+  p10k.zsh
+  profile
+  ssh/config
+  ssh/known_hosts
+  tmux.conf
+  vimrc
+  work-custom.zshrc
+  zlogin
+  zshrc
+)
 function dt() {
   if [[ -z $1 ]]; then
     print $dtfiles
