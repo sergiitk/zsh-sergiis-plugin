@@ -41,7 +41,8 @@ export FZF_COMPLETION_TRIGGER='~~'
 # https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
 # ? for log line preview window
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-
+# disable so escape-c doesn't break things
+FZF_ALT_C_COMMAND=""
 
 # Because completions is in unusual place
 # export DISABLE_FZF_AUTO_COMPLETION='true'
