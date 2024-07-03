@@ -93,7 +93,11 @@ alias '?'='nocorrect whence -asvf'
 # processes
 alias pkill="noglob pkill"
 alias pgrep="noglob pgrep"
-alias pkl="noglob pkill -l -if"
+if [[ -z "${ZSH_SERGII_OSX}" ]]; then
+  alias pkl="noglob pkill -l -if"
+else
+  alias pkl="noglob pkill -e -if"
+fi
 alias pgr="noglob pgrep -al -if"
 
 

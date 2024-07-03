@@ -60,6 +60,12 @@ setopt INC_APPEND_HISTORY_TIME
 
 ## Imports
 ## -------------------------------------------------------------------------------------------------
+if [[ "$(uname)" == "Darwin" ]]; then
+  ZSH_SERGII_OSX=""
+else
+  ZSH_SERGII_OSX="true"
+fi
+
 source $ZSH_SERGII/setup/zle.zsh
 source $ZSH_SERGII/setup/plugins.zsh
 source $ZSH_SERGII/setup/apps.zsh
@@ -69,7 +75,7 @@ source $ZSH_SERGII/universal/aliases.zsh
 source $ZSH_SERGII/universal/aliases-git.zsh
 source $ZSH_SERGII/universal/functions.zsh
 
-if [[ "$(uname)" == "Darwin" ]]; then
+if [[ -n "${ZSH_SERGII_OSX}" ]]; then
   source $ZSH_SERGII/osx/macports.zsh
   source $ZSH_SERGII/osx/aliases.zsh
   source $ZSH_SERGII/osx/functions.zsh
