@@ -93,8 +93,8 @@ alias '?'='nocorrect whence -asvf'
 # processes
 alias pkill="noglob pkill"
 alias pgrep="noglob pgrep"
-alias pkl="noglob pkill -lf"
-alias pgr="noglob pgrep -lf"
+alias pkl="noglob pkill -l -if"
+alias pgr="noglob pgrep -al -if"
 
 
 # compdef wh=whence
