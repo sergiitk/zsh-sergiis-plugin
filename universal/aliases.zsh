@@ -100,6 +100,8 @@ else
 fi
 alias pgr="noglob pgrep -al -if"
 
+# kill by port, linux only
+# fuser -k -n tcp 4000
 
 # compdef wh=whence
 

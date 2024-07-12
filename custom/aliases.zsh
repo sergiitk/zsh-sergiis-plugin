@@ -82,6 +82,7 @@ alias gclcc='gcloud container clusters'
 alias gclccl='gcloud container clusters list'
 
 ###################### Python #######################
+alias i='ipython'
 alias pv='source ./venv/bin/activate'
 
 ###################### Nodejs #######################

@@ -13,8 +13,8 @@ alias f='open "$(pwd)"'
 alias o="open"
 
 # Port.
-alias pup='sudo port selfupdate && sudo port echo outdated && sudo port upgrade outdated'
+alias pup='sudo port selfupdate && port echo outdated && sudo port upgrade outdated'
 alias pca='sudo port -f clean --all all'
 
 # Utils.
-alias 'df?'='gdf --si --output=source,used,pcent / | tail -1 | column -t'
+alias df/='gdf --si --output=source,used,pcent / | tail -1 | column -t'

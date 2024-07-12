@@ -61,9 +61,9 @@ setopt INC_APPEND_HISTORY_TIME
 ## Imports
 ## -------------------------------------------------------------------------------------------------
 if [[ "$(uname)" == "Darwin" ]]; then
-  ZSH_SERGII_OSX=""
-else
   ZSH_SERGII_OSX="true"
+else
+  ZSH_SERGII_OSX=""
 fi
 
 source $ZSH_SERGII/setup/zle.zsh
