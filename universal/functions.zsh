@@ -43,8 +43,14 @@ touchx() {
   touch "$1" && chmod u+x "$1"
 }
 
-ff-luf() {
+function tmp() {
+  local prefix
+  prefix="${USER}-$(date +%F)"
+  # TODO(sergiitk): compatibility with non-bsd mktemp
+  cd "$(mktemp -d -t "${prefix}")"
+}
 
+ff-luf() {
   ffmpeg -i "$1" -hide_banner -af "loudnorm=I=-19:dual_mono=true:TP=-1.5:LRA=11:print_format=summary" -f null -
 }
 

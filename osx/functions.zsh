@@ -139,7 +139,6 @@ get-adapter-mode() {
 
 
 get-power() {
-
   echo "Adapter:  $(get-adapter-mode) W"
   echo "Using:    $(get-system-power) W"
   echo "Charging: $(get-adapter-power) W"

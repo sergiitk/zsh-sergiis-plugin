@@ -38,11 +38,19 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
 export FZF_BASE=/opt/local/share/fzf
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
 export FZF_COMPLETION_TRIGGER='~~'
+
 # https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
 # ? for log line preview window
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-# disable so escape-c doesn't break things
+export FZF_CTRL_R_OPTS="--preview='echo {}'\
+ --preview-window='down:3:hidden:wrap'\
+ --bind='?:toggle-preview,alt-enter:become(echo {q})'\
+"
+ # --bind='?:toggle-preview,alt-enter:accept-or-print-query'\
+# "cd into the selected directory"
+# Disable so escape-c (my common mistake) doesn't start indexing everything.
 FZF_ALT_C_COMMAND=""
+# "Paste the selected files and directories onto the command-line"
+FZF_CTRL_T_COMMAND=""
 
 # Because completions is in unusual place
 # export DISABLE_FZF_AUTO_COMPLETION='true'

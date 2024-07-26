@@ -24,7 +24,8 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# for some reason this adds ~d=/usr/share/zsh/5.9/functions
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
