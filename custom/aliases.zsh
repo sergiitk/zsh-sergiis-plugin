@@ -84,6 +84,7 @@ function gcl-cfg() {
 
 alias gclcc='gcloud container clusters'
 alias gclccl='gcloud container clusters list'
+alias gclccr='gcloud container clusters get-credentials'
 
 ###################### Python #######################
 alias i='ipython'
