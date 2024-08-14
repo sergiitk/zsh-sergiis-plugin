@@ -81,6 +81,10 @@ alias gsw='git show --format=fuller'
 alias gsww='git show -U1 --color-words --abbrev-commit --pretty=fuller'
 alias gswf='git show --name-only'
 
+# Switch.
+# Also overrides 'gs' Ghostscript
+alias gs='git switch'
+
 ### Tools
 # Interactive clean.
 # alias gclo='git clean -id'
