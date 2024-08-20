@@ -26,7 +26,7 @@ pup() {
       return
   fi
   echo
-  echo "Outdated:"
+  # echo "Outdated:"
   port outdated
   echo
   port echo "Requested and outdated:" requested and outdated

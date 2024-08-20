@@ -75,6 +75,11 @@ alias gdww='git diff -U0 --abbrev --color-words'
 # alias gdwc='gdw --cached'
 alias gdsw='git diff --staged --word-diff'
 alias gdsww='git diff --staged -U0 --abbrev --color-words'
+# patch formats: use -U<n> / --unified=n to set the number of context lines to n.
+alias gdsp='git diff --staged --no-color --patch'
+
+# patch format
+# alias gdd='git --no-pager diff --patch --unified=1 --no-color --staged'
 
 # Show.
 alias gsw='git show --format=fuller'
