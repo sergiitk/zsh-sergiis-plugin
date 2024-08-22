@@ -1,2 +1,3 @@
 #env
-LESS = --IGNORE-CASE --jump-target=10 --ignore-case --use-color --header=1 --status-column --search-skip-screen
+LESS = --RAW-CONTROL-CHARS --IGNORE-CASE --jump-target=10 --ignore-case --use-color
+LESSEDIT = subl %g\\:%lj
