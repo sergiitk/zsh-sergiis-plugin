@@ -31,7 +31,7 @@ alias s='ssh'
 # less
 alias le='less'
 # alias ß='less'
-alias -g ¬='| less'
+# alias -g ¬='| less'
 # Turn off word wrapping.
 # alias -g ßß='| less -S'
 # alias -g G='| grep'

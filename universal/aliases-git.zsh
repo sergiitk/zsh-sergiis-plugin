@@ -86,6 +86,9 @@ alias gsw='git show --format=fuller'
 alias gsww='git show -U1 --color-words --abbrev-commit --pretty=fuller'
 alias gswf='git show --name-only'
 
+# Stash.
+alias gstl='git --no-pager stash list --date=human'
+
 # Switch.
 # Also overrides 'gs' Ghostscript
 alias gs='git switch'

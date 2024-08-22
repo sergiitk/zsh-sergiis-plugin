@@ -1,0 +1,2 @@
+#env
+LESS = --IGNORE-CASE --jump-target=10 --ignore-case --use-color --header=1 --status-column --search-skip-screen

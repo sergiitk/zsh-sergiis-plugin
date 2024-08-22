@@ -9,6 +9,7 @@ PATH=$HOME/.bin:$PATH
 export LANG="en_US.UTF-8"
 export LC_ALL=$LANG
 export EDITOR="sublw"
+export LESSEDIT='sublw %g:%lg'
 
 # Java MacPorts
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8-temurin/Contents/Home
