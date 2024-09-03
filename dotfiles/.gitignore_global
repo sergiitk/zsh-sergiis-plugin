@@ -3,5 +3,8 @@
 *.sublime-workspace
 *.iml
 venv
+.venv
+venv-*
 .idea
 bazel-grpc-*
+__pycache__
