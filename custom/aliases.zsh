@@ -82,13 +82,22 @@ function gcl-cfg() {
   gcloud config list 2>/dev/null | bat --paging=never --style="grid,header" --file-name="${file_name}"
 }
 
-alias gclcc='gcloud container clusters'
-alias gclccl='gcloud container clusters list'
-alias gclccr='gcloud container clusters get-credentials'
+alias gclc='gcloud compute'
+# alias gclcc='gcloud container clusters'
+# alias gclccl='gcloud container clusters list'
+# alias gclccr='gcloud container clusters get-credentials'
+
+alias gke='gcloud container clusters'
+alias gkel='gcloud container clusters list'
+alias gkecr='gcloud container clusters get-credentials'
+alias gkedel='gcloud container clusters delete'
 
 ###################### Python #######################
 alias i='ipython'
 alias pv='source ./venv/bin/activate'
+
+###################### Misc #########################
+alias grpc='grpcurl -plaintext'
 
 ###################### Nodejs #######################
 

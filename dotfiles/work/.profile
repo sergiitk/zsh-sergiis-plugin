@@ -3,7 +3,7 @@ export CXXFLAGS="-I/opt/local/include"
 export LDFLAGS="-L/opt/local/lib"
 
 # Home
-PATH=$HOME/.bin:$PATH
+PATH="$HOME/.bin:$PATH"
 
 # Env
 export LANG="en_US.UTF-8"
@@ -27,7 +27,7 @@ export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
 
 # Python
 # export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
-export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.10/bin"
+# export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.10/bin"
 # export PATH="/Users/sergii/Library/Python/3.8/bin:$PATH"
 
 # SSH
