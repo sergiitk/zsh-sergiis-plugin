@@ -85,6 +85,9 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+# Dedup $PATH. Fixes .profile path appending issue, useful for `exec zsh`.
+typeset -U path
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

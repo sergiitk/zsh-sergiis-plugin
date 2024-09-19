@@ -3,11 +3,11 @@ export CXXFLAGS="-I/opt/local/include"
 export LDFLAGS="-L/opt/local/lib"
 
 # Home
-PATH="$HOME/.bin:$PATH"
+PATH="${HOME}/.bin:${PATH}"
 
 # Env
 export LANG="en_US.UTF-8"
-export LC_ALL=$LANG
+export LC_ALL="${LANG}"
 export EDITOR="sublw"
 
 # Java MacPorts
@@ -18,12 +18,12 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk17-temurin/Contents/H
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-22-eclipse-temurin.jdk/Contents/Home"
 
 # Android
-export ANDROID_HOME=$HOME/Development/Android/sdk
-PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-PATH=$PATH:$ANDROID_HOME/platform-tools
+export ANDROID_HOME="${HOME}/Development/Android/sdk"
+PATH="${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin"
+PATH="${PATH}:${ANDROID_HOME}/platform-tools"
 
 # Gcloud
-export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
+export CLOUDSDK_HOME="${HOME}/Development/SDK/google-cloud-sdk"
 
 # Python
 # export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
