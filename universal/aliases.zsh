@@ -15,6 +15,14 @@ alias ll='ls -l --classify --group-directories-first --sort=version'
 alias  l='ll -Ah'
 alias la='ll -a'
 
+# -F: as per ls -F, append
+#   `/' for directories
+#   `=' for socket files
+#   `*' for executable files
+#   `|' for FIFO's
+# -x: Stay on the current file-system only.
+alias tree='tree -F -x'
+
 ### Productivity
 # symbolic, verbose, no-dereference
 # lk realpath symlinkpath
