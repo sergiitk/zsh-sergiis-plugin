@@ -48,14 +48,26 @@ alias hlpl='bat -l help -p'
 alias dl='delta'
 
 #################### docker #########################
-alias dcup='docker-compose up -d'
-alias dk='nocorrect docker'
+alias dk='docker'
+
+# docker commands
+alias dki='docker images'
+
+# docker ps
 alias dkp='docker ps -a'
 alias dkpe='docker ps -a -q --filter "status=exited"'
-alias dki='docker images'
-# alias dkrm='docker rm --force'
-alias dkr='docker run -it --rm'
-alias dcrr='nocorrect docker-compose run --rm'
+
+# docker run
+# zshmisc / Aliasing: If the text ends with a space, the next word in
+# the shell input is treated as though it were in command position
+# for purposes of alias expansion.
+# (--interactive --tty) == (-it)
+alias dkr='docker run --interactive --tty --rm '
+alias dkre='docker run --interactive --tty --rm --entrypoint="" '
+
+# compose
+alias dcup='docker-compose up -d'
+alias dcrr='docker-compose run --rm'
 alias dcre='docker-compose down; docker-compose up -d'
 
 #################### kubectl #########################
