@@ -145,6 +145,7 @@ local dtfiles=(
   gitconfig
   gitignore_global
   hgrc
+  lesskey
   p10k.zsh
   profile
   ssh/config
@@ -155,15 +156,14 @@ local dtfiles=(
   zlogin
   zshrc
 )
-function dt() {
+function dtf() {
   if [[ -z $1 ]]; then
     print $dtfiles
     return 1
   fi
   subl ~/.$1
 }
-compctl -x 'p[1]' -k "($dtfiles)" -- dt
-alias dt='nocorrect dt'
+compctl -x 'p[1]' -k "($dtfiles)" -- dtf
 
 # ############ Android.
 # # Adb logcat

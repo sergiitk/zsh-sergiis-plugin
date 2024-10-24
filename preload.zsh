@@ -32,7 +32,8 @@ select-word-style bash
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247,bold"
 
 # Use bat instead of colored-man-pages plugin
-export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\"'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\" --pager=\"less --jump-target=10 --status-column\"'"
+export DELTA_PAGER="less --jump-target=0"
 
 # FZF
 export FZF_BASE=/opt/local/share/fzf

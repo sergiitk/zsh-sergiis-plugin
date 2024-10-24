@@ -33,6 +33,9 @@ alias c='bat -pp' # plain, no pager
 # alias cat='bat --paging=never'
 # alias cat='bat'
 
+# Date
+alias dt='date "+%F"'
+
 # SSH
 alias s='ssh'
 
