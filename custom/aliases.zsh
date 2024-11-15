@@ -1,7 +1,7 @@
 # Custom aliases.
 ################## Directory hashes #################
 # Homedir Library
-hash -d libas="$HOME/Library/Application Support/"
+hash -d libas="$HOME/Library/Application Support"
 # hash -d lib_icl="$HOME/Library/Mobile Documents/com~apple~CloudDocs/"
 
 # Development

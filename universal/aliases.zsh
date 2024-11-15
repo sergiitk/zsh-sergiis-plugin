@@ -24,8 +24,13 @@ alias la='ll -a'
 alias tree='tree -F -x'
 
 ### Productivity
+
+# realpath
+alias rp='realpath'
+
 # symbolic, verbose, no-dereference
-# lk realpath symlinkpath
+# lk /from/realpath /to/symlinkpath
+# lk $(rp file) symlink
 alias lk='ln -svn'
 
 # Cat

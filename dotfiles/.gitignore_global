@@ -8,3 +8,6 @@ venv-*
 .idea
 bazel-grpc-*
 __pycache__
+# vs
+.vscode
+__debug_bin*
