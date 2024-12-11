@@ -145,13 +145,13 @@ local dtfiles=(
   gitconfig
   gitignore_global
   hgrc
-  lesskey
   p10k.zsh
   profile
   ssh/config
   ssh/known_hosts
   tmux.conf
   vimrc
+  lesskey
   work-custom.zshrc
   zlogin
   zshrc
@@ -164,6 +164,7 @@ function dtf() {
   subl ~/.$1
 }
 compctl -x 'p[1]' -k "($dtfiles)" -- dtf
+# alias dt='nocorrect dt'
 
 # ############ Android.
 # # Adb logcat

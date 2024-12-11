@@ -133,3 +133,16 @@ alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 ### Noglob commands
 alias tldr='noglob tldr'
 alias man='noglob man'
+
+# rsync
+# usage: rsync-to /target/dir
+# usage: rsync-to /target/dir --dry-run
+# usage: rsync-to /target/dir -n
+alias rsync-to="rsync --archive --relative \
+  --compress --partial \
+  --delete-excluded --delete \
+  --ignore-times --omit-dir-times --checksum \
+  --no-perms --executability \
+  --human-readable --itemize-changes --verbose \
+  --filter=':- ${HOME}/.gitignore_global' --filter=':- .gitignore' --exclude=.git \
+  ."

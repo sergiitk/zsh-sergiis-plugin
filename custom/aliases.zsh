@@ -10,6 +10,8 @@ hash -d d="${HOME}/Development"
 hash -d dev="${HOME}/Development"
 hash -d play="${HOME}/Development/playground"
 hash -d p="${HOME}/Development/projects"
+hash -d g="${HOME}/Development/go"
+hash -d gb="${HOME}/Development/go/packages/bin"
 
 # user home shortcuts
 hash -d b="${HOME}/.bin"
