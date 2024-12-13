@@ -12,7 +12,7 @@ alias sudo='sudo '
 # presume we're using the gnu version
 # alias  l='ls -lA --classify --group-directories-first --sort=version -h'
 alias ll='ls -l --classify --group-directories-first --sort=version'
-alias  l='ll -Ah'
+alias l='ll -Ah'
 alias la='ll -a'
 
 # -F: as per ls -F, append
@@ -23,7 +23,18 @@ alias la='ll -a'
 # -x: Stay on the current file-system only.
 alias tree='tree -F -x'
 
+## mv (using non-gnu)
+# Safe mv: do not overwrite an existing file by default.
+alias mv='mv -v -n'
+# Interactive move.
+alias m='mv -v -i'
+
 ### Productivity
+
+# touch
+alias t='touch'
+# see functions.zsh
+alias tx="touchx"
 
 # realpath
 alias rp='realpath'
@@ -144,5 +155,5 @@ alias rsync-to="rsync --archive --relative \
   --ignore-times --omit-dir-times --checksum \
   --no-perms --executability \
   --human-readable --itemize-changes --verbose \
-  --filter=':- ${HOME}/.gitignore_global' --filter=':- .gitignore' --exclude=.git \
+  --cvs-exclude --exclude-from=.gitignore --exclude-from='${HOME}/.config/git/ignore'\
   ."

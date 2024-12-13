@@ -38,7 +38,7 @@ check-history() {
 }
 
 ############################# tmux ##################################
-alias t='tmux'
+alias tm='tmux'
 alias tc='tmux -CC'
 alias ta='tmux -CC attach -t'
 alias tl='tmux list-sessions'
@@ -141,14 +141,14 @@ function ps-gcloud() {
 ##################### Dotfiles ##########################
 
 local dtfiles=(
+  config/git/config
+  config/git/ignore
   config/bat/config
-  gitconfig
-  gitignore_global
+  ssh/config
+  ssh/known_hosts
   hgrc
   p10k.zsh
   profile
-  ssh/config
-  ssh/known_hosts
   tmux.conf
   vimrc
   lesskey
@@ -164,7 +164,7 @@ function dtf() {
   subl ~/.$1
 }
 compctl -x 'p[1]' -k "($dtfiles)" -- dtf
-# alias dt='nocorrect dt'
+alias e.='dtf'
 
 # ############ Android.
 # # Adb logcat

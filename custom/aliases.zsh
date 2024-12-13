@@ -4,6 +4,11 @@
 hash -d libas="$HOME/Library/Application Support"
 # hash -d lib_icl="$HOME/Library/Mobile Documents/com~apple~CloudDocs/"
 
+# user home shortcuts
+hash -d b="${HOME}/.bin"
+hash -d c="${HOME}/.config"
+hash -d r="${HOME}/Downloads/__remove"
+
 # Development
 # alias dev='cd ~/Development'
 hash -d d="${HOME}/Development"
@@ -12,10 +17,6 @@ hash -d play="${HOME}/Development/playground"
 hash -d p="${HOME}/Development/projects"
 hash -d g="${HOME}/Development/go"
 hash -d gb="${HOME}/Development/go/packages/bin"
-
-# user home shortcuts
-hash -d b="${HOME}/.bin"
-hash -d r="${HOME}/Downloads/__remove"
 
 # MacPorts
 hash -d o=/opt/local
