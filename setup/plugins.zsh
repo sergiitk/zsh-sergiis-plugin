@@ -25,13 +25,22 @@ fi
 ## fzf-tab
 ## https://github.com/Aloxaf/fzf-tab/wiki/Configuration
 ## -------------------------------------------------------------------------------------------------
-# Use groups
 # zstyle ':completion:*' menu no
+
+#### Popup style
+# How many lines does fzf's prompt occupied
+zstyle ':fzf-tab:*' fzf-pad 4
+
+#### Enable completion groups
+# format info:
+# https://zsh.sourceforge.io/Doc/Release/Completion-System.html#index-format_002c-completion-style
 zstyle ':completion:*:descriptions' format '[%d]'
+# Show the group description even if there's just one group
+zstyle ':fzf-tab:*' single-group header
+# Switch key binds
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
-# style
-zstyle ':fzf-tab:*' fzf-pad 4
+#### Keybinds
 # https://www.mankier.com/1/fzf#Key/Event_Bindings
 # zstyle ':fzf-tab:*' fzf-bindings 'enter:accept'
 
@@ -41,6 +50,7 @@ zstyle ':fzf-tab:*' accept-line ctrl-space
 # Accept printed as is (default)
 # zstyle ':fzf-tab:*' print-query alt-right
 
+#### App customization
 # git
 zstyle ':completion:*:git-checkout:*' sort false
 
@@ -61,3 +71,19 @@ zstyle ':completion:*:git-checkout:*' sort false
 # zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
 # tldr
 # zstyle ':fzf-tab:complete:tldr:argument-1' fzf-preview 'tldr --color always $word'
+
+#### Completion
+
+# If you're looking for the compdef stuff, see
+# https://zsh.sourceforge.io/Doc/Release/Completion-System.html
+# https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
+
+# fzf tab can be disabled the following, where `dtf` is the command
+# zstyle ':fzf-tab:complete:dtf:*' disabled-on any
+
+# Useful: press "ctrl+x, h" after the command to see completion context.
+
+# don't forget to remove .zcompdump files when using compdef !!!
+
+## -------------------------------------------------------------------------------------------------
+

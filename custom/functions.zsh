@@ -140,30 +140,36 @@ function ps-gcloud() {
 
 ##################### Dotfiles ##########################
 
-local dtfiles=(
-  config/git/config
-  config/git/ignore
-  config/bat/config
-  ssh/config
-  ssh/known_hosts
-  hgrc
-  p10k.zsh
-  profile
-  tmux.conf
-  vimrc
-  lesskey
-  work-custom.zshrc
-  zlogin
-  zshrc
-)
-function dtf() {
+dtf() {
   if [[ -z $1 ]]; then
-    print $dtfiles
+    print 'press tab for completion'
     return 1
   fi
   subl ~/.$1
 }
-compctl -x 'p[1]' -k "($dtfiles)" -- dtf
+
+_dtf() {
+  local -a dtfiles=(
+    bat/config
+    git/config
+    git/ignore
+    hgrc
+    lesskey
+    p10k.zsh
+    profile
+    ssh/config
+    ssh/known_hosts
+    tmux.conf
+    vimrc
+    work-custom.zshrc
+    zlogin
+    zshrc
+  )
+  _describe '' dtfiles
+}
+# don't forget to remove .zcompdump files.
+compdef _dtf dtf
+
 alias e.='dtf'
 
 # ############ Android.
