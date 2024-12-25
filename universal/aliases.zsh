@@ -108,8 +108,9 @@ alias pe='print -u2'
 ### Text
 # Easy decimal dump.
 alias od1='od -tc -tu1 -tx1'
-alias ud1='iconv -f UTF-8 -t UCS-2 | od -tc -tx1'
-alias udx='iconv -f UTF-8 -t UCS-2 | xxd'
+# UTF-8 to unicode codepoints
+alias ud1='iconv -f UTF-8 -t UCS-2LE | od -tu2 -tx2'
+alias udx='iconv -f UTF-8 -t UCS-2 | hexdump'
 
 ### Paths
 # Resolve what is the command.
