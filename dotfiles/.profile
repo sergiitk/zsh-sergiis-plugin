@@ -14,7 +14,8 @@ export EDITOR="sublw"
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk14/Contents/Home"
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk17/Contents/Home"
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk17-zulu/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk17-zulu/Contents/Home
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-21-azul-zulu.jdk"
 
 # Node
 # # NPM packages in homedir
