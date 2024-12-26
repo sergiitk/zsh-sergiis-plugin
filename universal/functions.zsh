@@ -153,3 +153,29 @@ siege-to-spreadsheet() {
 }
 
 alias make="nocorrect make"
+
+# base conversion math
+dec2hex() {
+  printf '%x\n' ${@}
+}
+
+hex2dec() {
+  for i in $@
+  do
+    echo $((16#$i))
+  done
+}
+
+dec2bin() {
+  for i in $@
+  do
+    echo "obase=2; ${i}" | bc
+  done
+}
+
+bin2dec() {
+  for i in $@
+  do
+    echo $((2#$i))
+  done
+}
