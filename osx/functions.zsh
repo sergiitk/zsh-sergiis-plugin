@@ -114,17 +114,17 @@ iterm-toggle-mode() {
 }
 
 int-to-float() {
-  python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read())))[0], ".2f"))'
+  python -c 'import sys, struct; print(format(struct.unpack(">f", struct.pack(">l", int(sys.stdin.read().strip())))[0], ".2f"))'
 }
 
 get-adapter-power() {
   ioreg -rw0 -a -c AppleSmartBattery |\
-   plutil -extract '0.BatteryData.AdapterPower' raw - | int-to-float
+   plutil -extract '0.BatteryData.AdapterPower' raw -
 }
 
 get-system-power() {
   ioreg -rw0 -a -c AppleSmartBattery |\
-   plutil -extract '0.BatteryData.SystemPower' raw - | int-to-float
+   plutil -extract '0.BatteryData.SystemPower' raw -
 }
 
 get-adapter-mode() {
