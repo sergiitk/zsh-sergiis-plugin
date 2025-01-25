@@ -1,3 +1,3 @@
 #env
-LESS = --RAW-CONTROL-CHARS --jump-target=3 --ignore-case --use-color --search-options=W --SILENT --hilite-unread --color=W.240
+LESS = --RAW-CONTROL-CHARS --jump-target=3 --ignore-case --use-color --search-options=W --SILENT --hilite-unread --color=W.240 --color=S.059
 LESSEDIT = subl %g\\:%lj
