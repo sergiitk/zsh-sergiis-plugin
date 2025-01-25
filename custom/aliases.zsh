@@ -28,6 +28,9 @@ cdpath=($cdpath $HOME/Development)
 
 #################### noglob #########################
 alias bazel='noglob bazel'
+alias find='noglob find'
+alias rg='noglob rg'
+alias rgc='noglob rg --color=always'
 
 ################## highlighting #####################
 # https://github.com/sharkdp/bat
