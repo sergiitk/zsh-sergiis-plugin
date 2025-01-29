@@ -17,7 +17,10 @@ export EDITOR="sublw"
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk17-zulu/Contents/Home
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-21-azul-zulu.jdk"
 
+alias source-nvm='source /opt/local/share/nvm/init-nvm.sh'
 # Node
+# source /opt/local/share/nvm/init-nvm.sh
+#
 # # NPM packages in homedir
 # NPM_PACKAGES="$HOME/.npm-packages"
 # # Tell our environment about user-installed node tools
