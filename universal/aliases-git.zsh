@@ -15,15 +15,6 @@ bb() {
 # give gcl to gcloud
 alias gcln='git clone --recurse-submodules'
 
-# Restore
-alias gr='git restore'
-alias gr.='git restore .'
-alias grs='git restore --staged'
-alias grs.='git restore --staged .'
-alias gr!='git restore --staged --worktree --'
-# alias grs='git restore --staged'
-# alias grs.='git restore --staged .'
-
 ### Info
 # Last commit
 alias grpl='git rev-parse --short HEAD'
@@ -64,6 +55,16 @@ glb() {
 }
 compdef _git glb=git-branch
 
+# Restore
+alias gr='git restore'
+alias gr.='git restore .'
+alias grs='git restore --staged'
+alias grs.='git restore --staged .'
+alias gr!='git restore --staged --worktree --'
+alias grsm='git restore -s $(git_main_branch) --'
+alias grsb='git restore -s $(gbb) --'
+
+
 # Diff the current branch
 alias gdb='git diff $(gbb)...HEAD'
 
@@ -71,8 +72,7 @@ alias gdb='git diff $(gbb)...HEAD'
 alias gdww='git diff -U0 --abbrev --color-words'
 # alias gds='git diff -U0 --abbrev --color-words'
 
-# Staged
-# alias gdwc='gdw --cached'
+### Staged diffs
 alias gdsw='git diff --staged --word-diff'
 alias gdsww='git diff --staged -U0 --abbrev --color-words'
 # patch formats: use -U<n> / --unified=n to set the number of context lines to n.
