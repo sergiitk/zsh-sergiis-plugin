@@ -37,8 +37,4 @@ alias pul='sudo port uninstall leaves'
 alias pu='sudo port uninstall'
 
 # Packages
-
-# TL;DR autocomplete
-if [[ -f /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh ]]; then
-  source /opt/local/share/tldr-cpp-client/autocomplete/complete.zsh
-fi
+### Nothing here now.

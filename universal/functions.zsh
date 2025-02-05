@@ -122,7 +122,6 @@ checkdotdirs() {
     npm
     oh-my-zsh
     ssh
-    tldrc
     Trash
     vim
   )
