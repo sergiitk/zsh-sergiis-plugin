@@ -35,19 +35,10 @@ alias -g '$gbb'='$(gbb)'
 alias grbb='git rebase --interactive $(gbb)'
 
 ### Log
-# Just git log.
 alias gl='git log'
-# alias glln='git --no-pager log'
-
-# Git log from origins to current.
-# alias gll='git log @{u}..'
-#alias gllo='git log origin..'
-#alias gllh='git log heroku/master..'
-
 alias 'g-'='git log --pretty=graph --branches --remotes --tags --graph --date=short'
 
-# Log commits in the current branch.
-# alias glb='git --no-pager log --pretty=graph --date=human --reverse $(gbb)..'
+# Log commits in a given branch.
 glb() {
   local branch="${1:-HEAD}"
   local fork_point=$(git merge-base $(git_main_branch) ${branch})
@@ -62,6 +53,7 @@ alias grs='git restore --staged'
 alias grs.='git restore --staged .'
 alias gr!='git restore --staged --worktree --'
 alias grsm='git restore -s $(git_main_branch) --'
+# Restore from merge base. Should be equivalent to `git restore -s master...`
 alias grsb='git restore -s $(gbb) --'
 
 
