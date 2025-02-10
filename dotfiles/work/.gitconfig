@@ -95,7 +95,7 @@
 [delta]
   dark = true
   syntax-theme = Coldark-Dark
-  features = zebra-dark
+  features = sergiitk-color-moved-dark
   paging = always
   navigate = true
   hunk-header-style = omit
@@ -104,22 +104,21 @@
   # word-diff-regex = \\w+|[^[:space:]]
   # line-numbers = true
 
-# see why disabled below
 # https://dandavison.github.io/delta/color-moved-support.html
-# https://github.com/dandavison/delta/blob/main/themes.gitconfig
-# [include]
-#   path = /opt/local/share/git-delta/themes.gitconfig
-
-# used instead of include: map-styles breaks p10
-[delta "zebra-dark"]
-    minus-style = syntax "#330f0f"
-    minus-emph-style = syntax "#4f1917"
-    plus-style = syntax "#0e2f19"
-    plus-emph-style = syntax "#174525"
-    map-styles = \
-       bold purple => syntax "#330f29", \
-       bold blue => syntax "#271344", \
-       bold cyan => syntax "#0d3531", \
-       bold yellow => syntax "#222f14"
-    zero-style = syntax
-    whitespace-error-style = "#aaaaaa"
+# https://dandavison.github.io/delta/custom-themes.html
+[delta "sergiitk-color-moved-dark"]
+  # based on "zebra-dark"
+  # https://github.com/dandavison/delta/blob/main/themes.gitconfig
+  minus-style = syntax "#330f0f"
+  minus-emph-style = syntax "#4f1917"
+  plus-style = syntax "#0e2f19"
+  plus-emph-style = syntax "#174525"
+  # "bold purple" and "bold cyan" made ligher and italic
+  # Other mappings seem to have no effect
+  map-styles = \
+    bold purple => syntax italic "#3e5900", \
+    bold blue => syntax "#271344", \
+    bold cyan => syntax italic "#3e5900", \
+    bold yellow => syntax "#222f14"
+  zero-style = syntax
+  whitespace-error-style = "#aaaaaa"
