@@ -41,8 +41,16 @@ alias 'g-'='git log --pretty=graph --branches --remotes --tags --graph --date=sh
 # Log commits in a given branch.
 glb() {
   local branch="${1:-HEAD}"
+  local -a args=()
+  if [[ "$branch" == "--" ]]; then
+    branch="HEAD"
+    args=("$@")
+  elif [[ "${1:-} == "--"" ]]; then
+    shift
+    args=("$@")
+  fi
   local fork_point=$(git merge-base $(git_main_branch) ${branch})
-  git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}"
+  git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}" "${args[@]}"
 }
 compdef _git glb=git-branch
 
