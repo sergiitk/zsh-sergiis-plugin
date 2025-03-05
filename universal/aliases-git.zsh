@@ -45,7 +45,7 @@ glb() {
   if [[ "$branch" == "--" ]]; then
     branch="HEAD"
     args=("$@")
-  elif [[ "${1:-} == "--"" ]]; then
+  elif [[ "${1:-}" == "--" ]]; then
     shift
     args=("$@")
   fi

@@ -1,6 +1,10 @@
 import functools
 import datetime as dt
 
+try:
+  import humanize
+except ModuleNotFoundError:
+  pass
 
 def time_diff(s, e):
     ds = dt.datetime.combine(dt.date.today(), dt.time.fromisoformat(s))
