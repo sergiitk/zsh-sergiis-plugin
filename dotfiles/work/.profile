@@ -3,7 +3,7 @@ export CXXFLAGS="-I/opt/local/include"
 export LDFLAGS="-L/opt/local/lib"
 
 # Home
-PATH="${HOME}/.bin/gnu:${HOME}/.bin:${PATH}"
+PATH="${HOME}/.bin/gobin:${HOME}/.bin/gnu:${HOME}/.bin:${PATH}"
 
 # Env
 export LANG="en_US.UTF-8"
