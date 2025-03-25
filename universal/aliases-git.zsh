@@ -37,6 +37,8 @@ alias grbb='git rebase --interactive $(gbb)'
 ### Log
 alias gl='git log'
 alias 'g-'='git log --pretty=graph --branches --remotes --tags --graph --date=short'
+# human log with no pager
+alias glh='git --no-pager log --reverse --pretty=cool --date=human'
 
 # Log commits in a given branch.
 glb() {

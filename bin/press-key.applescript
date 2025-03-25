@@ -45,6 +45,10 @@
 # ❯ defaults write net.shinyfrog.bear NSUserKeyEquivalents -dict-add "\033View\033Show Trash" -string $'\uf716'
 # ❯ defaults write net.shinyfrog.bear NSUserKeyEquivalents -dict-add "\033View\033Show Archive" -string $'\uf716'
 
+# can I just set it to \026? I think osx corrected it like that
+# "\033View\033Show Archive" = "\026";
+# "\033View\033Show Trash" = "\\Uf716";
+
 on run argv
   try
     set kcode to item 1 of argv

@@ -146,6 +146,9 @@ alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias tldr='noglob tldr'
 alias man='noglob man'
 
+# plutil -convert json -r -o - net.shinyfrog.bear.plist | bat -pp -l json
+# plutil -extract NSUserKeyEquivalents json -r -o - net.shinyfrog.bear.plist | bat -pp -l json
+
 # rsync
 # usage: rsync-to /target/dir
 # usage: rsync-to /target/dir --dry-run
