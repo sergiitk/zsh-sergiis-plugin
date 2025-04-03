@@ -8,6 +8,10 @@ fzf-alias() {
 }
 alias fzf-alias="nocorrect fzf-alias"
 
+fzf-func() {
+  ls-func "${argv}" | fzf --header-first --header="ls-func ${argv}"
+}
+
 ls-except() {
   if [[ -z $2 ]]; then
     pe "usage: <path/to/list> <dir-name-to-exclude>"

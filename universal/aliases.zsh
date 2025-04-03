@@ -117,7 +117,6 @@ alias udx='iconv -f UTF-8 -t UCS-2 | hexdump'
 alias '?'='nocorrect whence -asvf'
 # alias whf='whence -asvf'
 
-
 # processes
 alias pkill="noglob pkill"
 alias pgrep="noglob pgrep"

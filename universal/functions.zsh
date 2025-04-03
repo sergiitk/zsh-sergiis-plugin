@@ -1,16 +1,20 @@
 ################### Universal Functions  ###################
-# Searches in aliases.
+# List aliases.
 # Please make sure GNU version is used: `port echo installed | grep grep`.
 ls-alias() {
   alias | grep -P "(?<!(\w|-))$argv(?!\w)"
 }
 alias ls-alias="nocorrect ls-alias"
 
-# Searches in vars.
-# Please make sure GNU version is used: `port echo installed | grep grep`.
+# List vars.
 ls-vars() {
-  set | grep -Ev "(_comps|^@|^'\*'|^argv|^_history_substring_|^portlist|_p9k_|^_ZSH_AUTOSUGGEST_BIND_COUNTS)"\
-      | grep --color=always -iaF $1
+  set | grep -Ev "(_comps|^@|^'\*'|^argv|^_history_substring_|^portlist|_p9k_|^_ZSH_AUTOSUGGEST_BIND_COUNTS)"
+  # | grep --color=always -iaF $1
+}
+
+# List functions.
+ls-func() {
+  print -l ${(ok)functions[(I)[^_+-]*]}
 }
 
 # Search through all binaries.
@@ -41,6 +45,10 @@ touchx() {
     return
   fi
   touch "$1" && chmod u+x "$1"
+}
+
+function find-q() {
+  find . ! -readable -prune -or "$@" -print
 }
 
 function tmp() {

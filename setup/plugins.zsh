@@ -38,7 +38,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # Show the group description even if there's just one group
 zstyle ':fzf-tab:*' single-group header
 # Switch key binds
-zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 #### Keybinds
 # https://www.mankier.com/1/fzf#Key/Event_Bindings
