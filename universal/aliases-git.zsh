@@ -5,6 +5,7 @@
 ### Productivity
 alias g.='git add .'
 alias gpl='git pull'
+alias gnp='git --no-pager'
 
 # Branches
 alias b='git branch -vv --sort=refname'
@@ -63,7 +64,7 @@ alias grs='git restore --staged'
 alias grs.='git restore --staged .'
 alias gr!='git restore --staged --worktree --'
 alias grsm='git restore -s $(git_main_branch) --'
-# Restore from merge base. Should be equivalent to `git restore -s master...`
+# Restore from the merge base.
 alias grsb='git restore -s $(gbb) --'
 
 
@@ -86,7 +87,7 @@ alias gdsp='git diff --staged --no-color --patch'
 # Show.
 alias gsw='git show --format=fuller'
 alias gsww='git show -U1 --color-words --abbrev-commit --pretty=fuller'
-alias gswf='git show --name-only'
+alias gswf='git --no-pager show --name-only'
 
 # Stash.
 alias gstl='git --no-pager stash list --date=human'
