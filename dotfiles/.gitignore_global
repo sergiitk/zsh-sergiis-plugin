@@ -5,6 +5,7 @@
 *.iml
 venv
 .venv
+.venv-*
 venv-*
 .idea
 bazel-grpc-*
