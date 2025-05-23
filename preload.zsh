@@ -36,22 +36,39 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=\"Monokai Extended\" --p
 export DELTA_PAGER="less --jump-target=0"
 
 # FZF
+# https://junegunn.github.io/fzf/shell-integration/
 export FZF_BASE=/opt/local/share/fzf
 export FZF_DEFAULT_OPTS='--layout=reverse --border'
+
+## Keybindings
+# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+
+# Use ~~ as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER='~~'
 
-# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
-# ? for log line preview window
+## alt+c
+# List directories.
+# Disable so escape-c (my common mistake) doesn't start indexing everything.
+FZF_ALT_C_COMMAND=""
+
+## ctrl+t
+# List directories and files.
+# Disable because I don't like it.
+FZF_CTRL_T_COMMAND=""
+
+## ctrl+r
+# History search.
+# Default keybindings:
+#   - `ctrl+r` (again) - switch between relevant and cronological order.
+# Configured keybinding:
+#   - `?` - display long commands in the preview window.
 export FZF_CTRL_R_OPTS="--preview='echo {}'\
  --preview-window='down:3:hidden:wrap'\
  --bind='?:toggle-preview,alt-enter:become(echo {q})'\
 "
+
  # --bind='?:toggle-preview,alt-enter:accept-or-print-query'\
 # "cd into the selected directory"
-# Disable so escape-c (my common mistake) doesn't start indexing everything.
-FZF_ALT_C_COMMAND=""
-# "Paste the selected files and directories onto the command-line"
-FZF_CTRL_T_COMMAND=""
 
 # Because completions is in unusual place
 # export DISABLE_FZF_AUTO_COMPLETION='true'
