@@ -96,6 +96,60 @@ alias gstl='git --no-pager stash list --date=human'
 # Also overrides 'gs' Ghostscript
 alias gs='git switch'
 
+
+## Remotes and refs
+
+# Refspec format:
+# refspec: https://git-scm.com/docs/git-fetch
+# git check-ref-format --refspec-pattern 'upstream/v1.*?' && echo pass
+# git check-ref-format --normalize --refspec-pattern 'upstream/v1.*'
+
+# List origin branches with date in columns
+alias gbrl="noglob git branch --remotes --format '%(refname:lstrip=2)' --list"
+alias gbrld="noglob git branch --remotes --format '%(committerdate:short)%09%(refname:lstrip=2)' --sort=committerdate --list"
+
+# reversed columns
+# git branch --remotes --list 'origin/*' --format '%(align:width=70)%(refname:lstrip=3)%(end)%(committerdate:short)' --sort=committerdate
+
+# Delete origin branches starting with prefix
+# git branch --remotes --list 'origin/v1*' --format '%(refname:lstrip=3)' | xargs echo git push origin --delete
+# gpod = git push origin --delete
+
+# Reading and changing remote fetch.
+# st .git/config
+#
+# git config get --local --all remote.upstream.fetch
+# +refs/heads/*:refs/remotes/upstream/*
+# ^refs/heads/dependabot/*
+#
+# Override remote.upstream.fetch
+# git config set --local --replace-all remote.upstream.fetch '+refs/heads/master:refs/remotes/upstream/master'
+#
+# Ignore refs by appending
+# git config set --local --append remote.upstream.fetch '^refs/heads/dependabot/*'
+
+# List remote heads
+# git ls-remote --heads upstream
+
+# Show remotes and tracking
+# git remote show upstream
+
+# Use local index only:
+# git remote show upstream -n
+
+# Reflog
+# l .git/logs/refs/remotes/upstream/
+# l .git/logs/refs/heads
+# git reflog list
+#
+## Cleaning refs (unsorted)
+# git for-each-ref 'refs/remotes/upstream/create-pull-request/**' --format="%(refname)" | xargs -t -I% echo git update-ref -d %
+# git remote --verbose prune upstream
+# git fetch --verbose --prune upstream
+# git gc --prune=now
+# bat .git/packed-refs
+# git pack-refs --verbose --prune
+
 ### Tools
 # Interactive clean.
 # alias gclo='git clean -id'

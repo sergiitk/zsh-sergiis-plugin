@@ -85,6 +85,7 @@
   show = delta
   branch = false
   grep = false
+  config = false
 [init]
   defaultBranch = main
 
