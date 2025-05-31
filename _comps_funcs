@@ -1,0 +1,5 @@
+#compdef rl
+
+local wordsarray
+wordsarray=(${(v)_comps})
+compadd -a wordsarray

@@ -1,0 +1,28 @@
+#compdef find-in-dirs
+
+_arguments -M 'r:|-=*' \
+  '1:pattern arg:_files -/' \
+  '*: :_find' \
+&& ret=0
+
+
+# local context state state_descr line ret=1
+# typeset -A opt_args
+
+# _arguments -C \
+#   '1:pattern arg:_files -/' \
+#   '*: :->find_delegate' \
+# && ret=0
+
+# case "$state" in
+#   (find_delegate)
+#     # shift words
+#     # (( CURRENT-- ))
+#     # _normal -p find
+#     # service='find'
+#     # words=('abc' 'cde')
+#     _arguments '*: :_find' && ret=0
+#   ;;
+# esac
+
+# return ret;

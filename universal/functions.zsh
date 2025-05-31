@@ -29,6 +29,12 @@ ls-comp() {
   # https://repo.mercurial-scm.org/hg/file/tip/contrib/zsh_completion
 }
 
+# reload autocomplete
+rl() {
+  unfunction $1 && autoload -U $1
+}
+compdef rl ls-comp
+
 ls-autoload() {
   print -l ${^fpath}/*$1*(N)
   echo "---------"
@@ -47,9 +53,16 @@ touchx() {
   touch "$1" && chmod u+x "$1"
 }
 
-function find-q() {
-  find . ! -readable -prune -or "$@" -print
+find-q() {
+  find . -not -readable -prune -or "$@" -print
 }
+
+# expects GNU find
+find-in-dirs() {
+  local pattern="${1:?arg must be the dir -name pattern}"
+  find . -name "${pattern}" -type d -print0 | find -files0-from - -type f "${@:2}"
+}
+alias find-in-dirs='noglob find-in-dirs'
 
 function tmp() {
   local prefix

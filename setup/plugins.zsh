@@ -54,14 +54,6 @@ zstyle ':fzf-tab:*' accept-line ctrl-space
 # git
 zstyle ':completion:*:git-checkout:*' sort false
 
-# hg - doesn't work for some reason
-# zstyle ':fzf-tab:complete:hg:*' disabled-on any
-# zstyle ':fzf-tab:complete:hg-*:*' disabled-on any
-
-# zstyle ':fzf-tab:complete:_hg_cmd_*:*' disabled-on any
-# zstyle ':fzf-tab:complete:hg-rename:*' disabled-on any
-# zstyle ':completion::complete:hg-rename::' _hg_cache_policy
-
 # fzf-tab preview
 # https://github.com/Aloxaf/fzf-tab/wiki/Preview
 # kill
@@ -72,18 +64,17 @@ zstyle ':completion:*:git-checkout:*' sort false
 # tldr
 # zstyle ':fzf-tab:complete:tldr:argument-1' fzf-preview 'tldr --color always $word'
 
-#### Completion
-
-# If you're looking for the compdef stuff, see
-# https://zsh.sourceforge.io/Doc/Release/Completion-System.html
-# https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
-
+# Completion
 # fzf tab can be disabled the following, where `dtf` is the command
 # zstyle ':fzf-tab:complete:dtf:*' disabled-on any
 
-# Useful: press "ctrl+x, h" after the command to see completion context.
+# hg - doesn't work for some reason
+# zstyle ':fzf-tab:complete:hg:*' disabled-on any
+# zstyle ':fzf-tab:complete:hg-*:*' disabled-on any
 
-# don't forget to remove .zcompdump files when using compdef !!!
+# zstyle ':fzf-tab:complete:_hg_cmd_*:*' disabled-on any
+# zstyle ':fzf-tab:complete:hg-rename:*' disabled-on any
+# zstyle ':completion::complete:hg-rename::' _hg_cache_policy
 
 ## -------------------------------------------------------------------------------------------------
 
