@@ -59,8 +59,9 @@ find-q() {
 
 # expects GNU find
 find-in-dirs() {
-  local pattern="${1:?arg must be the dir -name pattern}"
-  find . -name "${pattern}" -type d -print0 | find -files0-from - -type f "${@:2}"
+  local search_dir="${1:?arg search_dir must be set}"
+  local dir_pattern="${2:?arg dir_pattern must be set}"
+  find "${search_dir}" -name "${dir_pattern}" -type d -print0 | find -files0-from - -type f "${@:3}" | sort | uniq
 }
 alias find-in-dirs='noglob find-in-dirs'
 

@@ -1,28 +1,34 @@
 #compdef find-in-dirs
 
-_arguments -M 'r:|-=*' \
-  '1:pattern arg:_files -/' \
-  '*: :_find' \
-&& ret=0
-
-
-# local context state state_descr line ret=1
-# typeset -A opt_args
-
-# _arguments -C \
+# _arguments -M 'r:|-=*' \
 #   '1:pattern arg:_files -/' \
-#   '*: :->find_delegate' \
+#   '*: :_find' \
 # && ret=0
 
-# case "$state" in
-#   (find_delegate)
-#     # shift words
-#     # (( CURRENT-- ))
-#     # _normal -p find
-#     # service='find'
-#     # words=('abc' 'cde')
-#     _arguments '*: :_find' && ret=0
-#   ;;
-# esac
 
-# return ret;
+local context state state_descr line ret=1
+typeset -A opt_args
+
+_arguments -C \
+  ':search dir:_files -/' \
+  ':dir name pattern' \
+  '*: :->find_delegate' \
+&& ret=0
+
+case "$state" in
+  (find_delegate)
+    local -a prepend
+    prepend=("find" "-files0-from" "-")
+
+    shift words
+    shift words
+    shift words
+
+    CURRENT=$(( $#words + $#prepend ))
+    words=("${prepend[@]}" "${words[@]}")
+
+    _normal -P
+  ;;
+esac
+
+return ret;
