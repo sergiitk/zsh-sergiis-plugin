@@ -112,7 +112,40 @@ alias gkedel='gcloud container clusters delete'
 
 ###################### Python #######################
 alias i='ipython'
-alias pv='source ./venv/bin/activate'
+pv() {
+  if [[ -n "${VIRTUAL_ENV:-}" ]] then;
+    echo "Venv already activated: ${VIRTUAL_ENV}" >&2
+    return 1
+  fi
+
+  local venv_file venv_candidate local
+  declare -a venv_candidates=("./venv" "./.venv")
+
+  # if provoded as an argument
+  if [[ -n "${1}" ]]; then
+    if [[ ! -d "${1}" ]]; then
+      echo "Argument is not a dir: ${1}" >&2
+      return 1
+    fi
+    venv_candidates=("${1}")
+  fi
+
+  for venv_dir in $venv_candidates; do
+    venv_candidate="${venv_dir}/bin/activate"
+    if [[ -r "${venv_candidate}" ]]; then
+      venv_file="${venv_candidate}"
+      break
+    fi
+  done
+
+  if [[ -n "${venv_file}" ]]; then
+    echo "Sourced ${venv_file}"
+    source "${venv_file}"
+  else
+    echo "Venv not found" >&2
+    return 1
+  fi
+}
 
 ###################### Misc #########################
 alias grpc='grpcurl -plaintext'

@@ -26,9 +26,9 @@ PATH="${PATH}:${ANDROID_HOME}/platform-tools"
 export CLOUDSDK_HOME="${HOME}/Development/SDK/google-cloud-sdk"
 
 # Python
-# export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
-# export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.10/bin"
-# export PATH="/Users/sergii/Library/Python/3.8/bin:$PATH"
+# Normally /.local/bin
+# python -m site --user-base
+export PATH="/Users/sergiitk/Library/Python/3.12/bin:$PATH"
 
 # SSH
 # Load SSH keys stored in the Keychain using native OSX ssh agent
