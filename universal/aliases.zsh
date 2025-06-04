@@ -122,10 +122,12 @@ alias pkill="noglob pkill"
 alias pgrep="noglob pgrep"
 if [[ -n "${ZSH_SERGII_OSX}" ]]; then
   alias pkl="noglob pkill -l -if"
+  alias pklu="noglob pkill -U "${USER}" -l -if"
 else
   alias pkl="noglob pkill -e -if"
 fi
 alias pgr="noglob pgrep -al -if"
+alias pgru="noglob pgrep -U "${USER}" -al -if"
 
 # kill by port, linux only
 # fuser -k -n tcp 4000

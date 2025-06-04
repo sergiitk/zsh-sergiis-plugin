@@ -32,5 +32,5 @@ export PATH="/Users/sergiitk/Library/Python/3.12/bin:$PATH"
 
 # SSH
 # Load SSH keys stored in the Keychain using native OSX ssh agent
-/usr/bin/ssh-add -A &> /dev/null
-# ssh-add -K > /dev/null 2>&1
+# replaced with bin/ssh-load-keychain
+# /usr/bin/ssh-add -A &> /dev/null
