@@ -78,8 +78,9 @@ alias gdww='git diff -U0 --abbrev --color-words'
 ### Staged diffs
 alias gdsw='git diff --staged --word-diff'
 alias gdsww='git diff --staged -U0 --abbrev --color-words'
+
 # patch formats: use -U<n> / --unified=n to set the number of context lines to n.
-alias gdsp='git diff --staged --no-color --patch'
+alias gds-patch='git --no-pager diff --staged --no-color --patch'
 
 # patch format
 # alias gdd='git --no-pager diff --patch --unified=1 --no-color --staged'
@@ -91,6 +92,7 @@ alias gswf='git --no-pager show --name-only'
 
 # Stash.
 alias gstl='git --no-pager stash list --date=human'
+alias gsts-patch='git --no-pager stash show --no-color --patch'
 
 # Switch.
 # Also overrides 'gs' Ghostscript
