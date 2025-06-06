@@ -1,52 +1,73 @@
-# User settings.
+## User settings.
 [user]
   email = sergiitk@google.com
   name  = Sergii Tkachenko
 
-# Core settings.
+## Core settings.
 [core]
   # `-S` — vertical overflow.
   pager = less -S
   # moved to default location: .config/git/ignore
   # excludesfile = ~/.gitignore_global
+[init]
+  defaultBranch = main
 
-# Aliases.
-[alias]
-  dt = difftool -t opendiff
+## Main operations.
+[pull]
+  rebase = true
+[push]
+  default = simple
+  autoSetupRemote = true
+[fetch]
+  prune = true
 
-# https://git-scm.com/book/en/v2/Git-Tools-Rerere
-[rerere]
-  enabled = true
-  autoupdate = true
-
-# Pretty formats.
-[format]
-  pretty = cool
-[pretty]
-  # Add newline at the end: `format` places newlines between commits,
-  #`tformat` places newlines after each commit, thus also after the last one.
-  cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
-  graph = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+## Config other git tools.
+[pager]
+  diff = delta
+  show = delta
+  branch = false
+  grep = false
+  config = false
 [log]
   abbrevCommit = true
   # relative, local, iso[-strict], rfc, short, raw, unix, default[-local], format[-local]:... (man 3 strftime)
   date = relative
 [blame]
   ignoreRevsFile = .git-blame-ignore-revs
+[rerere]
+  # https://git-scm.com/book/en/v2/Git-Tools-Rerere
+  enabled = true
+  autoupdate = true
 
-# Merge and diff tools.
+## Mergetools.
+# Configure macOS's opendiff/FileMerge for conflict resolution.
+[merge]
+  tool = filemerge
+[mergetool]
+  prompt = false
+  keepBackup = false
 [mergetool "sublime"]
   cmd = subl -w $MERGED
   trustExitCode = false
 [mergetool "filemerge"]
   cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED 2> /dev/null
-[mergetool]
-  prompt = false
-  keepBackup = false
-[merge]
-  tool = filemerge
-[difftool]
-  prompt = false
+
+## Formatting.
+[color]
+  # Pass colorMoved color sequences for delta to color by overwriting
+  # needed to show moved lines when piping to delta
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-colordiff
+  diff = always
+[format]
+  # confures log, show, whatchanged.
+  pretty = cool
+[pretty]
+  # Add newline at the end: `format` places newlines between commits,
+  #`tformat` places newlines after each commit, thus also after the last one.
+  cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+  graph = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+
+## Diff setup.
 [diff]
   # Colorize moved lines differently
   # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---color-movedltmodegt
@@ -73,28 +94,7 @@
   # No numbers, underscore.
   # wordRegex = [a-zA-Z]+|[^[:space:]]
 
-[pull]
-  rebase = true
-[push]
-  default = simple
-  autoSetupRemote = true
-[fetch]
-  prune = true
-[pager]
-  diff = delta
-  show = delta
-  branch = false
-  grep = false
-  config = false
-[init]
-  defaultBranch = main
-
-[color]
-  # Pass colorMoved color sequences for delta to color by overwriting
-  # needed to show moved lines when piping to delta
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-colordiff
-  diff = always
-
+## Delta.
 #  https://dandavison.github.io/delta/configuration.html
 [delta]
   dark = true

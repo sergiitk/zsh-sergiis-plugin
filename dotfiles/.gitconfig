@@ -10,8 +10,9 @@
   pager = less -S
   # excludesfile = ~/.gitignore_global
 
-# Aliases.
+## Aliases.
 [alias]
+  # Difftool using Mac's opendiff/FileMerge.
   dt = difftool -t opendiff
 
 # https://git-scm.com/book/en/v2/Git-Tools-Rerere
@@ -44,7 +45,9 @@
 [merge]
   tool = filemerge
 [difftool]
-  prompt = false
+  # Note: git difftool can use user-defined mergetools, see git difftool --tool-help
+  # Print verbose prompt for each file, e.g. "Launch 'filemerge' [Y/n]?"
+  # prompt = true
 [diff]
   # Colorize moved lines differently
   # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---color-movedltmodegt
