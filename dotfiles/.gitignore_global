@@ -14,3 +14,6 @@ __pycache__
 .vscode
 __debug_bin*
 *.code-workspace
+
+# TODO(sergiitk): reconsider
+pyrightconfig.json
