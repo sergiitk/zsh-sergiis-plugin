@@ -12,8 +12,15 @@
 
 ## Aliases.
 [alias]
+  # Do I need this?
   # Difftool using Mac's opendiff/FileMerge.
   dt = difftool -t opendiff
+
+  # ignore local changes to tracked files
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  unhide-all = update-index --really-refresh
+  ls-hidden = !git ls-files -v | grep '^[a-z]'
 
 # https://git-scm.com/book/en/v2/Git-Tools-Rerere
 [rerere]

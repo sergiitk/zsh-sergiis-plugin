@@ -5,12 +5,17 @@
 
 ## Core settings.
 [core]
-  # `-S` — vertical overflow.
-  pager = less -S
-  # moved to default location: .config/git/ignore
-  # excludesfile = ~/.gitignore_global
+  # Disable word wrap for long lines.
+  pager = less --chop-long-lines
 [init]
   defaultBranch = main
+
+## Aliases.
+[alias]
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  unhide-all = update-index --really-refresh
+  ls-hidden = !git ls-files -v | grep '^[a-z]'
 
 ## Main operations.
 [pull]
