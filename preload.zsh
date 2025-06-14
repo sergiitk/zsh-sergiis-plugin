@@ -37,14 +37,13 @@ export DELTA_PAGER="less --jump-target=0"
 
 # FZF
 # https://junegunn.github.io/fzf/shell-integration/
-export FZF_BASE=/opt/local/share/fzf
-export FZF_DEFAULT_OPTS='--layout=reverse --border'
+FZF_DEFAULT_OPTS='--layout=reverse --border'
 
 ## Keybindings
 # https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
 
 # Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='~~'
+FZF_COMPLETION_TRIGGER='~~'
 
 ## alt+c
 # List directories.
@@ -61,19 +60,17 @@ FZF_CTRL_T_COMMAND=""
 # Default keybindings:
 #   - `ctrl+r` (again) - switch between relevant and cronological order.
 # Configured keybinding:
-#   - `?` - display long commands in the preview window.
-export FZF_CTRL_R_OPTS="--preview='echo {}'\
- --preview-window='down:3:hidden:wrap'\
- --bind='?:toggle-preview,alt-enter:become(echo {q})'\
-"
-
- # --bind='?:toggle-preview,alt-enter:accept-or-print-query'\
-# "cd into the selected directory"
-
-# Because completions is in unusual place
-# export DISABLE_FZF_AUTO_COMPLETION='true'
-# source /opt/local/share/zsh/site-functions/_fzf
-# source /opt/local/share/fzf/shell/completion.zsh
+#   - `?`         - display long commands in the preview window.
+#   - `alt-enter` - accept current query as the command.
+# Notes:
+#   - alt-enter not working in iterm2:
+#     profile -> keys -> left option key -> Esc+
+#   - alternative - accepts only when no results: accept-or-print-query
+FZF_CTRL_R_OPTS=(
+  "--preview='echo {}'"
+  "--preview-window='down:3:hidden:wrap'"
+  "--bind='?:toggle-preview,alt-enter:become(echo {q})'"
+)
 
 # Tmux
 # export ZSH_TMUX_ITERM2=true

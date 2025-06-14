@@ -94,7 +94,7 @@ alias 'exif?'="exiftool -a -u -g1"
 ### Printing
 alias e='echo'
 # Print the arguments separated by newlines instead of spaces.
-alias p='print -l'
+alias p='print -l --'
 # compdef p=print
 # Print no new line
 alias pn='print -n'
