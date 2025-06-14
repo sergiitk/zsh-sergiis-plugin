@@ -32,6 +32,7 @@ ls-comp () {
 Find which completions is used for `_arguments`
 ```
 print -N $fpath | find -files0-from - -type f -name '_arguments'
+fd _arguments $fpath
 ```
 
 

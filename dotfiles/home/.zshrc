@@ -71,7 +71,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   ## mac
-  macos macports sublime
+  macos sublime
   ## common tools
   extract git fzf
   ## zsh custom plugins

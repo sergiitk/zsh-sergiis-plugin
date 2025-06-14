@@ -13,13 +13,6 @@ alias f='open "$(pwd)"'
 alias o="open"
 
 # Port.
-# alias pup='sudo port selfupdate \
-#   && echo -e "\nRequested and outdated:" \
-#   && port echo requested and outdated \
-#   && echo -e "\nOutdated:" \
-#   && port outdated \
-#   && sudo port upgrade outdated'
-unalias pup
 pup() {
   sudo port selfupdate
   if (( $? != 0 )); then

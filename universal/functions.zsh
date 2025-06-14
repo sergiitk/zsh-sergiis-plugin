@@ -25,6 +25,8 @@ ls-bin() {
   CLICOLOR_FORCE=1 ls -l ${^path}/*$1*(N) | awk '{ print $9" "$10" "$11 }'
 }
 
+# --- completion ---
+
 ls-comp() {
   print -aC2 ${(kv)_comps}
   # which _hg
@@ -36,17 +38,15 @@ ls-comp() {
 rl() {
   unfunction $1 && autoload -U $1
 }
-compdef rl ls-comp
 
 ls-autoload() {
   print -l ${^fpath}/*$1*(N)
   echo "---------"
   echo "fpath dirs:"
   print -l $fpath
-  # which _hg
-  # which $_comps[hg]
-  # print $fpath
 }
+
+# -- files ---
 
 touchx() {
   if [[ $# -ne 1 || -d "$1" ]]; then

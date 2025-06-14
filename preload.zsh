@@ -81,7 +81,7 @@ FZF_CTRL_R_OPTS=(
 # omz creates ~/.zcompdump- file that indexes everything prior to load
 # add macports fpath for better index
 # also this properly inserts it after omz plugin fpaths, but before system
-if [[ -v plugins && "${plugins[(ie)macports]}" -le "${#plugins}" ]]; then
+if [[ "${OSTYPE}" == darwin* ]]; then
   fpath=(/opt/local/share/zsh/site-functions $fpath)
 fi
 
