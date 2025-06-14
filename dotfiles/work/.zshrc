@@ -130,3 +130,5 @@ typeset -U path
 # contains MDPROXY-ZSHRC
 
 # zprof
+
+# test -e /Users/sergiitk/.iterm2_shell_integration.zsh && source /Users/sergiitk/.iterm2_shell_integration.zsh || true
