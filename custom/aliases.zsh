@@ -27,9 +27,10 @@ hash -d ol=/opt/local/var/log
 cdpath=($cdpath $HOME/Development)
 
 # Use custom fpath directory in $XDG_DATA_HOME to save generated completions
-# md ~/.local/share/zsh/site-functions
-# uv generate-shell-completion zsh > ~/.local/share/zsh/site-functions/_uv
-fpath=(~/.local/share/zsh/site-functions $fpath)
+# fpath=(~/.local/share/zsh/site-functions $fpath)
+# UPD: use .oh-my-zsh/custom/completions instead
+# md $ZSH_CUSTOM/completions
+# uv generate-shell-completion zsh > $ZSH_CUSTOM/completions/_uv
 
 #################### noglob #########################
 alias bazel='noglob bazel'

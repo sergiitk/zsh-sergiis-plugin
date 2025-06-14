@@ -16,11 +16,8 @@ Useful: press "ctrl+x, h" after the command to see completion context.
 
 don't forget to remove .zcompdump files when using compdef ???
 
-```
-print -N $fpath | find -files0-from - -type f -name '_arguments'
-```
 
-my tool:
+## list all completion functions
 
 ```console
 $ ? ls-comp
@@ -28,6 +25,15 @@ ls-comp () {
   print -aC2 ${(kv)_comps}
 }
 ```
+
+## Finding completions
+
+
+Find which completions is used for `_arguments`
+```
+print -N $fpath | find -files0-from - -type f -name '_arguments'
+```
+
 
 regular zsh compltions:
 https://github.com/zsh-users/zsh/tree/master/Completion/
