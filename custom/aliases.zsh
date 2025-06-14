@@ -26,12 +26,6 @@ hash -d ol=/opt/local/var/log
 # Easy cd to project directories.
 cdpath=($cdpath $HOME/Development)
 
-# Use custom fpath directory in $XDG_DATA_HOME to save generated completions
-# fpath=(~/.local/share/zsh/site-functions $fpath)
-# UPD: use .oh-my-zsh/custom/completions instead
-# md $ZSH_CUSTOM/completions
-# uv generate-shell-completion zsh > $ZSH_CUSTOM/completions/_uv
-
 #################### noglob #########################
 alias bazel='noglob bazel'
 alias find='noglob find'
@@ -60,8 +54,6 @@ alias hlpl='bat -l help -p'
 alias dl='delta'
 
 ################### macports ########################
-fpath=($fpath /opt/local/share/zsh/site-functions)
-
 alias pul='sudo port uninstall leaves'
 alias pu='sudo port uninstall'
 

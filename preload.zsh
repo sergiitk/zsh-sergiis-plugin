@@ -81,5 +81,16 @@ export FZF_CTRL_R_OPTS="--preview='echo {}'\
 # export ZSH_TMUX_FIXTERM_WITHOUT_256COLOR=xterm
 # export ZSH_TMUX_FIXTERM_WITH_256COLOR=xterm-256color
 
+# omz creates ~/.zcompdump- file that indexes everything prior to load
+# add macports fpath for better index
+# also this properly inserts it after omz plugin fpaths, but before system
+if [[ -v plugins && "${plugins[(ie)macports]}" -le "${#plugins}" ]]; then
+  fpath=(/opt/local/share/zsh/site-functions $fpath)
+fi
+
+# Use omz custom fpath directory to save generated completions
+# md $ZSH_CUSTOM/completions
+# uv generate-shell-completion zsh > $ZSH_CUSTOM/completions/_uv
+
 # Load local profile
 source "${HOME}/.profile"
