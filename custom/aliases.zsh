@@ -31,6 +31,7 @@ alias bazel='noglob bazel'
 alias find='noglob find'
 alias rg='noglob rg'
 alias rgc='noglob rg --color=always'
+alias fd='noglob fd'
 
 ################## highlighting #####################
 # https://github.com/sharkdp/bat
