@@ -2,7 +2,10 @@
 # List aliases.
 # Please make sure GNU version is used: `port echo installed | grep grep`.
 ls-alias() {
-  alias | grep -P "(?<!(\w|-))$argv(?!\w)"
+  # lookahead/begind is used to exclude from coloring
+  # before - not a word char or -
+  # after - not a word char
+  alias | grep -P "(?<![\w-])$argv(?!\w)"
 }
 alias ls-alias="nocorrect ls-alias"
 
