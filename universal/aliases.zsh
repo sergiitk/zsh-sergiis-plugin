@@ -95,15 +95,12 @@ alias 'exif?'="exiftool -a -u -g1"
 alias e='echo'
 # Print the arguments separated by newlines instead of spaces.
 alias p='print -l --'
-# compdef p=print
 # Print no new line
-alias pn='print -n'
+alias pn='print -n --'
 # Print the arguments separated by NULL character instead of spaces.
-alias pnl='print -N'
-# compdef pn=print
+alias pnl='print -N --'
 # Print to stderr.
-alias pe='print -u2'
-# compdef pe=print
+alias pe='print -u2 --'
 
 ### Text
 # Easy decimal dump.
