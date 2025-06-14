@@ -156,6 +156,7 @@ pv() {
 alias grpc='grpcurl -plaintext'
 
 ###################### Nodejs #######################
+alias nvm-load='source /opt/local/share/nvm/init-nvm.sh'
 
 # Yarn tests
 # alias y='yarn'

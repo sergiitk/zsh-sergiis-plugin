@@ -1,9 +1,11 @@
-# MacPorts Installer addition on 2017-07-02_at_13:22:29: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-# Home
+# Home folder setup
 PATH="${HOME}/.bin/gnu:${HOME}/.bin:${PATH}"
+
+# XDG
+# https://specifications.freedesktop.org/basedir-spec/latest/
+# https://gist.github.com/roalcantara/107ba66dfa3b9d023ac9329e639bc58c
+# For XDG_BIN_HOME:
+# lk ~b ~/.local/bin
 
 # Env
 export LANG="en_US.UTF-8"
@@ -11,26 +13,14 @@ export LC_ALL="${LANG}"
 export EDITOR="sublw"
 
 # Java Macports
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk8/Contents/Home
-# export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk14/Contents/Home"
-# export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk17/Contents/Home"
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk17-zulu/Contents/Home
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-21-azul-zulu.jdk"
-
-alias source-nvm='source /opt/local/share/nvm/init-nvm.sh'
-# Node
-# source /opt/local/share/nvm/init-nvm.sh
-#
-# # NPM packages in homedir
-# NPM_PACKAGES="$HOME/.npm-packages"
-# # Tell our environment about user-installed node tools
-# PATH="$NPM_PACKAGES/bin:$PATH"
-# # Unset manpath so we can inherit from /etc/manpath via the `manpath` command
-# unset MANPATH  # delete if you already modified MANPATH elsewhere in your configuration
-# MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-# # Tell Node about these packages
-# NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+# https://whichjdk.com/
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-21-eclipse-temurin.jdk/Contents/Home"
 
 # Python
-# export PATH="/Users/sergii/Library/Python/3.8/bin:$PATH"
-# export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/3.8/bin"
+# User site: python -m site --user-base
+# https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-to-the-user-site
+# https://docs.astral.sh/uv/concepts/tools/#the-bin-directory
+# export PATH="${HOME}/Library/Python/3.12/bin:$PATH"
+#
+# Python Macports
+# export PATH="$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin"

@@ -62,7 +62,7 @@ setopt INC_APPEND_HISTORY_TIME
 ## -------------------------------------------------------------------------------------------------
 source $ZSH_SERGII/setup/zle.zsh
 source $ZSH_SERGII/setup/plugins.zsh
-source $ZSH_SERGII/setup/apps.zsh
+# source $ZSH_SERGII/setup/apps.zsh
 
 # source $ZSH_SERGII/universal/zle-completions.zsh
 source $ZSH_SERGII/universal/aliases.zsh

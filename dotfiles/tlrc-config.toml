@@ -1,3 +1,5 @@
+# lk $ZSH_SERGII/dotfiles/tlrc-config.toml "$(tldr --config-path)"
+
 [cache]
 dir = "~/Library/Caches/tlrc"
 mirror = "https://github.com/tldr-pages/tldr/releases/latest/download"
