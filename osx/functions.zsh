@@ -20,6 +20,18 @@ psearch() {
 }
 alias psearch="noglob psearch"
 
+# use gnu binaries
+use-gnu-binary() {
+  local bin="${1:?arg binary must be set}"
+  local gnubin="/opt/local/bin/g${bin}"
+  if [[ ! -x  "${gnubin}" ]]; then
+    echo "GNU binary not found: ${gnubin}" >&2
+    return 1
+  fi
+  ln -svn "${gnubin}" "${HOME}/.bin/gnu/${bin}"
+}
+
+
 # Setup proxy from system.
 proxysetup() {
   if [[ `scutil --proxy | grep HTTPEnable | cut -d: -f2 | tr -d " "` -eq '1' ]]; then

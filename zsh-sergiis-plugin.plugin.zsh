@@ -70,7 +70,6 @@ source $ZSH_SERGII/universal/aliases-git.zsh
 source $ZSH_SERGII/universal/functions.zsh
 
 if [[ "${OSTYPE}" == darwin* ]]; then
-  source $ZSH_SERGII/osx/macports.zsh
   source $ZSH_SERGII/osx/aliases.zsh
   source $ZSH_SERGII/osx/functions.zsh
   # https://github.com/ohmyzsh/ohmyzsh/issues/11416

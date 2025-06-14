@@ -58,6 +58,12 @@ alias hlpl='bat -l help -p'
 
 alias dl='delta'
 
+################### macports ########################
+fpath=($fpath /opt/local/share/zsh/site-functions)
+
+alias pul='sudo port uninstall leaves'
+alias pu='sudo port uninstall'
+
 #################### docker #########################
 alias dk='docker'
 
