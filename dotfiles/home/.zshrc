@@ -126,4 +126,4 @@ source $ZSH/oh-my-zsh.sh
 # Home not in source control
 [[ ! -f ~/.home-custom.zshrc ]] || source ~/.home-custom.zshrc
 
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
