@@ -2,13 +2,22 @@
 ## man zshzle
 ## -------------------------------------------------------------------------------------------------
 
+## Word navigations
+## -------------------------------------------------------------------------------------------------
 # The editor’s idea of a word: controls moves over words.
 export WORDCHARS='*?_[]~&;!#$%^(){}<>|@'
 
+# Fix word navigation
+# When forward-navigation words, don't skip over the last character
+# https://github.com/zsh-users/zsh/blob/master/Functions/Zle/select-word-style
+# https://github.com/zsh-users/zsh/blob/master/Functions/Zle/forward-word-match
 # zstyle ':zle:*' skip-whitespace-first true
 # zstyle '*' skip-whitespace-first true
+autoload -U select-word-style
+select-word-style bash
 
-# Bind keys.
+## Bind keys.
+## -------------------------------------------------------------------------------------------------
 # Use `read` to read keys, or press ctrl-v then char.
 # See infocmp
 # ctrl+l Push input
