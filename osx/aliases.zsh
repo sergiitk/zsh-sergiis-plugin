@@ -30,3 +30,6 @@ pup() {
 
 # Utils.
 alias df/='gdf --si --output=source,used,pcent / | tail -1 | column -t'
+
+# turn off quaranteen
+alias quarantine-off="xattr -rd com.apple.quarantine"

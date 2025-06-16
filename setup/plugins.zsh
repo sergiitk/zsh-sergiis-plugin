@@ -21,6 +21,41 @@ if [[ -n "${ZSH_HIGHLIGHT_STYLES}" ]]; then
   ZSH_HIGHLIGHT_STYLES[default]='fg=195'
 fi
 
+## zsh-autosuggestions
+## -------------------------------------------------------------------------------------------------
+# https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=247"
+
+## FZF
+## https://junegunn.github.io/fzf/shell-integration/
+## -------------------------------------------------------------------------------------------------
+FZF_DEFAULT_OPTS='--layout=reverse --border'
+
+## Keybindings
+# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+
+# Use ~~ as the trigger sequence instead of the default **
+FZF_COMPLETION_TRIGGER='~~'
+
+# alt+c, ctrl+t: see preload.zsh
+# they must be loaded before fzf
+
+## ctrl+r
+# History search.
+# Default keybindings:
+#   - `ctrl+r` (again) - switch between relevant and cronological order.
+# Configured keybinding:
+#   - `?`         - display long commands in the preview window.
+#   - `alt-enter` - accept current query as the command.
+# Notes:
+#   - alt-enter not working in iterm2:
+#     profile -> keys -> left option key -> Esc+
+#   - alternative - accepts only when no results: accept-or-print-query
+FZF_CTRL_R_OPTS=(
+  "--preview='echo {}'"
+  "--preview-window='down:3:hidden:wrap'"
+  "--bind='?:toggle-preview,alt-enter:become(echo {q})'"
+)
 
 ## fzf-tab
 ## https://github.com/Aloxaf/fzf-tab/wiki/Configuration

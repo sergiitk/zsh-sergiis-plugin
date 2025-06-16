@@ -29,3 +29,31 @@ after-first-word() {
 }
 zle -N after-first-word
 bindkey "^[[1;10D" after-first-word
+
+
+## zsh-syntax-highlighting
+## https://github.com/zsh-users/zsh-syntax-highlighting
+## -------------------------------------------------------------------------------------------------
+# zstyle -L ':bracketed-paste-magic'
+# zle -lL self-insert
+
+# Only needed when DISABLE_MAGIC_FUNCTIONS is NOT set.
+# Magic functions "fix" url pasting, but make syntax highlight slow.
+
+# Fix slowness of pastes with zsh-syntax-highlighting.zsh
+# https://gist.github.com/magicdude4eva/2d4748f8ef3e6bf7b1591964c201c1ab
+#
+# https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
+# https://github.com/zsh-users/zsh-autosuggestions/issues/141
+# ^ probably affects it too
+if (( ${+functions[url-quote-magic]} )); then
+  pasteinit() {
+    OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+    zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+  }
+  pastefinish() {
+    zle -N self-insert $OLD_SELF_INSERT
+  }
+  zstyle :bracketed-paste-magic paste-init pasteinit
+  zstyle :bracketed-paste-magic paste-finish pastefinish
+fi
