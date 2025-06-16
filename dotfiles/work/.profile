@@ -1,3 +1,6 @@
+## Work Profile: .profile
+## -------------------------------------------------------------------------------------------------
+
 # Home folder setup
 PATH="${HOME}/.bin/gobin:${HOME}/.bin/gnu:${HOME}/.bin:${PATH}"
 

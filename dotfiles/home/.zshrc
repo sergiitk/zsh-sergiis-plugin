@@ -1,4 +1,4 @@
-## Home/default profile
+## Home Profile: .zshrc
 ## -------------------------------------------------------------------------------------------------
 
 # In case loading goes wrong. (defaults 64000 1000)
@@ -91,41 +91,16 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+## User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Dedup $PATH. Fixes .profile path appending issue, useful for `exec zsh`.
+typeset -U path
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# ---
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# Must be loaded before p10k so that p10k identifies installed integration.
+[[ ! -f ~/.iterm2_shell_integration ]] || source ~/.iterm2_shell_integration.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Home not in source control
 [[ ! -f ~/.home-custom.zshrc ]] || source ~/.home-custom.zshrc
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

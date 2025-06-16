@@ -1,4 +1,4 @@
-## Work Profile
+## Work Profile: .zshrc
 ## -------------------------------------------------------------------------------------------------
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -8,13 +8,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# zmodload zsh/zprof
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-# ZSH_THEME="sergii2"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -93,38 +90,13 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+## User configuration
+
 # Dedup $PATH. Fixes .profile path appending issue, useful for `exec zsh`.
 typeset -U path
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# ---
-
-test -e /Users/sergiitk/.iterm2_shell_integration.zsh && source /Users/sergiitk/.iterm2_shell_integration.zsh || true
+# Must be loaded before p10k so that p10k identifies installed integration.
+[[ ! -f ~/.iterm2_shell_integration ]] || source ~/.iterm2_shell_integration.zsh
 
 # https://github.com/romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -133,5 +105,3 @@ test -e /Users/sergiitk/.iterm2_shell_integration.zsh && source /Users/sergiitk/
 # Proprietary costumizations
 [[ ! -f ~/.work-custom.zshrc ]] || source ~/.work-custom.zshrc
 # contains MDPROXY-ZSHRC
-
-# zprof
