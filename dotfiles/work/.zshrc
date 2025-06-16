@@ -14,6 +14,7 @@ fi
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
+# ZSH_THEME="sergii2"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -123,6 +124,8 @@ typeset -U path
 
 # ---
 
+test -e /Users/sergiitk/.iterm2_shell_integration.zsh && source /Users/sergiitk/.iterm2_shell_integration.zsh || true
+
 # https://github.com/romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -132,5 +135,3 @@ typeset -U path
 # contains MDPROXY-ZSHRC
 
 # zprof
-
-# test -e /Users/sergiitk/.iterm2_shell_integration.zsh && source /Users/sergiitk/.iterm2_shell_integration.zsh || true
