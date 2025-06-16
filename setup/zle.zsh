@@ -39,6 +39,10 @@ after-first-word() {
 zle -N after-first-word
 bindkey "^[[1;10D" after-first-word
 
+## p10k shell
+## -------------------------------------------------------------------------------------------------
+# https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#extra-space-without-background-on-the-right-side-of-right-prompt
+ZLE_RPROMPT_INDENT=0
 
 ## zsh-syntax-highlighting
 ## https://github.com/zsh-users/zsh-syntax-highlighting

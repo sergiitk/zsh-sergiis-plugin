@@ -17,7 +17,9 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME="powerlevel10k/powerlevel10k"
-ZLE_RPROMPT_INDENT=1
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
