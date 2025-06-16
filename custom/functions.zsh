@@ -41,6 +41,40 @@ check-history() {
   fi
 }
 
+######################## Track sh changes ###########################
+logsha-p10k-instant-prompt() {
+  local out=~play/zsh-history/misc/p10k-instant-prompt/p10k-instant-prompt.sha256.log
+  echo -n "Last: "
+  tail -n1 "$out"
+
+  local -a logsha
+  logsha=(
+    "$(date "+%F %T")"
+    "$(sha256sum ~/.cache/p10k-instant-prompt-*.zsh)"
+  )
+  echo -n "New:  "
+  print -C2 $logsha
+  print -C2 -- $logsha >> "${out}"
+  echo -e "Saved to: ${out}"
+}
+
+logsha-iterm2-shell-integration() {
+  local out=~play/zsh-history/misc/iterm-integration-log/iterm2_shell_integration.sha256.log
+  echo -n "Last: "
+  tail -n1 "$out"
+
+  local -a logsha
+  logsha=(
+    "$(date "+%F %T")"
+    "$(sha256sum ~/.iterm2_shell_integration.zsh)"
+  )
+  echo -n "New:  "
+  print -C2 $logsha
+  print -C2 -- $logsha >> "${out}"
+  echo -e "Saved to: ${out}"
+}
+
+
 ############################# tmux ##################################
 alias tm='tmux'
 alias tc='tmux -CC'
