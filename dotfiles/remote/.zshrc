@@ -95,7 +95,7 @@ source $ZSH/oh-my-zsh.sh
 typeset -U path
 
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices#how-do-i-use-shell-integration
-# export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 # Must be loaded before p10k so that p10k identifies installed integration.
 [[ ! -f ~/.iterm2_shell_integration.zsh ]] || source ~/.iterm2_shell_integration.zsh
 
