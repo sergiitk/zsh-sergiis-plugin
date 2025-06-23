@@ -96,7 +96,7 @@ source $ZSH/oh-my-zsh.sh
 typeset -U path
 
 # Must be loaded before p10k so that p10k identifies installed integration.
-[[ ! -f ~/.iterm2_shell_integration ]] || source ~/.iterm2_shell_integration.zsh
+[[ ! -f ~/.iterm2_shell_integration.zsh ]] || source ~/.iterm2_shell_integration.zsh
 
 # https://github.com/romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
