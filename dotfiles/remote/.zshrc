@@ -1,10 +1,6 @@
 ## Remote/ssh profile
 ## -------------------------------------------------------------------------------------------------
 
-# In case loading goes wrong. (defaults 64000 1000)
-export HISTSIZE="16777216" SAVEHIST="16777216"
-unsetopt HIST_EXPIRE_DUPS_FIRST
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -17,7 +13,13 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME="powerlevel10k/powerlevel10k"
-ZLE_RPROMPT_INDENT=1
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -28,7 +30,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -37,9 +39,12 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="false"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -49,81 +54,60 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+### Plugins config
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-
-# FZF
-export FZF_BASE=/opt/local/share/fzf
-export FZF_DEFAULT_OPTS='--layout=reverse --border'
-export FZF_COMPLETION_TRIGGER='\\'
-# Because completions is in unusual place
-# export DISABLE_FZF_AUTO_COMPLETION='true'
-# source /opt/local/share/zsh/site-functions/_fzf
-# source /opt/local/share/fzf/shell/completion.zsh
-
-# Gcloud
-# export CLOUDSDK_HOME=$HOME/Development/SDK/google-cloud-sdk
-
-plugins=(debian
-         history history-substring-search extract \
-         zsh-autosuggestions zsh-syntax-highlighting fzf \
-         git \
-         gradle gcloud kubectl \
-         zsh-sergiis-plugin
+plugins=(
+  ## os
+  debian
+  ## common tools
+  extract git fzf
+  ## zsh custom plugins
+  zsh-autosuggestions zsh-syntax-highlighting
+  fzf-tab
+  ## work stuff
+  gcloud
+  kubectl
+  gradle
 )
+# Previously used: history-substring-search
 
-### Bat
-alias bat=batcat
-# Fix bat manpager
-export MANROFFOPT="-c"
-
+plugins+=(zsh-sergiis-plugin) # Load my plugin last
 if [[ -f "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh" ]]; then
   source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
 fi
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+## User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Dedup $PATH. Fixes .profile path appending issue, useful for `exec zsh`.
+typeset -U path
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices#how-do-i-use-shell-integration
+# export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+# Must be loaded before p10k so that p10k identifies installed integration.
+[[ ! -f ~/.iterm2_shell_integration.zsh ]] || source ~/.iterm2_shell_integration.zsh
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# ---
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
+# https://github.com/romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Proprietary costumizations
-source ~/.work-custom.zshrc
+[[ ! -f ~/.work-custom.zshrc ]] || source ~/.work-custom.zshrc
+
+## work-specific
+# bat
+alias bat=batcat
+# Fix bat manpager
+export MANROFFOPT="-c"
