@@ -13,6 +13,10 @@
 [init]
   defaultBranch = main
 
+# Include custom per-host overrides.
+[include]
+  path = ~/.config/git/overrides.gitconfig
+
 ## Aliases.
 [alias]
   hide = update-index --assume-unchanged
