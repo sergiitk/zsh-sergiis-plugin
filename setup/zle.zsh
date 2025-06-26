@@ -17,6 +17,7 @@ autoload -U select-word-style
 select-word-style bash
 
 ## Bind keys.
+## omz bindings: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 ## -------------------------------------------------------------------------------------------------
 # Use `read` to read keys, or press ctrl-v then char.
 # See infocmp
@@ -30,6 +31,10 @@ bindkey "^[[6~" history-beginning-search-forward
 # Otherwise kills all line
 bindkey "^U" backward-kill-line
 
+# Normally omz sets Edit command in EDITOR: ctrl+x+e
+# Overrides default zsh "^[/" _history-complete-older
+bindkey "^[/" edit-command-line
+
 # Move to where the arguments belong. "^[[1;10D" is shift+option+right.
 after-first-word() {
   zle beginning-of-line
@@ -38,6 +43,7 @@ after-first-word() {
 }
 zle -N after-first-word
 bindkey "^[[1;10D" after-first-word
+
 
 ## p10k shell
 ## -------------------------------------------------------------------------------------------------
