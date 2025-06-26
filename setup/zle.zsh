@@ -1,5 +1,6 @@
 ## Configure Zsh Line Editor (ZLE)
 ## man zshzle
+## https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 ## -------------------------------------------------------------------------------------------------
 
 ## Word navigations
@@ -19,6 +20,13 @@ select-word-style bash
 ## Bind keys.
 ## omz bindings: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 ## -------------------------------------------------------------------------------------------------
+# Usedful bindings
+# esc+h push command to stack, run man for it
+# esc+? push command to stack, run which-command for it
+# makes it same as ?
+alias which-command='?'
+# alias which-command='whence -asvf'
+
 # Use `read` to read keys, or press ctrl-v then char.
 # See infocmp
 # ctrl+l Push input
