@@ -373,8 +373,8 @@
     CFG      ''
   )
   POWERLEVEL9K_DIR_CLASSES+=(
-    '~/Development/grpc/src/python/grpcio(|/*)'      GRPCIO   '󱔎'
-    '~/Development(|/*)'                             DEV      ''
+    '~/Development/grpc/src/python(|/*)'      GRPCIO   '󱔎'
+    '~/Development(|/*)'                      DEV      ''
   )
   POWERLEVEL9K_DIR_CLASSES+=(
     '~'     HOME            ''
