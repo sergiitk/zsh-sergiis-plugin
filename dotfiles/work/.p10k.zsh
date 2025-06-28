@@ -282,7 +282,8 @@
   # This moves the truncation point to the right (positive offset) or to the left (negative offset)
   # relative to the marker. Plain "first" and "last" are equivalent to "first:0" and "last:0"
   # respectively.
-  typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=false
+  # typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=false
+  typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER="last"
   # Don't shorten this many last directory segments. They are anchors.
   typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
   # Shorten directory if it's longer than this even if there is space for it. The value can
@@ -364,6 +365,19 @@
   # back to POWERLEVEL9K_DIR_FOREGROUND.
   #
   # typeset -g POWERLEVEL9K_DIR_CLASSES=()
+
+  # https://github.com/romkatv/powerlevel10k/blob/36f3045d69d1ba402db09d09eb12b42eebe0fa3b/internal/icons.zsh#L489
+  typeset -g POWERLEVEL9K_DIR_CLASSES=(
+    '~/Development(|/*)'    DEV             ''
+    '/etc|/etc/*'           ETC             ''
+    '~'                     HOME            ''
+    '~/*'                   HOME_SUBFOLDER  ''
+    '*'                     DEFAULT         ''
+  )
+  # typeset -g POWERLEVEL9K_DIR_DEV_BACKGROUND=071
+  typeset -g POWERLEVEL9K_DIR_DEV_BACKGROUND=029
+  # \uF013, for some reason doesn't allow to set it in unicode
+  typeset -g POWERLEVEL9K_DIR_ETC_NOT_WRITABLE_VISUAL_IDENTIFIER_EXPANSION=''
 
   # Custom prefix.
   # typeset -g POWERLEVEL9K_DIR_PREFIX='in '

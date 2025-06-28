@@ -107,6 +107,7 @@ alias pe='print -u2 --'
 alias od1='od -tc -tu1 -tx1'
 # UTF-8 to unicode codepoints
 alias ud1='iconv -f UTF-8 -t UCS-2LE | od -tu2 -tx2'
+# should this be UCS-2LE too?
 alias udx='iconv -f UTF-8 -t UCS-2 | hexdump'
 
 ### Paths

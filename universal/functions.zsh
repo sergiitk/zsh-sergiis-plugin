@@ -75,8 +75,19 @@ function tmp() {
   cd "$(mktemp -d -t "${prefix}")"
 }
 
-ff-luf() {
-  ffmpeg -i "$1" -hide_banner -af "loudnorm=I=-19:dual_mono=true:TP=-1.5:LRA=11:print_format=summary" -f null -
+############ Print.
+
+print-unicode() {
+  local i=0 check_hex_to_dec code sep
+  sep="${FS:- }"
+  for ((i = 1; i <= $#; i++)) do
+    code="$@[i]"
+    code="${code#0x}"
+    code="${code#\u}"
+    echo -n "\u${code}"
+    (( i != # )) && echo -n "${sep}"
+  done
+  echo
 }
 
 ############ Other utilities.

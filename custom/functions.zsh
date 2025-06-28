@@ -252,6 +252,10 @@ alias e.='dtf'
 
 ############################## ffmpeg #################################
 
+ff-luf() {
+  ffmpeg -i "$1" -hide_banner -af "loudnorm=I=-19:dual_mono=true:TP=-1.5:LRA=11:print_format=summary" -f null -
+}
+
 ff-frames() {
   if [[ $# -ne 1 || ! -f "$1" || ! -r "$1" ]]; then
     echo "Usage: ff-frames <file>"
