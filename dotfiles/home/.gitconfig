@@ -36,10 +36,16 @@
 [pretty]
   # Add newline at the end: `format` places newlines between commits,
   #`tformat` places newlines after each commit, thus also after the last one.
-  cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cr]%C(auto,reset)
+  cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
   graph = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+  stash = tformat:%C(auto,yellow)%h %C(auto,bold blue)%gd %C(auto,reset)%s %C(auto,green dim)[%ch]%C(auto,reset)
+
 [log]
   abbrevCommit = true
+  # relative, local, iso[-strict], rfc, short, raw, human, unix, default[-local],
+  # format[-local]:... (man 3 strftime)
+  date = relative
+
 [blame]
   ignoreRevsFile = .git-blame-ignore-revs
 

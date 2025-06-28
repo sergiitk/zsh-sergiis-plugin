@@ -91,7 +91,7 @@ alias gsww='git show -U1 --color-words --abbrev-commit --pretty=fuller'
 alias gswf='git --no-pager show --name-only'
 
 # Stash.
-alias gstl='git --no-pager stash list --date=human'
+alias gstl='git --no-pager stash list --format=stash'
 alias gsts-patch='git --no-pager stash show --no-color --patch'
 
 # Switch.

@@ -42,7 +42,8 @@
   config = false
 [log]
   abbrevCommit = true
-  # relative, local, iso[-strict], rfc, short, raw, unix, default[-local], format[-local]:... (man 3 strftime)
+  # relative, local, iso[-strict], rfc, short, raw, human, unix, default[-local],
+  # format[-local]:... (man 3 strftime)
   date = relative
 [blame]
   ignoreRevsFile = .git-blame-ignore-revs
@@ -78,6 +79,7 @@
   #`tformat` places newlines after each commit, thus also after the last one.
   cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
   graph = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+  stash = tformat:%C(auto,yellow)%h %C(auto,bold blue)%gd %C(auto,reset)%s %C(auto,green dim)[%ch]%C(auto,reset)
 
 ## Diff setup.
 [diff]
