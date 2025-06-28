@@ -71,20 +71,27 @@ alias find-in-dirs='noglob find-in-dirs'
 function tmp() {
   local prefix
   prefix="${USER}-$(date +%F)"
-  # TODO(sergiitk): compatibility with non-bsd mktemp
-  cd "$(mktemp -d -t "${prefix}")"
+  cd "$(gmktemp -d -t "${prefix}.XXXXXXXXXX")"
+  # bsd:
+  # cd "$(mktemp -d -t "${prefix}")"
 }
 
 ############ Print.
 
-print-unicode() {
-  local i=0 check_hex_to_dec code sep
+p-unicode() {
+  local i=0 check_hex_to_dec code sep esc
   sep="${FS:- }"
   for ((i = 1; i <= $#; i++)) do
     code="$@[i]"
     code="${code#0x}"
     code="${code#\u}"
-    echo -n "\u${code}"
+    code="${code#\U}"
+    if (( #code <= 4)); then
+      esc="\u"
+    else
+      esc="\U"
+    fi
+    echo -n "${esc}${code}"
     (( i != # )) && echo -n "${sep}"
   done
   echo

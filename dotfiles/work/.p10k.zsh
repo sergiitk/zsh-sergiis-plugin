@@ -367,17 +367,22 @@
   # typeset -g POWERLEVEL9K_DIR_CLASSES=()
 
   # https://github.com/romkatv/powerlevel10k/blob/36f3045d69d1ba402db09d09eb12b42eebe0fa3b/internal/icons.zsh#L489
-  typeset -g POWERLEVEL9K_DIR_CLASSES=(
-    '~/Development(|/*)'    DEV             ''
-    '/etc|/etc/*'           ETC             ''
-    '~'                     HOME            ''
-    '~/*'                   HOME_SUBFOLDER  ''
-    '*'                     DEFAULT         ''
+  typeset -g POWERLEVEL9K_DIR_CLASSES=()
+  POWERLEVEL9K_DIR_CLASSES+=(
+    '(*/.config(|/*)|*/Development/settings(|/*)|*/zsh-sergiis-plugin(|/*))'
+    CFG      ''
   )
-  # typeset -g POWERLEVEL9K_DIR_DEV_BACKGROUND=071
-  typeset -g POWERLEVEL9K_DIR_DEV_BACKGROUND=029
-  # \uF013, for some reason doesn't allow to set it in unicode
-  typeset -g POWERLEVEL9K_DIR_ETC_NOT_WRITABLE_VISUAL_IDENTIFIER_EXPANSION=''
+  POWERLEVEL9K_DIR_CLASSES+=(
+    '~/Development/grpc/src/python/grpcio(|/*)'      GRPCIO   '󱔎'
+    '~/Development(|/*)'                             DEV      ''
+  )
+  POWERLEVEL9K_DIR_CLASSES+=(
+    '~'     HOME            ''
+    '~/*'   HOME_SUBFOLDER  ''
+    '*'     DEFAULT         ''
+  )
+  typeset -g POWERLEVEL9K_DIR_DEV_BACKGROUND=137
+  typeset -g POWERLEVEL9K_DIR_GRPCIO_BACKGROUND=029
 
   # Custom prefix.
   # typeset -g POWERLEVEL9K_DIR_PREFIX='in '
