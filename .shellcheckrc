@@ -1,0 +1,15 @@
+# https://github.com/koalaman/shellcheck/wiki/Directive
+
+# https://www.shellcheck.net/wiki/SC2296
+# Parameter expansions can't start with (.
+# Some Zsh specific parameter expansions like ${(q)value} trigger this warning,
+# but ShellCheck does not support Zsh.
+disable=SC2296
+
+# https://www.shellcheck.net/wiki/SC2250
+enable=require-variable-braces
+
+# https://www.shellcheck.net/wiki/SC2148
+# I don't want to shebang to non-executable files
+# alternatively, may specify shell rc directive.
+disable=SC2148

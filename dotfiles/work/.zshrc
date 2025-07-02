@@ -1,5 +1,7 @@
 ## Work Profile: .zshrc
 ## -------------------------------------------------------------------------------------------------
+# ignore: unused vars, non-constant source
+# shellcheck disable=SC2034,SC1090,SC1091
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -108,6 +110,6 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Proprietary costumizations
+# Proprietary customizations.
 [[ ! -f ~/.work-custom.zshrc ]] || source ~/.work-custom.zshrc
 # contains MDPROXY-ZSHRC

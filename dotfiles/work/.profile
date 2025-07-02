@@ -35,7 +35,7 @@ PATH="${PATH}:${ANDROID_HOME}/platform-tools"
 # User site: python -m site --user-base
 # https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-to-the-user-site
 # https://docs.astral.sh/uv/concepts/tools/#the-bin-directory
-export PATH="${HOME}/Library/Python/3.12/bin:$PATH"
+export PATH="${HOME}/Library/Python/3.12/bin:${PATH}"
 
 # Gcloud
 export CLOUDSDK_HOME="${HOME}/Development/SDK/google-cloud-sdk"
