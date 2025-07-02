@@ -73,8 +73,12 @@ plugins=(
   ## common tools
   extract git fzf
   ## zsh custom plugins
-  zsh-autosuggestions zsh-syntax-highlighting
+  # fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets,
+  # such as zsh-autosuggestions or fast-syntax-highlighting
   fzf-tab
+  zsh-autosuggestions
+  # fast-syntax-highlighting
+  zsh-syntax-highlighting
   ## work stuff
   gcloud
   kubectl
