@@ -106,8 +106,10 @@ alias pe='print -u2 --'
 # Easy decimal dump.
 alias od1='od -tc -tu1 -tx1'
 # UTF-8 to unicode codepoints
+# first line unsigned dec, second line hex
 alias ud1='iconv -f UTF-8 -t UCS-2LE | od -tu2 -tx2'
 # should this be UCS-2LE too?
+# can be used with `p '\uCODE'`?
 alias udx='iconv -f UTF-8 -t UCS-2 | hexdump'
 
 ### Paths
