@@ -281,7 +281,8 @@
   # This moves the truncation point to the right (positive offset) or to the left (negative offset)
   # relative to the marker. Plain "first" and "last" are equivalent to "first:0" and "last:0"
   # respectively.
-  typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=false
+  # typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=false
+  typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER="last"
   # Don't shorten this many last directory segments. They are anchors.
   typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
   # Shorten directory if it's longer than this even if there is space for it. The value can
@@ -363,6 +364,23 @@
   # back to POWERLEVEL9K_DIR_FOREGROUND.
   #
   # typeset -g POWERLEVEL9K_DIR_CLASSES=()
+  typeset -g POWERLEVEL9K_DIR_CLASSES=()
+  POWERLEVEL9K_DIR_CLASSES+=(
+    '(*/.config(|/*)|*/Development/settings(|/*)|*/zsh-sergiis-plugin(|/*))'
+    CFG      ''
+  )
+  POWERLEVEL9K_DIR_CLASSES+=(
+    '~/Development/grpc/src/python(|/*)'      GRPCIO   '󱔎'
+    '~/Development(|/*)'                      DEV      ''
+  )
+  POWERLEVEL9K_DIR_CLASSES+=(
+    '~'     HOME            ''
+    '~/*'   HOME_SUBFOLDER  ''
+    '*'     DEFAULT         ''
+  )
+  typeset -g POWERLEVEL9K_DIR_CFG_BACKGROUND=105
+  typeset -g POWERLEVEL9K_DIR_DEV_BACKGROUND=137
+  typeset -g POWERLEVEL9K_DIR_GRPCIO_BACKGROUND=029
 
   # Custom prefix.
   # typeset -g POWERLEVEL9K_DIR_PREFIX='in '
@@ -764,14 +782,14 @@
   typeset -g POWERLEVEL9K_RANGER_BACKGROUND=0
   # Custom icon.
   # typeset -g POWERLEVEL9K_RANGER_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  
+
   ####################[ yazi: yazi shell (https://github.com/sxyazi/yazi) ]#####################
   # Yazi shell color.
   typeset -g POWERLEVEL9K_YAZI_FOREGROUND=3
   typeset -g POWERLEVEL9K_YAZI_BACKGROUND=0
   # Custom icon.
   # typeset -g POWERLEVEL9K_YAZI_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  
+
   ######################[ nnn: nnn shell (https://github.com/jarun/nnn) ]#######################
   # Nnn shell color.
   typeset -g POWERLEVEL9K_NNN_FOREGROUND=0
@@ -1010,7 +1028,8 @@
   typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=0
   typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND=4
   # Don't show Python version next to the virtual environment name.
-  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
+  # typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
+  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
   # If set to "false", won't show virtualenv if pyenv is already shown.
   # If set to "if-different", won't show virtualenv if it's the same as pyenv.
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=false
@@ -1666,7 +1685,7 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_TOOLBOX_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
-  typeset -g POWERLEVEL9K_TOOLBOX_PREFIX='in '
+  # typeset -g POWERLEVEL9K_TOOLBOX_PREFIX='in '
 
   ###############################[ public_ip: public IP address ]###############################
   # Public IP color.
@@ -1776,7 +1795,7 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
-  typeset -g POWERLEVEL9K_TIME_PREFIX='at '
+  # typeset -g POWERLEVEL9K_TIME_PREFIX='at '
 
   # Example of a user-defined prompt segment. Function prompt_example will be called on every
   # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or

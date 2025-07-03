@@ -76,9 +76,12 @@ plugins=(
   macos sublime
   ## common tools
   extract git fzf
-  ## zsh custom plugins
-  zsh-autosuggestions zsh-syntax-highlighting
+  # fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets,
+  # such as zsh-autosuggestions or fast-syntax-highlighting
   fzf-tab
+  zsh-autosuggestions
+  # fast-syntax-highlighting
+  zsh-syntax-highlighting
   ## work stuff
   gradle
 )
@@ -96,6 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # Dedup $PATH. Fixes .profile path appending issue, useful for `exec zsh`.
 typeset -U path
 
+# https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices#how-do-i-use-shell-integration
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 # Must be loaded before p10k so that p10k identifies installed integration.
 [[ ! -f ~/.iterm2_shell_integration.zsh ]] || source ~/.iterm2_shell_integration.zsh
 
