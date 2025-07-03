@@ -115,4 +115,4 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 # bat
 alias bat=batcat
 # Fix bat manpager
-export MANROFFOPT="-c"
+export MANPAGER="manbat"

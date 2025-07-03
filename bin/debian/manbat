@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+## cleaning control symbols:
+#
+# from https://superuser.com/questions/380772/removing-ansi-color-codes-from-text-stream
+# sed -e 's/\x1b\[[0-9;]*m//g'
+#
+# from the bat README
+# sed -u -e "s/\\x1B\[[0-9;]*m//g; s/.\\x08//g"
+#
+# However, with MANROFFOPT="-c" is set colors are disabled (see man groff)
+# so the rest of the control seq can be removed with simple `col --no-backspaces --spaces`.
+
+col -bx | bat -p -l man -S --theme=default --pager="less --jump-target=10 --status-column"

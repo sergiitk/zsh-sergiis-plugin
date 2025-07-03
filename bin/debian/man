@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+COLUMNS=$(( COLUMNS - 2 )) MANROFFOPT="-c" exec /bin/man --nj --nh $@
