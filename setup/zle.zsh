@@ -3,7 +3,7 @@
 ## https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 ## -------------------------------------------------------------------------------------------------
 
-## Word navigations
+## Word navigation
 ## -------------------------------------------------------------------------------------------------
 # The editor’s idea of a word: controls moves over words.
 export WORDCHARS='*?_[]~&;!#$%^(){}<>|@'
@@ -20,7 +20,7 @@ select-word-style bash
 ## Bind keys.
 ## omz bindings: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 ## -------------------------------------------------------------------------------------------------
-# Usedful bindings
+# Useful bindings
 # esc+h push command to stack, run man for it
 # esc+? push command to stack, run which-command for it
 # makes it same as ?
@@ -61,19 +61,22 @@ ZLE_RPROMPT_INDENT=0
 ## zsh-syntax-highlighting
 ## https://github.com/zsh-users/zsh-syntax-highlighting
 ## -------------------------------------------------------------------------------------------------
+# debugging:
 # zstyle -L ':bracketed-paste-magic'
 # zle -lL self-insert
 
+# note for future bracket paste issues:
+# https://gitlab.com/gnachman/iterm2/-/wikis/Paste-Bracketing
+
 # Only needed when DISABLE_MAGIC_FUNCTIONS is NOT set.
 # Magic functions "fix" url pasting, but make syntax highlight slow.
-
-# Fix slowness of pastes with zsh-syntax-highlighting.zsh
-# https://gist.github.com/magicdude4eva/2d4748f8ef3e6bf7b1591964c201c1ab
-#
-# https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
-# https://github.com/zsh-users/zsh-autosuggestions/issues/141
-# ^ probably affects it too
 if (( ${+functions[url-quote-magic]} )); then
+  # Fix slowness of pastes with zsh-syntax-highlighting.zsh
+  # https://gist.github.com/magicdude4eva/2d4748f8ef3e6bf7b1591964c201c1ab
+  #
+  # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
+  # https://github.com/zsh-users/zsh-autosuggestions/issues/141
+  # ^ probably affects it too
   pasteinit() {
     OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
     zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?

@@ -1,12 +1,14 @@
 ## Preload Sergii's plugin.
-# This file is intended for common settings that needs to be configured before zsh.
+## This file is intended for common settings that needs to be configured before zsh.
+#
 # Add before sourcing oh-my-zsh:
+#
 # if [[ -f "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh" ]]; then
 #   source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
 # fi
 ## -------------------------------------------------------------------------------------------------
 
-## omz settings and customiztions
+## omz settings and customizations
 ## -------------------------------------------------------------------------------------------------
 zstyle ':omz:lib:theme-and-appearance' gnu-ls yes
 
