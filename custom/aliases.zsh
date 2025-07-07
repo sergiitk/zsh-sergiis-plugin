@@ -54,13 +54,6 @@ alias hlpl='bat -l help -p'
 
 alias dl='delta'
 
-################### macports ########################
-alias pi='sudo port install'
-alias pu='sudo port uninstall'
-alias pul='sudo port uninstall leaves'
-alias pei='port echo installed'
-alias per='port echo requested'
-
 #################### docker #########################
 alias dk='docker'
 

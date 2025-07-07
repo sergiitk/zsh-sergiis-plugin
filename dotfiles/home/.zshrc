@@ -73,7 +73,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   ## mac
-  macos sublime
+  macos
   ## common tools
   extract git fzf
   # fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets,

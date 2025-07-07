@@ -1,18 +1,35 @@
-################## Specific aliases  #################
-################## OSX-only section  #################
+## OSX-specific aliases
+## -------------------------------------------------------------------------------------------------
 
-# Global aliases.
-# alias -g pbc='head -c-1 | > >(pbcopy) > >(cat) && echo'
-# alias -g pbc='head -c-1 | > >(pbcopy) > >(cat) && echo'
+# print and copy
 alias pbc='tee >(pbcopy)'
+# alias -g pbc='head -c-1 | > >(pbcopy) > >(cat) && echo'
+# alias -g pbc='head -c-1 | > >(pbcopy) > >(cat) && echo'
 
-# Finder.
+# root partition usage
+alias df/='gdf --si --output=source,used,pcent / | tail -1 | column -t'
+
+# turn off quaranteen
+alias quarantine-off="xattr -rd com.apple.quarantine"
+
+## Finder
+## -------------------------------------------------------------------------------------------------
 alias lf='l "$(pfd)"'
 # Open finder in current dir
 alias f='open "$(pwd)"'
 alias o="open"
 
-# Port.
+## Macports
+## Instead of https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macports,
+## uses better macports completion from zsh-completions.
+## -------------------------------------------------------------------------------------------------
+alias pi='sudo port install'
+alias pu='sudo port uninstall'
+alias puni="sudo port uninstall inactive"
+alias pul='sudo port uninstall leaves'
+alias pei='port echo installed'
+alias per='port echo requested'
+
 pup() {
   sudo port selfupdate
   if (( $? != 0 )); then
@@ -26,10 +43,7 @@ pup() {
   echo
   sudo port upgrade outdated
 }
-# alias pca='sudo port -f clean --all all'
 
-# Utils.
-alias df/='gdf --si --output=source,used,pcent / | tail -1 | column -t'
-
-# turn off quaranteen
-alias quarantine-off="xattr -rd com.apple.quarantine"
+## Sublime
+## -------------------------------------------------------------------------------------------------
+alias st='subl'
