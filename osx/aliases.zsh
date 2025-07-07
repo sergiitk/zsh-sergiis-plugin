@@ -47,3 +47,27 @@ pup() {
 ## Sublime
 ## -------------------------------------------------------------------------------------------------
 alias st='subl'
+
+# shellcheck disable=SC1073,SC1009
+cds() {
+  local clip file dir
+  clip="$(pbpaste)"
+  {
+    file="$(subl --command 'side_bar_copy_path' --background && sleep 0.1 && pbpaste)"
+    if [[  ! -f "${file}" ]]; then
+      print -u2 -- "Not a file: ${file}"
+      return 1
+    fi
+    # echo "${file}"
+    dir="$(dirname $file)"
+    if [[  ! -d "${dir}" ]]; then
+      print -u2 -- "Not a dir: ${dir}"
+      return 1
+    fi
+    # echo "${dir}"
+    cd "${dir}"
+  } always {
+    # echo "restoring clipboard: ${clip}"
+    echo -e "${clip}" | pbcopy
+  }
+}
