@@ -21,6 +21,7 @@ select-word-style bash
 ## omz bindings: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 ## -------------------------------------------------------------------------------------------------
 # Useful bindings
+# esc+m copy prev shell word
 # esc+h push command to stack, run man for it
 # esc+? push command to stack, run which-command for it
 # makes it same as ?
