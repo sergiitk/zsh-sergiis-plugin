@@ -69,6 +69,10 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
+# omz plugin list
+# omz plugin info git
 plugins=(
   ## mac
   macos
@@ -84,8 +88,9 @@ plugins=(
   ## work stuff
   gcloud
   kubectl
-  gradle
-  gradle-completion
+  uv
+  # gradle
+  # gradle-completion
 )
 # Previously used: history-substring-search
 
