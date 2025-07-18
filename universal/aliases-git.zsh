@@ -2,6 +2,16 @@
 ######################### Git  ########################
 
 ### Functions
+
+# undo omz aliases https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+
+# gitk --all --branches &!
+# install tcl?
+# dies with /usr/bin/wish: line 2: 24818 Killed: 9
+(( ${+aliases[gk]} )) && unalias gk
+# renamed grho below.
+(( ${+aliases[groh]} )) && unalias groh
+
 ### Productivity
 alias g.='git add .'
 alias gpl='git pull'
@@ -30,6 +40,7 @@ alias grp='git rev-parse --short'
 
 # Branch fork
 alias gbb='git merge-base $(git_main_branch) HEAD'
+# shellcheck disable=SC2154
 alias -g '$gbb'='$(gbb)'
 
 # Rebase
@@ -45,14 +56,15 @@ alias glh='git --no-pager log --reverse --pretty=cool --date=human'
 glb() {
   local branch="${1:-HEAD}"
   local -a args=()
-  if [[ "$branch" == "--" ]]; then
+  if [[ "${branch}" == "--" ]]; then
     branch="HEAD"
     args=("$@")
   elif [[ "${1:-}" == "--" ]]; then
     shift
     args=("$@")
   fi
-  local fork_point=$(git merge-base $(git_main_branch) ${branch})
+  local fork_point
+  fork_point="$(git merge-base "$(git_main_branch)" "${branch}")"
   git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}" "${args[@]}"
 }
 compdef _git glb=git-branch
@@ -67,6 +79,8 @@ alias grsm='git restore -s $(git_main_branch) --'
 # Restore from the merge base.
 alias grsb='git restore -s $(gbb) --'
 
+# Reset.
+alias grho='git reset --hard origin/$(git_current_branch)'
 
 # Diff the current branch
 alias gdb='git diff $(gbb)...HEAD'
