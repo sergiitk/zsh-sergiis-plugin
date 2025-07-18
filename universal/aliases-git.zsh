@@ -80,7 +80,14 @@ alias grsm='git restore -s $(git_main_branch) --'
 alias grsb='git restore -s $(gbb) --'
 
 # Reset.
+
+# to origin
 alias grho='git reset --hard origin/$(git_current_branch)'
+# to upstream
+alias grho='git reset --hard upstream/$(git_current_branch)'
+# to the tracking branch
+# https://git-scm.com/docs/gitrevisions#Documentation/gitrevisions.txt-branchnameupstreamegmasterupstreamu
+alias grht='git reset --hard "@{u}"'
 
 # Diff the current branch
 alias gdb='git diff $(gbb)...HEAD'

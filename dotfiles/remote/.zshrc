@@ -71,7 +71,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   ## os
-  debian
+  ubuntu
   ## common tools
   extract git fzf
   # fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets,
@@ -112,7 +112,9 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 [[ ! -f ~/.work-custom.zshrc ]] || source ~/.work-custom.zshrc
 
 ## work-specific
-# bat
+# aliases
 alias bat=batcat
+alias apt='noglob apt'
+
 # Fix bat manpager
 export MANPAGER="manbat"
