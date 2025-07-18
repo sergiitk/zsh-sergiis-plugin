@@ -89,6 +89,7 @@ plugins=(
   gcloud
   kubectl
   uv
+  bazel
   # gradle
   # gradle-completion
 )

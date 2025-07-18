@@ -83,7 +83,9 @@ plugins=(
   ## work stuff
   gcloud
   kubectl
-  gradle
+  uv
+  bazel
+  # gradle
 )
 # Previously used: history-substring-search
 
