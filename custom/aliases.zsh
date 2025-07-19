@@ -111,6 +111,11 @@ alias gkel='gcloud container clusters list'
 alias gkecr='gcloud container clusters get-credentials'
 alias gkedel='gcloud container clusters delete'
 
+
+###################### Bazel #######################
+alias bzcl='bazel clean --expunge'
+alias bzts='bazel test --test_output=streamed'
+
 ###################### Python #######################
 alias i='ipython'
 pv() {

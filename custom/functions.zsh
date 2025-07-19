@@ -210,6 +210,13 @@ compdef _dtf dtf
 
 alias e.='dtf'
 
+# act
+# https://nektosact.com/missing_functionality/docker_context.html
+set-docker-host() {
+  export DOCKER_HOST="$(docker context inspect --format '{{.Endpoints.docker.Host}}')"
+  export DOCKER_CERT_PATH="$(docker context inspect --format '{{.Storage.TLSPath}}')/docker"
+}
+
 # ############ Android.
 # # Adb logcat
 # lc() {

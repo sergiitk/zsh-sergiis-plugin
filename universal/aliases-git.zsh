@@ -160,6 +160,10 @@ alias gbrld="noglob git branch --remotes --format '%(committerdate:short)%09%(re
 # Use local index only:
 # git remote show upstream -n
 
+# Verbose flag isn't really needed, just to be consistent with grv.
+alias grvs='git remote --verbose show -n'
+alias grvsq='git remote --verbose show'
+
 # Reflog
 # l .git/logs/refs/remotes/upstream/
 # l .git/logs/refs/heads

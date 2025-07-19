@@ -116,7 +116,7 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 ## work-specific
 # aliases
 alias bat=batcat
-alias apt='noglob apt'
+# alias apt='noglob apt'
 
 # Fix bat manpager
 export MANPAGER="manbat"
