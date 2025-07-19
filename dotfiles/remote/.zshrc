@@ -116,7 +116,10 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 ## work-specific
 # aliases
 alias bat=batcat
-# alias apt='noglob apt'
+alias apt-cache='noglob apt-cache'
 
 # Fix bat manpager
 export MANPAGER="manbat"
+
+# Easy cd to the repos folder.
+cdpath=($cdpath "${HOME}/Development/repos/")
