@@ -1,10 +1,6 @@
 ## Home Profile: .zshrc
 ## -------------------------------------------------------------------------------------------------
 
-# In case loading goes wrong. (defaults 64000 1000)
-export HISTSIZE="16777216" SAVEHIST="16777216"
-unsetopt HIST_EXPIRE_DUPS_FIRST
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -67,15 +63,21 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
+# omz plugin list
+# omz plugin info git
 plugins=(
   ## mac
   macos
   ## common tools
   extract git fzf
+  ## zsh custom plugins
   # fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets,
   # such as zsh-autosuggestions or fast-syntax-highlighting
   fzf-tab
@@ -83,7 +85,8 @@ plugins=(
   # fast-syntax-highlighting
   zsh-syntax-highlighting
   ## work stuff
-  gradle
+  uv
+  # gradle
 )
 # Previously used: yarn docker docker-compose
 
@@ -104,6 +107,7 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 # Must be loaded before p10k so that p10k identifies installed integration.
 [[ ! -f ~/.iterm2_shell_integration.zsh ]] || source ~/.iterm2_shell_integration.zsh
 
+# https://github.com/romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
