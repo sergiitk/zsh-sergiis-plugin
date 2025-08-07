@@ -31,6 +31,22 @@ use-gnu-binary() {
   ln -svn "${gnubin}" "${HOME}/.bin/gnu/${bin}"
 }
 
+# switch port python interpreter
+switch-py-port() {
+  local version="${1:?version must be set}"
+  if [[ "${version}" != [[:digit:]]## ]]; then
+    print -u2 -- "Wrong version format: ${version}"
+    return 1
+  fi
+  sudo port select --set python "python${version}"
+  sudo port select --set python3 "python${version}"
+  sudo port select --set pip "pip${version}"
+  sudo port select --set pip3 "pip${version}"
+  echo
+  echo "port select --summary"
+  port select --summary | grep -E "p(y|i)[^\d ]+${version}"
+}
+
 switch-resolution() {
   emulate -L zsh
   setopt extended_glob

@@ -54,6 +54,11 @@ alias hlpl='bat -l help -p'
 
 alias dl='delta'
 
+################### uv extras ########################
+# Plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/uv
+alias uvpi='uv pip install'
+alias uvpl='uv pip list'
+
 #################### docker #########################
 alias dk='docker'
 
@@ -119,18 +124,18 @@ alias bzts='bazel test --test_output=streamed'
 ###################### Python #######################
 alias i='ipython'
 pv() {
-  if [[ -n "${VIRTUAL_ENV:-}" ]] then;
-    echo "Venv already activated: ${VIRTUAL_ENV}" >&2
+  if [[ -n "${VIRTUAL_ENV:-}" ]]; then
+    echo "${fg_bold[red]}WARNING! Venv already activated: ${VIRTUAL_ENV}${reset_color}" >&2
     return 1
   fi
 
   local venv_file venv_candidate local
   declare -a venv_candidates=("./venv" "./.venv")
 
-  # if provoded as an argument
+  # if provided as an argument
   if [[ -n "${1}" ]]; then
     if [[ ! -d "${1}" ]]; then
-      echo "Argument is not a dir: ${1}" >&2
+      echo "${fg[red]}Argument is not a dir: ${1}${reset_color}" >&2
       return 1
     fi
     venv_candidates=("${1}")
@@ -148,7 +153,7 @@ pv() {
     echo "Sourced ${venv_file}"
     source "${venv_file}"
   else
-    echo "Venv not found" >&2
+    echo "${fg[red]}Venv not found${reset_color}" >&2
     return 1
   fi
 }

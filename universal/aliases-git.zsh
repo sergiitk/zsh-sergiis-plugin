@@ -128,7 +128,12 @@ alias gs='git switch'
 # git check-ref-format --normalize --refspec-pattern 'upstream/v1.*'
 
 # List origin branches with date in columns
+# shows branches with origin/
 alias gbrl="noglob git branch --remotes --format '%(refname:lstrip=2)' --list"
+# shows branches without origin/
+# can be used for bulk branch delete
+# gbrl3 origin/create-pull-request/patch-* | xargs -p git push origin --delete
+alias gbrl3="noglob git branch --remotes --format '%(refname:lstrip=3)' --list"
 alias gbrld="noglob git branch --remotes --format '%(committerdate:short)%09%(refname:lstrip=2)' --sort=committerdate --list"
 
 # reversed columns

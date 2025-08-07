@@ -16,3 +16,7 @@ export DELTA_PAGER="less --jump-target=0"
 # Configure the output format of zsh's `time`
 # https://zsh.sourceforge.io/Doc/Release/Parameters.html#index-TIMEFMT
 export TIMEFMT=$'\n"%J" time report:\nreal\t%E\t[%*E]\nuser\t%U\t[%*U]\nsys\t%S\t[%*S]'
+
+# uv venv seed by default
+# https://docs.astral.sh/uv/reference/environment/#uv_venv_seed
+export UV_VENV_SEED="1"
