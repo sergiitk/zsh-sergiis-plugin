@@ -38,6 +38,9 @@ switch-py-port() {
     print -u2 -- "Wrong version format: ${version}"
     return 1
   fi
+  # do not set opts in the main shell
+  emulate -L zsh
+  setopt ERR_RETURN
   sudo port select --set python "python${version}"
   sudo port select --set python3 "python${version}"
   sudo port select --set pip "pip${version}"
