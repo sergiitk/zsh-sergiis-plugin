@@ -41,6 +41,47 @@ check-history() {
   fi
 }
 
+########################## Python #############################
+# activate vent
+pv() {
+  if [[ -n "${VIRTUAL_ENV:-}" ]]; then
+    echo "${fg_bold[red]}WARNING! Venv already activated: ${VIRTUAL_ENV}${reset_color}" >&2
+    return 1
+  fi
+
+  local venv_file venv_candidate local
+  declare -a venv_candidates=("./venv" "./.venv")
+
+  # if provided as an argument
+  if [[ -n "${1}" ]]; then
+    if [[ ! -d "${1}" ]]; then
+      echo "${fg[red]}Argument is not a dir: ${1}${reset_color}" >&2
+      return 1
+    fi
+    venv_candidates=("${1}")
+  fi
+
+  for venv_dir in $venv_candidates; do
+    venv_candidate="${venv_dir}/bin/activate"
+    if [[ -r "${venv_candidate}" ]]; then
+      venv_file="${venv_candidate}"
+      break
+    fi
+  done
+
+  if [[ -n "${venv_file}" ]]; then
+    echo "Sourced ${venv_file}"
+    source "${venv_file}"
+  else
+    echo "${fg[red]}Venv not found${reset_color}" >&2
+    return 1
+  fi
+}
+
+ls-venvs() {
+  print -l *venv*(/,D)
+}
+
 ######################## Track sh changes ###########################
 logsha-p10k-instant-prompt() {
   local out=~play/zsh-history/misc/p10k-instant-prompt/p10k-instant-prompt.sha256.log
