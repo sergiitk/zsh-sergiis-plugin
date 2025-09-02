@@ -39,6 +39,7 @@ export PATH="${HOME}/Library/Python/3.13/bin:${PATH}"
 
 # Gcloud
 export CLOUDSDK_HOME="${HOME}/Development/SDK/google-cloud-sdk"
+export CLOUDSDK_PYTHON="/opt/local/bin/python3.13"
 
 # SSH
 # Load SSH keys stored in the Keychain using native OSX ssh agent
