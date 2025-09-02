@@ -115,6 +115,10 @@ logsha-iterm2-shell-integration() {
   echo -e "Saved to: ${out}"
 }
 
+logsha-iterm2-shell-integration-latest() {
+  (curl -s https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/refs/heads/main/shell_integration/zsh && echo) | sha256sum
+}
+
 
 ############################# tmux ##################################
 alias tm='tmux'
