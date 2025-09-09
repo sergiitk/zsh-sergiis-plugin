@@ -51,6 +51,7 @@ alias c='bat -pp' # plain, no pager
 
 # Date
 alias dt='date "+%F"'
+alias dtt='date "+%Y%m%d"'
 
 # SSH
 alias s='ssh'

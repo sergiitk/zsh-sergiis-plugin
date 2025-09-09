@@ -9,13 +9,34 @@
 # install tcl?
 # dies with /usr/bin/wish: line 2: 24818 Killed: 9
 (( ${+aliases[gk]} )) && unalias gk
-# renamed grho below.
-(( ${+aliases[groh]} )) && unalias groh
 
 ### Productivity
 alias g.='git add .'
 alias gpl='git pull'
 alias gnp='git --no-pager'
+
+# Switch.
+# Also overrides 'gs' Ghostscript
+# alias gs='git switch'
+
+# GitHub
+gs() {
+  local handle branch default_handle="${USER}"
+  local -a args=("$@")
+
+  # easy copy-paste from github
+  if [[ "${1}" == *:* ]]; then
+    handle="$(echo "${1}" | cut -d: -f1)"
+    branch="$(echo "${1}" | cut -d: -f2)"
+    if [[ "${handle}" != "${default_handle}" ]]; then
+      echo "TODO - what to do with other remotes?"
+    fi
+    shift
+    args=("${branch}" "$@")
+  fi
+
+  git switch "${args[@]}"
+}
 
 # Branches
 alias b='git branch -vv --sort=refname'
@@ -114,11 +135,6 @@ alias gswf='git --no-pager show --name-only'
 # Stash.
 alias gstl='git --no-pager stash list --format=stash'
 alias gsts-patch='git --no-pager stash show --no-color --patch'
-
-# Switch.
-# Also overrides 'gs' Ghostscript
-alias gs='git switch'
-
 
 ## Remotes and refs
 
