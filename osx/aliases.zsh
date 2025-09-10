@@ -44,6 +44,26 @@ pup() {
   sudo port upgrade outdated
 }
 
+# requested ports that needs $1
+port-why() {
+  local mode="requested"
+  if [[ "${1}" == "--all" ]]; then
+    shift
+    mode="installed"
+  fi
+  local -a cmd
+  cmd=(port info --line --name "${mode}" and "rdepends:${1}")
+  print-cmd "${cmd[@]}"
+  ${cmd[@]}
+
+  if (( $? != 0 )); then
+    cmd=(port echo requested and "${1}")
+    echo
+    print-cmd "${cmd[@]}"
+    ${cmd[@]}
+  fi
+}
+
 ## Sublime
 ## -------------------------------------------------------------------------------------------------
 alias st='subl'

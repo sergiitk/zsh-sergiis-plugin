@@ -97,6 +97,13 @@ p-unicode() {
   echo
 }
 
+# print cmd with bat highlight
+print-cmd() {
+  local -a args=("$@")
+  echo -n "$ "
+  echo "${cmd[@]}\n" | bat -pp -lsh
+}
+
 ############ Other utilities.
 # Show oh-my-zsh changes.
 oh-my-changes() {

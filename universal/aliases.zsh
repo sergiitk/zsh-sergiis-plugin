@@ -78,6 +78,24 @@ alias hl='history -r -iD 1 | bat --style="header,grid" -l vy'
 alias hlr='history -iD 1 | bat --style="header,grid" -l vy'
 # History search, without line number.
 alias hs='history -rn 1 | grep -Ei'
+# Show last N lines, no line number. Grep the second arg if set.
+hlast() {
+  emulate -L zsh
+  setopt extended_glob
+  local num="${1}"
+  if [[ "${num}" != [[:digit:]]## ]]; then
+    print -u2 -- "Wrong number of lines: ${num}"
+    return 1
+  fi
+  local result
+  result=$(history -rn "-${num}" | grep -Ev '^(h |history |hlast )' | tac)
+  if [[ -n "${2}" ]]; then
+    echo "${result}" | grep "${2}"
+  else
+    echo "${result}"
+  fi
+}
+
 # Search with date and duration.
 alias hsd='history -rn -iD 1 | grep -Ei'
 # Search full words.
