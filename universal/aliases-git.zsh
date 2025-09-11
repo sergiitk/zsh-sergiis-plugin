@@ -3,6 +3,7 @@
 
 ### Functions
 
+# omz plugin info git
 # undo omz aliases https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
 # gitk --all --branches &!
@@ -100,8 +101,11 @@ alias grsm='git restore -s $(git_main_branch) --'
 # Restore from the merge base.
 alias grsb='git restore -s $(gbb) --'
 
-# Reset.
 
+
+# Reset.
+# omz plugin sets it to just 'git reset'
+alias grh='git reset --hard'
 # to origin
 alias grho='git reset --hard origin/$(git_current_branch)'
 # to upstream
