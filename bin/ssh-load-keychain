@@ -1,7 +1,12 @@
 #!/usr/bin/env zsh
 
-/bin/date "+%Y-%m-%d %H:%M:%S" > ~/Library/Logs/ssh-load-keychain.log
-/usr/bin/ssh-add --apple-load-keychain >>& ~/Library/Logs/ssh-load-keychain.log
+set -ue
+
+LOGFILE=~/Library/Logs/ssh-load-keychain.log
+
+/bin/date "+%Y-%m-%d %H:%M:%S" >> "${LOGFILE}"
+/usr/bin/ssh-add --apple-load-keychain >>& "${LOGFILE}"
+echo >> "${LOGFILE}"
 
 # lk $ZSH_SERGII/bin/LaunchAgents/ssh-load-keychain.plist ~/Library/LaunchAgents
 # launchctl load -w ~/Library/LaunchAgents/ssh-load-keychain.plist
