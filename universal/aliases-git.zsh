@@ -109,7 +109,7 @@ alias grh='git reset --hard'
 # to origin
 alias grho='git reset --hard origin/$(git_current_branch)'
 # to upstream
-alias grho='git reset --hard upstream/$(git_current_branch)'
+alias grhu='git reset --hard upstream/$(git_current_branch)'
 # to the tracking branch
 # https://git-scm.com/docs/gitrevisions#Documentation/gitrevisions.txt-branchnameupstreamegmasterupstreamu
 alias grht='git reset --hard "@{u}"'
@@ -162,6 +162,25 @@ alias gbrld="noglob git branch --remotes --format '%(committerdate:short)%09%(re
 # Delete origin branches starting with prefix
 # git branch --remotes --list 'origin/v1*' --format '%(refname:lstrip=3)' | xargs echo git push origin --delete
 # gpod = git push origin --delete
+
+# delete remote branch
+gbdr() {
+  local branch="${1:?branch not set}"
+  local -a remotes branch_segments
+  remotes=( $(git remote) )
+  branch_segments=(${(@s:/:)branch})
+  segment_candidate=$branch_segments[1]
+
+  remote="origin"
+  if (( $remotes[(Ie)$segment_candidate] )); then
+    remote="${segment_candidate}"
+    branch="${(j:/:)branch_segments:1}"
+  fi
+
+  cmd=(git push "${remote}" --delete ${branch})
+  print-cmd "${cmd[@]}"
+  ${cmd[@]}
+}
 
 # Reading and changing remote fetch.
 # st .git/config
