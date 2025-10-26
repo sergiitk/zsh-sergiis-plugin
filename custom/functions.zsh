@@ -41,6 +41,15 @@ check-history() {
   fi
 }
 
+uv-completion-regen() {
+  local dest="${ZSH_CUSTOM}/completions/_uv"
+  cmd=(uv generate-shell-completion zsh ">" "${dest}")
+  print-cmd "${cmd[@]}"
+  sha256sum "${dest}"
+  eval "${cmd[@]}"
+  sha256sum "${dest}"
+}
+
 ########################## Python #############################
 # activate vent
 pv() {
