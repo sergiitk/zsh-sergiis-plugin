@@ -70,7 +70,11 @@ alias grbb='git rebase --interactive $(gbb)'
 
 ### Log
 alias gl='git log'
-alias 'g-'='git log --pretty=graph --branches --remotes --tags --graph --date=short'
+
+# graph log
+alias 'g-'='git log --pretty=graph --branches --tags --graph --date=short'
+alias 'gr-'='git log --pretty=graph --branches --tags --graph --date=short --remotes'
+
 # human log with no pager
 alias glh='git --no-pager log --reverse --pretty=cool --date=human'
 
