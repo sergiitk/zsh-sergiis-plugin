@@ -83,19 +83,22 @@ glb() {
   local branch="${1:-HEAD}"
   local print_cmd=""
 
-  if [[ "${branch}" == "--print-cmd" ]]; then
+  if [[ "$1" == "--print-cmd" ]]; then
     print_cmd="yes"
     shift
   fi
 
+  # TODO(sergiitk): refactor
   local -a args=()
   if [[ "${branch}" == --* ]]; then
     branch="HEAD"
     args=("$@")
   elif [[ "${1:-}" == "--" ]]; then
+    # was it needed to pass args after -- ?
     shift
     args=("$@")
   fi
+
   local fork_point
   fork_point="$(git merge-base "$(git_main_branch)" "${branch}")"
   cmd=(git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}" "${args[@]}")
