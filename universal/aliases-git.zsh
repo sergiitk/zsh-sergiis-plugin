@@ -82,7 +82,7 @@ alias glh='git --no-pager log --reverse --pretty=cool --date=human'
 glb() {
   local branch="${1:-HEAD}"
   local -a args=()
-  if [[ "${branch}" == "--" ]]; then
+  if [[ "${branch}" == --* ]]; then
     branch="HEAD"
     args=("$@")
   elif [[ "${1:-}" == "--" ]]; then
@@ -91,7 +91,9 @@ glb() {
   fi
   local fork_point
   fork_point="$(git merge-base "$(git_main_branch)" "${branch}")"
-  git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}" "${args[@]}"
+  cmd=(git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}" "${args[@]}")
+  # print-cmd "${cmd[@]}"
+  ${cmd[@]}
 }
 compdef _git glb=git-branch
 
