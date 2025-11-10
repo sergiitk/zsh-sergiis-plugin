@@ -81,6 +81,13 @@ alias glh='git --no-pager log --reverse --pretty=cool --date=human'
 # Log commits in a given branch.
 glb() {
   local branch="${1:-HEAD}"
+  local print_cmd=""
+
+  if [[ "${branch}" == "--print-cmd" ]]; then
+    print_cmd="yes"
+    shift
+  fi
+
   local -a args=()
   if [[ "${branch}" == --* ]]; then
     branch="HEAD"
@@ -92,7 +99,11 @@ glb() {
   local fork_point
   fork_point="$(git merge-base "$(git_main_branch)" "${branch}")"
   cmd=(git --no-pager log --reverse --pretty=graph --date=human "${fork_point}..${branch}" "${args[@]}")
-  # print-cmd "${cmd[@]}"
+
+  if [[ "${print_cmd}" == "yes" ]]; then
+    print-cmd "${cmd[@]}"
+  fi
+
   ${cmd[@]}
 }
 compdef _git glb=git-branch
