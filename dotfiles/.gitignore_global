@@ -17,5 +17,9 @@ __debug_bin*
 *.code-workspace
 .sergiitk.bazelrc
 
+# https://developers.google.com/gemini-code-assist/docs/create-aiexclude-file
+.aiexclude
+.gemini/settings.json
+
 # TODO(sergiitk): reconsider
 pyrightconfig.json

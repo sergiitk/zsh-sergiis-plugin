@@ -51,6 +51,8 @@ alias ymll='bat -l yaml -p'
 alias jsnl='bat -l json -p'
 alias inil='bat -l ini -p'
 alias hlpl='bat -l help -p'
+# for gcloud --help
+alias mn='bat -l man -p --theme="Monokai Extended" --pager="less --jump-target=10 --status-column"'
 
 alias dl='delta'
 
