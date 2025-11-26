@@ -71,9 +71,12 @@ alias find-in-dirs='noglob find-in-dirs'
 function tmp() {
   local prefix
   prefix="${USER}-$(date +%F)"
-  cd "$(gmktemp -d -t "${prefix}.XXXXXXXXXX")"
-  # bsd:
-  # cd "$(mktemp -d -t "${prefix}")"
+
+  if [[ "${OSTYPE}" == darwin* ]] then
+    cd "$(mktemp -d -t "${prefix}")"
+  else
+    cd "$(mktemp -d -t "${prefix}.XXXXXXXXXX")"
+  fi
 }
 
 ############ Print.
