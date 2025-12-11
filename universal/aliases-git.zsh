@@ -170,6 +170,8 @@ alias gsts-patch='git --no-pager stash show --no-color --patch'
 # List origin branches with date in columns
 # shows branches with origin/
 alias gbrl="noglob git branch --remotes --format '%(refname:lstrip=2)' --list"
+# same but for local branches
+alias gbrll="noglob git branch --format '%(refname:lstrip=2)' --list"
 # shows branches without origin/
 # can be used for bulk branch delete
 # gbrl3 origin/create-pull-request/patch-* | xargs -p git push origin --delete

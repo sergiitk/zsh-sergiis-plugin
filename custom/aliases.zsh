@@ -46,6 +46,15 @@ hj() {
   zsh -ic "$cmd --help" |& bat -l help -pp --color=always
 }
 
+# python traceback highligh via rich
+# https://github.com/Textualize/rich-cli
+# themes: https://pygments.org/styles/
+# lexers: https://pygments.org/docs/lexers/#pygments.lexers.python.PythonTracebackLexer
+# styles: https://rich.readthedocs.io/en/latest/style.html
+# unfortunatelly, --style="on default" doesn't work
+# also see py -m rich.syntax -t dracula -x pytb -c -i --background-color="default" -
+alias pytb='rich --force-terminal -x pytb --theme=dracula'
+
 # Pager versions
 alias ymll='bat -l yaml -p'
 alias jsnl='bat -l json -p'
