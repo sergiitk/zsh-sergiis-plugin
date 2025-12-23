@@ -20,11 +20,14 @@ select-word-style bash
 ## Bind keys.
 ## omz bindings: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 ## -------------------------------------------------------------------------------------------------
-# Useful bindings
-# esc+m copy prev shell word
-# esc+h push command to stack, run man for it
-# esc+? push command to stack, run which-command for it
-# makes it same as ?
+#
+# Useful default bindings
+# esc + m — Paste prev shell word
+# esc + . — Paste the last argument of previous command, same as !$ expansion. Repeat for n-1 commands.
+#
+# esc + h — Push command to stack, run man for it
+# esc + ? — Push command to stack, run which-command for it
+# The following replaces which-command with my '?' alias
 alias which-command='?'
 # alias which-command='whence -asvf'
 
@@ -40,7 +43,8 @@ bindkey "^[[6~" history-beginning-search-forward
 # Otherwise kills all line
 bindkey "^U" backward-kill-line
 
-# Normally omz sets Edit command in EDITOR: ctrl+x+e
+# esc + / — Open current command in $EDITOR
+# Normally omz sets Edit command in $EDITOR: ctrl+x+e
 # Overrides default zsh "^[/" _history-complete-older
 bindkey "^[/" edit-command-line
 

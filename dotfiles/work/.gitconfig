@@ -81,6 +81,14 @@
   graph = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
   stash = tformat:%C(auto,yellow)%h %C(auto,bold blue)%gd %C(auto,reset)%s %C(auto,green dim)[%ch]%C(auto,reset)
 
+## Git LFS
+# https://git-lfs.com/
+[filter "lfs"]
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+
 ## Diff setup.
 [diff]
   # Colorize moved lines differently
