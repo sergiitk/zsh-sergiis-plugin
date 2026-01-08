@@ -137,6 +137,7 @@ alias i='ipython'
 
 ###################### Misc #########################
 alias grpc='grpcurl -plaintext'
+alias xhd='xh -d'
 
 ###################### Nodejs #######################
 alias nvm-load='source /opt/local/share/nvm/init-nvm.sh'

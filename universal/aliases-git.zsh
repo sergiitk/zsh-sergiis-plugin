@@ -53,11 +53,14 @@ alias gcln='git clone --recurse-submodules'
 alias grpl='git rev-parse --short HEAD'
 
 # Rev-parse short
+# See https://git-scm.com/docs/git-rev-parse or git rev-parse --help
+#
 # Nice Usages:
 # grp "python-black@{1 day ago}"
 # grp "@{1 month ago}"
 # grp @{1} - one commit ago
 # grp @{u} - upstream
+# grp @{push} - the branch "where we would push to"
 alias grp='git rev-parse --short'
 
 # Branch fork
@@ -70,6 +73,8 @@ alias grbb='git rebase --interactive $(gbb)'
 
 ### Log
 alias gl='git log'
+# Note this overrides glp=_git_log_prettily, e.g. glp oneline
+alias glp='git --no-pager log --reverse --pretty=graph --date=human @{push}..HEAD'
 
 # graph log
 alias 'g-'='git log --pretty=graph --branches --tags --graph --date=short'
