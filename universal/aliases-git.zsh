@@ -74,7 +74,7 @@ alias grbb='git rebase --interactive $(gbb)'
 ### Log
 alias gl='git log'
 # Note this overrides glp=_git_log_prettily, e.g. glp oneline
-alias glp='git --no-pager log --reverse --pretty=graph --date=human @{push}..HEAD'
+alias glp='git --no-pager log --reverse --date=human @{push}..HEAD'
 
 # graph log
 alias 'g-'='git log --pretty=graph --branches --tags --graph --date=short'
