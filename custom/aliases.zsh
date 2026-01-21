@@ -2,7 +2,7 @@
 ################## Directory hashes #################
 # Homedir Library
 hash -d libas="$HOME/Library/Application Support"
-# hash -d lib_icl="$HOME/Library/Mobile Documents/com~apple~CloudDocs/"
+hash -d icloud="$HOME/Library/Mobile Documents/com~apple~CloudDocs/"
 
 # user home shortcuts
 hash -d b="${HOME}/.bin"
