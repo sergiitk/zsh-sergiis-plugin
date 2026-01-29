@@ -118,6 +118,7 @@ function gcl-cfg() {
 }
 
 alias gclc='gcloud compute'
+alias gci='gcloud compute instances'
 # alias gclcc='gcloud container clusters'
 # alias gclccl='gcloud container clusters list'
 # alias gclccr='gcloud container clusters get-credentials'

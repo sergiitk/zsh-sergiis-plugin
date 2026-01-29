@@ -124,12 +124,20 @@ alias pe='print -u2 --'
 ### Text
 # Easy decimal dump.
 alias od1='od -tc -tu1 -tx1'
-# UTF-8 to unicode codepoints
+
+# UTF-8 to decimal unicode codepoints and regular hex
 # first line unsigned dec, second line hex
 alias ud1='iconv -f UTF-8 -t UCS-2LE | od -tu2 -tx2'
-# should this be UCS-2LE too?
-# can be used with `p '\uCODE'`?
-alias udx='iconv -f UTF-8 -t UCS-2 | hexdump'
+
+# can be used with p '\uCODE'
+alias udx='iconv -f UTF-8 -t UCS-2LE | hexdump'
+
+# big endian format.
+# was it useful when reversing codepoints or something?
+# or the "UTF-8 Encoding", f.e https://www.compart.com/en/unicode/U+24832
+alias udx-be='iconv -f UTF-8 -t UCS-2 | hexdump'
+
+
 
 ### Paths
 # Resolve what is the command.
