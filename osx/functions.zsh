@@ -64,6 +64,9 @@ switch-resolution() {
     return 1
   fi
   local normal_mode="1" alt_mode="9" set_mode="${2:-}"
+  if [[ "${CPUTYPE}" == "arm64" ]]; then
+    normal_mode="16"
+  fi
   local display_info current_mode_str current_mode_int
 
   display_info="$(displayplacer list | sed -n "/${serial}/,/^$/p" | grep -v "color_depth:4" | head -n-1)"
