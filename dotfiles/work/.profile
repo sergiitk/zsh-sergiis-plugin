@@ -9,6 +9,7 @@ PATH="${HOME}/.bin/gobin:${HOME}/.bin/gnu:${HOME}/.bin:${PATH}"
 # https://gist.github.com/roalcantara/107ba66dfa3b9d023ac9329e639bc58c
 # For XDG_BIN_HOME:
 # lk ~b ~/.local/bin
+export PATH="${HOME}/.local/bin:${PATH}"
 
 # Env
 export LANG="en_US.UTF-8"
