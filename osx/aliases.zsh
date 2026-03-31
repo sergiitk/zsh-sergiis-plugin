@@ -41,7 +41,7 @@ pup() {
   echo
   port echo "Requested and outdated:" requested and outdated
   echo
-  sudo port upgrade outdated
+  sudo port -N upgrade outdated
 }
 
 # requested ports that needs $1
