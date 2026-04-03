@@ -12,6 +12,13 @@ alias df/='gdf --si --output=source,used,pcent / | tail -1 | column -t'
 # turn off quaranteen
 alias quarantine-off="xattr -rd com.apple.quarantine"
 
+# macos flags and attrs
+alias ls-osx-xattr="xattr -l -v"
+alias ls-osx-flags="/bin/ls -lFO"
+alias stat-osx-flags="stat -f '%Sp  %Su %Sg  %Sf  %R'"
+alias osx-hide="chflags hidden"
+alias osx-unhide="chflags nohidden"
+
 ## Finder
 ## -------------------------------------------------------------------------------------------------
 alias lf='l "$(pfd)"'
