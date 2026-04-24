@@ -100,6 +100,25 @@ p-unicode() {
   echo
 }
 
+print-error() {
+  local last_status=$?
+  local msg="${fg_bold[red]}[  FAILED  ]"
+
+  # In case we just want to print something in red and don't care about the last command.
+  if (( last_status != 0 )); then
+    msg+=" Exit code ${last_status}"
+  fi
+
+  if (( $# > 0 )); then
+    msg+=":${reset_color} $@"
+  else
+    msg+="${reset_color}"
+  fi
+
+  print -u2 -- "${msg}"
+  return $last_status
+}
+
 # print cmd with bat highlight
 print-cmd() {
   local -a args=("$@")
@@ -230,4 +249,11 @@ bin2dec() {
   do
     echo $((2#$i))
   done
+}
+
+# Date
+date-from-timestamp() {
+  local timestamp="${1:?arg timestamp must be set}"
+  # Note: expecting GNU `date`.
+  date -d "@${timestamp}"
 }
