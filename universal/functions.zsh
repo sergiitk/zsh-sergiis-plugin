@@ -81,7 +81,7 @@ function tmp() {
 
 ############ Print.
 
-p-unicode() {
+print-unicode() {
   local i=0 check_hex_to_dec code sep esc
   sep="${FS:- }"
   for ((i = 1; i <= $#; i++)) do
@@ -127,6 +127,7 @@ print-cmd() {
 }
 
 ############ Other utilities.
+
 # Show oh-my-zsh changes.
 oh-my-changes() {
   if [[ -z $1 ]]; then

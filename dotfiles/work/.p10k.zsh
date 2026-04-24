@@ -122,7 +122,15 @@
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
+  # [sergiit] Currently using recommended "MesloLGS NF", Meslo Nerd Font patched for Powerlevel10k
+  #
+  # See:
+  # - https://github.com/romkatv/powerlevel10k/blob/master/font.md
+  # - https://github.com/romkatv/powerlevel10k#fonts
+  # - https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+  # - https://github.com/romkatv/powerlevel10k#how-was-the-recommended-font-created
   typeset -g POWERLEVEL9K_MODE=nerdfont-v3
+
   # When set to `moderate`, some icons will have an extra space after them. This is meant to avoid
   # icon overlap when using non-monospace fonts. When set to `none`, spaces are not added.
   typeset -g POWERLEVEL9K_ICON_PADDING=none
@@ -366,15 +374,27 @@
   #
   # typeset -g POWERLEVEL9K_DIR_CLASSES=()
 
-  # https://github.com/romkatv/powerlevel10k/blob/36f3045d69d1ba402db09d09eb12b42eebe0fa3b/internal/icons.zsh#L489
+  # https://github.com/romkatv/powerlevel10k/blob/604f19a9eaa18e76db2e60b8d446d5f879065f90/internal/icons.zsh#L489
+  #
+  # less -r $ZSH/custom/themes/powerlevel10k/internal/icons.zsh
+  # search for nerdfont-v3
+  #
+  # Icon Codes: https://www.nerdfonts.com/cheat-sheet
+  # Testing icon code:
+  # print '\Uf7ac'
+  # print-unicode f7ac
   typeset -g POWERLEVEL9K_DIR_CLASSES=()
   POWERLEVEL9K_DIR_CLASSES+=(
     '(*/.config(|/*)|*/Development/settings(|/*)|*/zsh-sergiis-plugin(|/*))'
     CFG      ''
   )
+  # Google icon: see f7ac at https://www.nerdfonts.com/cheat-sheet
+  # Apparently it was removed in v3.0.0, apparently it's in the p10k-recommended "MesloLGS NF"
   POWERLEVEL9K_DIR_CLASSES+=(
+    '(/Volumes/google(|/*)|/google(|/*))'     GOOGLE   ''
     '~/Development/grpc/src/python(|/*)'      GRPCIO   '󱔎'
     '~/Development(|/*)'                      DEV      ''
+    '/Volumes(|/*)'                           MOUNT    '󰍸'
   )
   POWERLEVEL9K_DIR_CLASSES+=(
     '~'     HOME            ''
@@ -382,6 +402,9 @@
     '*'     DEFAULT         ''
   )
   typeset -g POWERLEVEL9K_DIR_CFG_BACKGROUND=105
+  typeset -g POWERLEVEL9K_DIR_MOUNT_BACKGROUND=247
+  typeset -g POWERLEVEL9K_DIR_GOOGLE_BACKGROUND=176
+
   typeset -g POWERLEVEL9K_DIR_DEV_BACKGROUND=137
   typeset -g POWERLEVEL9K_DIR_GRPCIO_BACKGROUND=029
 
