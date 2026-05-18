@@ -258,3 +258,24 @@ date-from-timestamp() {
   # Note: expecting GNU `date`.
   date -d "@${timestamp}"
 }
+
+# ssh
+function ssh-check-sockets() {
+  local host="${1:?arg 1 host must be set}"
+  # stat
+  # %HT %t %Sc %t %N
+  # ===
+  # %HT = file type long
+  # %Sc = creation time
+  # %N = file name
+  #
+  # time output -t, format strftime(3)
+  # %F %r
+  # ===
+  # %F = %Y-%m-%d
+  # %r = %I:%M:%S %p
+  find ~/.ssh -type s -exec stat -f '%HT %t %Sc %t %N' -t '%F %r' {} \;
+  # find exit with status 0 even when nothing is found
+  # || echo 'No multiplexing sockets found in ~/.ssh'
+  /usr/local/bin/ssh -O check "${host}"
+}
