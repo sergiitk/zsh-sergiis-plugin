@@ -1,1 +1,3 @@
 dotfiles/**/*-custom.zshrc
+# Don't ignore the workspace even if ignored globally.
+!zsh-sergiis-plugin.code-workspace
