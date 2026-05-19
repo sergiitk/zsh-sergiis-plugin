@@ -279,3 +279,64 @@ function ssh-check-sockets() {
   # || echo 'No multiplexing sockets found in ~/.ssh'
   /usr/local/bin/ssh -O check "${host}"
 }
+
+# rsync
+# usage: rsync-to --dry_run host:path/dir
+# usage: rsync-to --dry_run host:path/dir --reverse
+# usage: rsync-to --dry_run host:path/dir --delete
+# usage: rsync-to host:path/dir --reverse --delete
+function rsync-to() {
+  local reverse="" dry_run="" delete=""
+
+  # local -a opts=($@)
+  local -a args=()
+  while [[ $# -gt 0 ]]; do
+    case $1 in
+      -d | --delete) delete="yes"; shift ;;
+      -r | --reverse) reverse="yes"; shift ;;
+      -n | --dry-run) dry_run="yes"; shift ;;
+      *) args+=("$1"); shift ;;
+    esac
+  done
+
+  local remote_sync_path="${args[1]:?arg 1 remote_path must be set}"
+
+  local -a cmd=(
+    rsync
+    --cvs-exclude --exclude-from=${HOME}/.config/git/ignore
+    --archive
+    --compress --partial
+    --ignore-times --omit-dir-times --checksum
+    --no-perms --executability
+    --human-readable --verbose --progress
+  )
+  # --itemize-changes
+  # --relative
+
+  if [[ "${dry_run}" == "yes" ]]; then
+    cmd+=(--dry-run)
+  fi
+
+  if [[ "${delete}" == "yes" ]]; then
+    cmd+=(--delete-excluded --delete)
+  fi
+
+  if [[ -z "${reverse}" ]]; then
+    # Local to remote
+    echo "=== Syncing from local to remote ==="
+    cmd+=(
+      ./
+      ${remote_sync_path}/
+    )
+  else
+    # Remote to local
+    echo "=== Reverse-syncing from remote to local ==="
+    cmd+=(
+      ${remote_sync_path}/
+      ./
+    )
+  fi
+
+  print-cmd "${cmd[@]}"
+  ${cmd[@]}
+}

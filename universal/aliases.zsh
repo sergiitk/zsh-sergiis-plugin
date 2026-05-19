@@ -181,16 +181,3 @@ alias man='noglob man'
 
 # plutil -convert json -r -o - net.shinyfrog.bear.plist | bat -pp -l json
 # plutil -extract NSUserKeyEquivalents json -r -o - net.shinyfrog.bear.plist | bat -pp -l json
-
-# rsync
-# usage: rsync-to /target/dir
-# usage: rsync-to /target/dir --dry-run
-# usage: rsync-to /target/dir -n
-alias rsync-to="rsync --archive --relative \
-  --compress --partial \
-  --delete-excluded --delete \
-  --ignore-times --omit-dir-times --checksum \
-  --no-perms --executability \
-  --human-readable --itemize-changes --verbose \
-  --cvs-exclude --exclude-from=.gitignore --exclude-from='${HOME}/.config/git/ignore'\
-  ."
