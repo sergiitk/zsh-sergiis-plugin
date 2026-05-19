@@ -121,7 +121,7 @@ print-error() {
 
 # print cmd with bat highlight
 print-cmd() {
-  local -a args=("$@")
+  local -a cmd=("$@")
   echo -n "$ "
   echo "${cmd[@]}\n" | bat -pp -lsh
 }
@@ -281,28 +281,24 @@ function ssh-check-sockets() {
 }
 
 # rsync
-# usage: rsync-to --dry_run host:path/dir
-# usage: rsync-to --dry_run host:path/dir --reverse
-# usage: rsync-to --dry_run host:path/dir --delete
-# usage: rsync-to host:path/dir --reverse --delete
+# usage: rsync-to host:path/dir
+# usage: rsync-to host:path/dir --reverse
+# usage: rsync-to host:path/dir --delete
 function rsync-to() {
-  local reverse="" dry_run="" delete=""
+  local reverse="" delete=""
 
-  # local -a opts=($@)
-  local -a args=()
+  local -a user_args=()
   while [[ $# -gt 0 ]]; do
     case $1 in
       -d | --delete) delete="yes"; shift ;;
       -r | --reverse) reverse="yes"; shift ;;
-      -n | --dry-run) dry_run="yes"; shift ;;
-      *) args+=("$1"); shift ;;
+      *) user_args+=("$1"); shift ;;
     esac
   done
 
-  local remote_sync_path="${args[1]:?arg 1 remote_path must be set}"
+  local remote_sync_path="${user_args[1]:?arg 1 remote_path must be set}"
 
-  local -a cmd=(
-    rsync
+  local -a args=(
     --cvs-exclude --exclude-from=${HOME}/.config/git/ignore
     --archive
     --compress --partial
@@ -310,33 +306,43 @@ function rsync-to() {
     --no-perms --executability
     --human-readable --verbose --progress
   )
-  # --itemize-changes
-  # --relative
-
-  if [[ "${dry_run}" == "yes" ]]; then
-    cmd+=(--dry-run)
-  fi
 
   if [[ "${delete}" == "yes" ]]; then
-    cmd+=(--delete-excluded --delete)
+    args+=(--delete-excluded --delete)
   fi
 
   if [[ -z "${reverse}" ]]; then
     # Local to remote
     echo "=== Syncing from local to remote ==="
-    cmd+=(
+    args+=(
       ./
       ${remote_sync_path}/
     )
   else
     # Remote to local
     echo "=== Reverse-syncing from remote to local ==="
-    cmd+=(
+    args+=(
       ${remote_sync_path}/
       ./
     )
   fi
 
+  local -a dry=(rsync --dry-run --stats $args)
+  print-cmd "${dry[@]}"
+  ${dry[@]}
+
+  echo
+
+  local -a cmd=(rsync $args)
   print-cmd "${cmd[@]}"
-  ${cmd[@]}
+
+  read -s -q "REPLY?Continue? (y/N) " || true
+  REPLY="${REPLY:-n}"
+  echo "$REPLY"
+  if [[ "${REPLY}" == "y" ]] ;then
+    echo
+    ${cmd[@]}
+  else
+    echo "Exiting"
+  fi
 }
