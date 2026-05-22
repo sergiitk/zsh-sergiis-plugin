@@ -1,0 +1,70 @@
+#!/usr/bin/env zsh
+
+# iTerm2 Preferences -> Profiles -> Default -> Advanced -> Semantic History
+# Run command...
+# $HOME/.bin/iterm_open_with_remote \(hostname) \1:\2 \5
+#
+# Debugging:
+# - Scrits -> Manage -> Console
+# - Log to file
+# - exit 1
+
+ITERM_OPEN_REMOTE_SHOULD_LOG="1"
+
+open_from_remote() {
+    local hostname="$1" file_ref="$2" remote_pwd="$3"
+
+    local file="${file_ref%%:*}"
+    local lineno="${file_ref#*:}"
+
+    local log_file=""
+    local log_dir="${HOME}/.oh-my-zsh/custom/plugins/zsh-sergiis-plugin/log"
+    if [[ -d "${log_dir}" ]]; then
+        log_file="${log_dir}/iterm_open_with_remote.log"
+        touch "${log_file}"
+    fi
+
+    _log_line() {
+        [[ "${ITERM_OPEN_REMOTE_SHOULD_LOG}" != "1" || -z $log_file ]] && return 0
+        local str
+        str="$(date "+%F %T")"
+        if [[ -n "$hostname" ]]; then
+            str+=" [${hostname}]"
+        fi
+        str+=": ${1}"
+        echo "${str}" >> "${log_file}"
+    }
+
+    if [[ -z "${file}" ]]; then
+        log_file "Clicked empty file path file_ref=${file_ref}, pwd=${remote_pwd}"
+        return 1
+    fi
+
+    _log_line "Clicked file=${file}, lineno=${lineno}, pwd=${remote_pwd}"
+
+    # Custom url opening - not prefixed with http(s)://
+    local url=""
+
+    # Sanitize potenti
+    local url_candidate="${file//\"/}"
+    url_candidate="${url_candidate//\'/}"
+
+    if [[ "$url_candidate" =~ ^(b|cl)/[0-9]+$ ]]; then
+        url="http://$url_candidate"
+    fi
+
+    if [[ -n "${url}" ]]; then
+        _log_line "Opening custom url: ${url}"
+        open "$url"
+        return 0
+
+    fi
+
+    # Ideas to handle: open local files matching remote
+
+    # Didn't match with anything above.
+    _log_line "no-op"
+    return 0
+}
+
+open_from_remote "$@"

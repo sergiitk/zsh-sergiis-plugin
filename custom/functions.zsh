@@ -124,8 +124,13 @@ logsha-iterm2-shell-integration() {
   echo -e "Saved to: ${out}"
 }
 
+# https://github.com/gnachman/iTerm2-shell-integration
 logsha-iterm2-shell-integration-latest() {
   (curl -s https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/refs/heads/main/shell_integration/zsh && echo) | sha256sum
+}
+
+logsha-iterm2-shell-integration-stable() {
+  (curl -s https://iterm2.com/shell_integration/zsh && echo) | sha256sum
 }
 
 
