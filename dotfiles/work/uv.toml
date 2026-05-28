@@ -1,0 +1,10 @@
+# Place at ~/.config/uv/uv.toml
+# ln -svn $(realpath dotfiles/work/uv.toml) ~/.config/uv/uv.toml
+
+# Settings:
+# https://docs.astral.sh/uv/reference/settings/
+
+# Note on reinstalling tools with newer system python version:
+# uv tool list --show-python
+# uv tool install uv --force --verbose
+python-preference = "system"
