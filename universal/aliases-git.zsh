@@ -82,6 +82,7 @@ alias 'gr-'='git log --pretty=graph --branches --tags --graph --date=short --rem
 
 # human log with no pager
 alias glh='git --no-pager log --reverse --pretty=cool --date=human'
+alias glh5='git --no-pager log --reverse --pretty=cool --date=human -5'
 
 # Log commits in a given branch.
 glb() {

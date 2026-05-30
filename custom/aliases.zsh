@@ -69,6 +69,7 @@ alias dl='delta'
 # Plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/uv
 alias uvpi='uv pip install'
 alias uvpl='uv pip list'
+alias uvpt='uv pip tree'
 
 #################### docker #########################
 alias dk='docker'
