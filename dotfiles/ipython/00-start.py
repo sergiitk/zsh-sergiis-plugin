@@ -31,5 +31,17 @@ def human_sec(sec: float | str, mu: str = "seconds"):
     return result
 
 
+def date_plus_days(days: int, date: dt.date | None = None) -> dt.date:
+    if not date:
+        date = dt.date.today()
+
+    result = date + dt.timedelta(days=days)
+    # Wed, Jun 3, 2026
+    print(result.strftime("%a, %b %-d, %Y"))
+    print(result.isoformat())
+    print()
+    return result
+
+
 def rgb(r, g, b):
     print(hex(r << 16 | g << 8 | b).replace("0x", "#", 1))

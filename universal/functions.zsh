@@ -262,7 +262,7 @@ date-from-timestamp() {
 # ssh
 function ssh-check-sockets() {
   local host="${1:?arg 1 host must be set}"
-  # stat
+  # BSD stat
   # %HT %t %Sc %t %N
   # ===
   # %HT = file type long
