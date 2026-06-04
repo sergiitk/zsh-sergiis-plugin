@@ -120,10 +120,16 @@ print-error() {
 }
 
 # print cmd with bat highlight
-print-cmd() {
+function print-cmd() {
+  local nl=""
+  if [[ "${1}" == "--no-nl" ]]; then
+    shift
+  else
+   nl="\n"
+  fi
   local -a cmd=("$@")
   echo -n "$ "
-  echo "${cmd[@]}\n" | bat -pp -lsh
+  echo "${(q-@)cmd}${nl}" | bat -pp -lsh
 }
 
 ############ Other utilities.

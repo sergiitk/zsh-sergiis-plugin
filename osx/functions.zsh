@@ -50,28 +50,62 @@ switch-py-port() {
   port select --summary | grep -E "p(y|i)[^\d ]+${version}"
 }
 
-switch-resolution() {
+function switch-resolution() {
   emulate -L zsh
   setopt extended_glob
-  local serial="${1:-s30592}"
-  if [[ ${serial} == "-l" ]]; then
-    displayplacer list | sed -n '/Persistent screen id/,/^Resolutions for rotation/p' | sed 's/^Resolutions for rotation.*//' | head -n-1
+
+  local displays_metadata
+  displays_metadata="$(\
+    displayplacer list |
+      sed -n '/Persistent screen id/,/^Resolutions for rotation/p' |
+      sed 's/^Resolutions for rotation.*//' |
+      head -n-1 \
+  )"
+
+  if [[ ${1} == "-l" ]]; then
+    echo "${displays_metadata}"
     return 0
   fi
 
-  if [[ "${serial}" != s[[:digit:]]## ]]; then
-    print -u2 -- "Wrong serial number format: ${serial}"
-    return 1
+  function get-screen-serial-from-description() {
+    local description="${1:?missing description}" result
+    result="$( \
+      grep -m1 -B1 -E "^Type: .*${description}.*$" <<< "${displays_metadata}" |
+      head -n1 | cut -d':' -f2 | tr -d ' ' \
+    )"
+    if [[ "${result}" != s[[:digit:]]## ]]; then
+      print -u2 -- "Couldn't find the serial for screen: ${description}"
+      # print -u2 -- "Wrong serial number format: ${result}"
+      return 1
+    fi
+    REPLY="${result}"
+    return 0
+  }
+
+  local normal_mode="1" alt_mode="9" set_mode="${2:-}" serial_external serial_mbp
+
+  if [[ -n "${1}" ]]; then
+    if [[ "${1}" != s[[:digit:]]## ]]; then
+      print -u2 -- "Wrong serial number format: ${result}"
+      return 1
+    fi
+    serial_external="${1}"
+  else
+    get-screen-serial-from-description "external screen" || return 1
+    serial_external="${REPLY}"
   fi
-  local normal_mode="1" alt_mode="9" set_mode="${2:-}"
+
+  get-screen-serial-from-description "MacBook built in screen" || return 1
+  serial_mbp="${REPLY}"
+
   if [[ "${CPUTYPE}" == "arm64" ]]; then
     normal_mode="16"
   fi
-  local display_info current_mode_str current_mode_int
+  local display_info current_mode_str current_mode_int set_mbp_origin
 
-  display_info="$(displayplacer list | sed -n "/${serial}/,/^$/p" | grep -v "color_depth:4" | head -n-1)"
+  display_info="$(displayplacer list | sed -n "/${serial_external}/,/^$/p" | grep -v "color_depth:4" | head -n-1)"
   if [[ -z "${display_info}" ]]; then
-    print -u2 -- "Serial number not found: ${serial}"
+    print -u2 -- "Serial number not found: ${serial_external}"
     return 1
   fi
   if [[ "${set_mode}" == "-l" ]]; then
@@ -88,11 +122,15 @@ switch-resolution() {
 
   echo "${current_mode_str}"
 
+  # Origin: (<x>,<y>)
   if [[ -z "${set_mode}" ]]; then
     if [[ "${current_mode_int}" == "${normal_mode}" ]]; then
       set_mode="${alt_mode}"
+      # is -1728 simply -(mbp_res_x+128)?
+      set_mbp_origin="(-1728,-104)"
     else
       set_mode="${normal_mode}"
+      set_mbp_origin="(-1728,204)"
     fi
   elif [[ "${set_mode}" != [[:digit:]]## ]]; then
     print -u2 -- "Wrong mode format: ${set_mode}"
@@ -100,14 +138,36 @@ switch-resolution() {
   fi
 
   local new_mode_str
-  new_mode_str=$(echo "${display_info}" | grep -oE "mode ${set_mode}: .*")
+  new_mode_str="$(grep -oE "mode ${set_mode}: .*" <<< "${display_info}")"
+
   if [[ -z "${new_mode_str}" ]]; then
     print -u2 -- "Requested mode not found: ${set_mode}"
     return 1
   fi
 
   echo "${new_mode_str} <-- setting new mode"
-  displayplacer "id:${serial} mode:${set_mode}"
+  local -a cmd=(
+    displayplacer
+    "id:${serial_external} mode:${set_mode}"
+  )
+  if [[ -n "${set_mbp_origin}" ]]; then
+    mbp_current_mode_int="$(\
+      displayplacer list |
+      sed -n "/${serial_mbp}/,/^$/p" |
+      grep -oE 'mode [0-9]+: .*<-- current mode' |
+      grep -oP '(?<=mode )[0-9]+(?=:)' \
+    )"
+    if [[ "${mbp_current_mode_int}" != [[:digit:]]## ]]; then
+      print -u2 -- "Built-in display current mode not detected"
+      return 1
+    fi
+    echo "${set_mbp_origin} <-- setting new origin for the built-in display (the same mode)"
+    cmd+=(
+      "id:${serial_mbp} mode:${mbp_current_mode_int} origin:${set_mbp_origin}"
+    )
+  fi
+  print-cmd --no-nl "${cmd[@]}"
+  "${cmd[@]}"
 }
 
 # Setup proxy from system.
