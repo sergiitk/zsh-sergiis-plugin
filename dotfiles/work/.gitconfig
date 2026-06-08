@@ -23,7 +23,7 @@
   unhide = update-index --no-assume-unchanged
   unhide-all = update-index --really-refresh
   ls-hidden = !git ls-files -v | grep '^[a-z]'
-  cc = !git rev-parse --revs-only HEAD | pbcopy
+  cc = !git rev-parse --revs-only --short HEAD | tee /dev/tty | pbcopy
 
 ## Main operations.
 [pull]
