@@ -131,6 +131,17 @@ function print-cmd() {
   echo -n "$ "
   echo "${(q-@)cmd}${nl}" | bat -pp -lsh
 }
+# print cmd with bat highlight
+function print-cmd-raw() {
+  local nl=""
+  if [[ "${1}" == "--no-nl" ]]; then
+    shift
+  else
+   nl="\n"
+  fi
+  echo -n "$ "
+  echo "${@}${nl}" | bat -pp -lsh
+}
 
 ############ Other utilities.
 

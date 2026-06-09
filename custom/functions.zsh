@@ -124,13 +124,25 @@ logsha-iterm2-shell-integration() {
   echo -e "Saved to: ${out}"
 }
 
+logsha-remote() {
+  local url="${1:?missing the url argument}"
+  local extra_content="${2:-}"
+  if [[ -n "${extra_content}" ]]; then
+    print-cmd-raw --no-nl "{ curl -s ${(qqq)url} && echo -n ${(qqq)extra_content}; } | sha256sum --tag"
+    { curl -s "${url}" && echo -n "${extra_content}"; } | sha256sum --tag
+  else
+    print-cmd-raw --no-nl "curl -s ${(qqq)url} | sha256sum --tag"
+    curl -s "${url}" | sha256sum --tag
+  fi
+}
+
 # https://github.com/gnachman/iTerm2-shell-integration
 logsha-iterm2-shell-integration-latest() {
-  (curl -s https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/refs/heads/main/shell_integration/zsh && echo) | sha256sum
+  logsha-remote "https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/refs/heads/main/shell_integration/zsh" "\n"
 }
 
 logsha-iterm2-shell-integration-stable() {
-  (curl -s https://iterm2.com/shell_integration/zsh && echo) | sha256sum
+  logsha-remote "https://iterm2.com/shell_integration/zsh" "\n"
 }
 
 
