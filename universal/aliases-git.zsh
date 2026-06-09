@@ -13,8 +13,16 @@
 
 ### Productivity
 alias g.='git add .'
-alias gpl='git pull'
 alias gnp='git --no-pager'
+alias gsup='git submodule update --init --recursive'
+
+# Fetch and pull
+alias gpl='git pull'
+# git branch remote tracking: returns "<remote> <tracking-branch>"
+alias gbtr='git rev-parse --symbolic-full-name --abbrev-ref @{upstream} | sed "s@/@ @"'
+# pull/fetch 1
+alias gpl1='git pull --verbose $(gbtr)'
+alias gf1='git fetch --verbose $(gbtr)'
 
 # Switch.
 # Also overrides 'gs' Ghostscript
