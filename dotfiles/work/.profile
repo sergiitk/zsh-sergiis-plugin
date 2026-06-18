@@ -40,7 +40,7 @@ PATH="${PATH}:${ANDROID_HOME}/platform-tools"
 
 # Gcloud
 export CLOUDSDK_HOME="${HOME}/Development/SDK/google-cloud-sdk"
-export CLOUDSDK_PYTHON="/opt/local/bin/python3.13"
+export CLOUDSDK_PYTHON="/opt/local/bin/python3.14"
 
 # SSH
 # Load SSH keys stored in the Keychain using native OSX ssh agent

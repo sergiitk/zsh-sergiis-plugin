@@ -56,6 +56,9 @@ alias dtt='date "+%Y%m%d"'
 # SSH
 alias s='ssh'
 
+# diff
+alias dif='diff -u'
+
 # less
 alias le='less'
 # alias ß='less'
