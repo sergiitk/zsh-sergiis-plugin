@@ -21,39 +21,11 @@ alias gpl='git pull'
 
 # git branch remote tracking: returns "<remote> <tracking-branch>"
 alias gb-tr='git rev-parse --symbolic-full-name --abbrev-ref @{upstream} | sed "s@/@ @"'
+
 # git branch remote tracking github-style: returns "<remote>:<tracking-branch>"
-# alias gb-gh='git rev-parse --symbolic-full-name --abbrev-ref @{upstream} | sed "s@/@:@"'
-gb-gh() {
-  # local -a remotes
-  # remotes=( ${(f)"$(git remote | sort)"} )
-  local -r branch="${1:-}" default_handle="${USER}"
-  local tracking_branch
-
-  # returns "<remote>/<tracking-branch>"
-  tracking_branch=$(git rev-parse --symbolic-full-name --abbrev-ref "${branch}@{upstream}")
-  if [[ -z "${tracking_branch}" ]]; then
-    return 1
-  fi
-
-  # Separate by /
-  local -a parts
-  parts=( "${(@s:/:)tracking_branch}" )
-
-  # Single part, just return as is with default user set to default handle
-  if (( ${#parts} == 1 )); then
-    echo "${default_handle}:${parts[1]}"
-    return 0
-  fi
-
-  # Multiple parts
-  if ! git remote get-url "${parts[1]}" &> /dev/null; then
-    # no remote
-    echo "${default_handle}:${tracking_branch}"
-    return 0
-  fi
-
-  echo "${parts[1]}:${(j:/:)parts:1}"
-}
+# gb-gh() {
+#  moved to bin/ to be compatible with gh aliases
+# }
 
 # pull/fetch 1
 alias gpl1='git pull --verbose $(gb-tr)'
