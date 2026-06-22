@@ -90,7 +90,7 @@ alias 'gr-'='git log --pretty=graph --branches --tags --graph --date=short --rem
 
 # human log with no pager
 alias glh='git --no-pager log --reverse --pretty=cool --date=human'
-alias glh5='git --no-pager log --reverse --pretty=cool --date=human -5'
+alias gl5='git --no-pager log --reverse --pretty=cool --date=human -5'
 
 # Log commits in a given branch.
 glb() {
@@ -169,6 +169,10 @@ alias gds-patch='git --no-pager diff --staged --no-color --patch'
 alias gsw='git show --format=fuller'
 alias gsww='git show -U1 --color-words --abbrev-commit --pretty=fuller'
 alias gswf='git --no-pager show --name-only'
+# header format:
+# --format="format:" or format= to skip the header completely, just the diff
+# use --format=oneline without author or anything: "d2fb36bb47 Commit title"
+alias gsw-patch='git --no-pager show --format="" --no-color --patch'
 
 # Stash.
 alias gstl='git --no-pager stash list --format=stash'

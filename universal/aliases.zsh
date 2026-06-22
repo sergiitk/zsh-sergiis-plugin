@@ -4,8 +4,12 @@
 # zshmisc / Aliasing: If the text ends with a space, the next word in
 # the shell input is treated as though it were in command position
 # for purposes of alias expansion.
+
 ### Important! Pass aliases through sudo.
 alias sudo='sudo '
+
+# Same for xargs? but it breaks when an alias has noglob. example bzq ... | xargs bzb
+# alias xargs='xargs '
 
 ######## ZSH helpers
 ### Vital overrides
