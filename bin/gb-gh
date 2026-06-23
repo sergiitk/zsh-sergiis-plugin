@@ -1,13 +1,18 @@
 #!/usr/bin/env zsh
 
 _gb_gh() {
-  # local -a remotes
-  # remotes=( ${(f)"$(git remote | sort)"} )
+  local git_quiet=""
+  if [[ "${1}" == "-q" ]]; then
+    git_quiet='--quiet'
+    shift
+  fi
+
   local -r branch="${1:-}" default_handle="${USER}"
   local tracking_branch
 
   # returns "<remote>/<tracking-branch>"
-  tracking_branch=$(git rev-parse --symbolic-full-name --abbrev-ref "${branch}@{upstream}")
+  tracking_branch="$(git rev-parse $git_quiet --verify --symbolic-full-name --abbrev-ref "${branch}@{upstream}")"
+
   if [[ -z "${tracking_branch}" ]]; then
     return 1
   fi
@@ -24,12 +29,19 @@ _gb_gh() {
 
   # Multiple parts
   if ! git remote get-url "${parts[1]}" &> /dev/null; then
-    # no remote
     echo "${default_handle}:${tracking_branch}"
     return 0
   fi
 
-  echo "${parts[1]}:${(j:/:)parts:1}"
+  local remote="${parts[1]}" remote_branch="${(j:/:)parts:1}"
+  if [[ "${remote}" == "origin" ]]; then
+    remote="${default_handle}"
+  fi
+
+  echo "${remote}:${remote_branch}"
 }
+
+# gbrll | xargs -n1 gb-gh -q | grep -v sergiitk | xargs -n1 gh pr st
+# gbrll | xargs -n1 gb-gh -q | grep -v sergiitk | xargs -n1 gh pr st | grep '^CLOSED'
 
 _gb_gh $@
