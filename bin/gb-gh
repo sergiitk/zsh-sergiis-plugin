@@ -34,8 +34,25 @@ _gb_gh() {
   fi
 
   local remote="${parts[1]}" remote_branch="${(j:/:)parts:1}"
+  if [[ "${remote}" == "upstream" ]]; then
+    # Assuming gh set to track the upstream.
+    echo "${remote_branch}"
+    return 0
+  fi
+
   if [[ "${remote}" == "origin" ]]; then
     remote="${default_handle}"
+    # below is parsing remote url if necessary
+    # local remote_url
+    # remote_url="$(git remote get-url "${remote}")"
+    # if [[ "${remote_url}" =~ ^http(s)?:// ]] then;
+    #     print -u2 -- "Only supported for SSH remotes"
+    #     return 1
+    # fi
+    # # format: git@github.com:grpc/grpc.git
+    # # delete everything (longest match) before colon with `##*:`
+    # # then delete everything (longest match) after slash with `%%/*`
+    # remote="${${remote_url##*:}%%/*}"
   fi
 
   echo "${remote}:${remote_branch}"

@@ -274,4 +274,5 @@ alias grvsq='git remote --verbose show'
 # Clean gone branches
 alias gone='git branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)" | grep -Ev "\$^"'
 alias goneD='gone | xargs -r -n1 -p git branch -D'
-# alias gone='git branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)" | xargs -p git branch -D'
+# Clean branches for closed PRs associated with other remotes
+alias goneDR='gh-st-all --closed | tee /dev/tty | cut -f1 | xargs -r -n1 -p git branch --delete --force'
