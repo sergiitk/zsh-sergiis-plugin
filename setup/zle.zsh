@@ -3,6 +3,34 @@
 ## https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 ## -------------------------------------------------------------------------------------------------
 
+## Usage:
+## -------------------------------------------------------------------------------------------------
+
+# List all existing widgets:
+# zle -la
+# (-l for list; -a to include builtin widgets)
+# Also useful: -L to show in `zle -N widget-name func-name`` format.
+#
+# To list bindings, run
+# bindkey
+# Useful: `-L` to show in `bindkey "combo" widget-name` format,
+# and ranges with `bindkey -R "from"-"to" widget-name
+#
+# To list available keymaps, run
+# bindkey -l
+#
+# To list the keys in a specific keymap, run (can also be used with -L format)
+# bindkey -M keymap-name
+#
+# To see the active keymap, check what's aliased to main
+# bindkey -lL main
+#
+# Built-in zle widgets:
+# https://github.com/zsh-users/zsh/blob/master/Src/Zle/iwidgets.list
+#
+# zsh-users widgets:
+# https://github.com/zsh-users/zsh/blob/master/Functions/Zle
+
 ## Word navigation
 ## -------------------------------------------------------------------------------------------------
 # The editor’s idea of a word: controls moves over words.
@@ -24,6 +52,7 @@ select-word-style bash
 # Useful default bindings
 # esc + m — Paste prev shell word
 # esc + . — Paste the last argument of previous command, same as !$ expansion. Repeat for n-1 commands.
+# esc + w - Wipe a region. First, set a marker with ctrl-@; then move the cursor to select a region; esc-w to wipe
 #
 # esc + h — Push command to stack, run man for it
 # esc + ? — Push command to stack, run which-command for it
@@ -33,6 +62,7 @@ alias which-command='?'
 
 # Use `read` to read keys, or press ctrl-v then char.
 # See infocmp
+
 # ctrl+l Push input
 bindkey '^L' push-input
 
@@ -47,6 +77,12 @@ bindkey "^U" backward-kill-line
 # Normally omz sets Edit command in $EDITOR: ctrl+x+e
 # Overrides default zsh "^[/" _history-complete-older
 bindkey "^[/" edit-command-line
+
+# esc + l - "run l"
+# Overrides omz default "run ls"
+#   -s explained: replace one with another
+#   ^q explained: bindkey | grep -F '^[q' -> "^[q" push-line
+bindkey -s '\el' '^q l\n'
 
 # Move to where the arguments belong. "^[[1;10D" is shift+option+right.
 after-first-word() {
