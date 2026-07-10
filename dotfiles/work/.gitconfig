@@ -109,8 +109,8 @@
   # http://stackoverflow.com/questions/8483041/git-color-words-excluding
   # The following expression will make a word be any string of characters
   # and underscore, or any non-whitespace character.
-  wordRegex = \\w+|[^[:space:]]
-  #wordRegex = [^[:space:]()<>]+
+  # wordRegex = \\w+|[^[:space:]]
+  wordRegex = "[^[:space:]()<>\"=,]+"
 
   # default (myers), minimal, patience, histogram
   # algorithm = patience
