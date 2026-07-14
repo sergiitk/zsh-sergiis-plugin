@@ -276,3 +276,4 @@ alias gone='git branch --list --format "%(if:equals=[gone])%(upstream:track)%(th
 alias goneD='gone | xargs -r -n1 -p git branch -D'
 # Clean branches for closed PRs associated with other remotes
 alias goneDR='gh-st-all --closed | tee /dev/tty | cut -f1 | xargs -r -n1 -p git branch --delete --force'
+alias goneDM='gh-st-all --merged | tee /dev/tty | cut -f1 | xargs -r -n1 -p git branch --delete --force'

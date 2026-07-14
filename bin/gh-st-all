@@ -4,11 +4,14 @@ _gb_gh_st() {
   local -r default_handle="${USER}"
 
   local closed=false
-  if [[ "${1}" == "--closed" ]]; then
-    closed=true
-    shift
-  fi
-
+  local merged=false
+  while [[ $# -gt 0 ]]; do
+    case "${1}" in
+      --closed) closed=true; shift ;;
+      --merged) merged=true; shift ;;
+      *) break ;;
+    esac
+  done
 
   for br in "${(@f)$(git branch --format '%(refname:lstrip=2)' --list)}"; do
     gh_ref="$(gb-gh -q "${br}")"
@@ -22,12 +25,16 @@ _gb_gh_st() {
     if $closed && [[ $result != CLOSED* ]]; then
       continue
     fi
+    if $merged && [[ $result != MERGED* ]]; then
+      continue
+    fi
     echo "${br}\t${result}"
   done
 }
 
 # gh-st-all | column -t -l4 --table-truncate=4
 # gh-st-all --closed
+# gh-st-all --merged
 # gh-st-all --closed | tee /dev/tty | cut -f1 | xargs -n1 -p git branch --delete
 # gh-st-all --closed | cut -f1 | xargs -n1 gb-gh | tee /dev/tty | cut -f1 | xargs -p git branch --delete --force
 _gb_gh_st $@
