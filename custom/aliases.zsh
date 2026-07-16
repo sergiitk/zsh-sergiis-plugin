@@ -15,7 +15,8 @@ hash -d d="${HOME}/Development"
 hash -d dev="${HOME}/Development"
 hash -d play="${HOME}/Development/playground"
 hash -d p="${HOME}/Development/projects"
-hash -d g="${HOME}/Development/go"
+hash -d g="${HOME}/.gemini/config"
+hash -d go="${HOME}/Development/go"
 hash -d gb="${HOME}/Development/go/packages/bin"
 
 # MacPorts
