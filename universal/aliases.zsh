@@ -34,7 +34,7 @@ alias mv='mv -v -n'
 alias m='mv -v -i'
 
 # Default settings --human-readable --apparent-size --block-size=1
-alias du='du -h -b --total'
+alias du='du -b -h --total'
 # Quick folder size check
 alias 'du.'='du -a --max-depth=1'
 
