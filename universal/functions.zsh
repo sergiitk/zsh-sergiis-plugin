@@ -119,6 +119,12 @@ print-error() {
   return $last_status
 }
 
+print-run-cmd() {
+  local -a cmd=("$@")
+  print-cmd --no-nl "${cmd[@]}"
+  "${cmd[@]}"
+}
+
 # print cmd with bat highlight
 function print-cmd() {
   local nl=""
@@ -131,6 +137,7 @@ function print-cmd() {
   echo -n "$ "
   echo "${(q-@)cmd}${nl}" | bat -pp -lsh
 }
+
 # print cmd with bat highlight
 function print-cmd-raw() {
   local nl=""

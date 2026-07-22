@@ -1,4 +1,18 @@
 ################### OSX Functions  ###################
+
+## info
+## -------------------------------------------------------------------------------------------------
+print-sys-info() {
+  print-run-cmd sysctl -n machdep.cpu.brand_string
+  echo
+  print-run-cmd uname -vm
+  echo
+  print-run-cmd sw_vers
+}
+
+## ports
+## -------------------------------------------------------------------------------------------------
+
 # Search through ports.
 psearch() {
   local context
@@ -19,6 +33,7 @@ psearch() {
   port search ${1//[^a-zA-Z0-9_-]/} | grep -iP $context "$1[^ $ignore]*(?= @[0-9])"
 }
 alias psearch="noglob psearch"
+
 
 # use gnu binaries
 use-gnu-binary() {
@@ -49,6 +64,9 @@ switch-py-port() {
   echo "port select --summary"
   port select --summary | grep -E "p(y|i)[^\d ]+${version}"
 }
+
+## unsorted
+## -------------------------------------------------------------------------------------------------
 
 function switch-resolution() {
   emulate -L zsh
