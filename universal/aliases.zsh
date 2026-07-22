@@ -153,8 +153,10 @@ alias udx-be='iconv -f UTF-8 -t UCS-2 | hexdump'
 
 ### Paths
 # Resolve what is the command.
-alias '?'='nocorrect whence -asvf'
-# alias whf='whence -asvf'
+alias '?'='nocorrect whence -avfs'
+# Same as above, but prints intermediate resolution steps for symlinks.
+# Noticed to be buggy on edge-cases.
+alias '??'='nocorrect whence -avfS'
 
 # processes
 alias pkill="noglob pkill"
