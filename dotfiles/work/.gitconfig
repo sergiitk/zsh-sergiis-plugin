@@ -110,7 +110,7 @@
   # The following expression will make a word be any string of characters
   # and underscore, or any non-whitespace character.
   # wordRegex = \\w+|[^[:space:]]
-  wordRegex = "[^[:space:]()<>\"=,]+"
+  wordRegex = '[^[:space:]()<>\"=,]+'
 
   # default (myers), minimal, patience, histogram
   # algorithm = patience
@@ -143,9 +143,9 @@
   # "bold purple" and "bold cyan" made ligher and italic
   # Other mappings seem to have no effect
   map-styles = \
-    bold purple => syntax italic "#3e5900", \
+    bold purple => syntax italic "#80002a", \
     bold blue => syntax "#271344", \
-    bold cyan => syntax italic "#3e5900", \
+    bold cyan => syntax italic "#007e5e", \
     bold yellow => syntax "#222f14"
   zero-style = syntax
   whitespace-error-style = "#aaaaaa"
