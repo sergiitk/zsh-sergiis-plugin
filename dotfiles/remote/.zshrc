@@ -74,6 +74,8 @@ plugins=(
   ubuntu
   ## common tools
   extract git fzf
+  # resume suspended job on ctrl-z
+  fancy-ctrl-z
   # fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets,
   # such as zsh-autosuggestions or fast-syntax-highlighting
   fzf-tab

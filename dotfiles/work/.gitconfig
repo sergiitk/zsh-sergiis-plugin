@@ -106,7 +106,8 @@
   # The following expression will make a word be any string of characters
   # and underscore, or any non-whitespace character.
   # wordRegex = \\w+|[^[:space:]]
-  wordRegex = '[^[:space:]()<>\"=,]+'
+  # Repeated \" two times to solve the annoying syntax highlight issue
+  wordRegex = [^[:space:]()<>\"\"=,]+
 
   # default (myers), minimal, patience, histogram
   # algorithm = patience
