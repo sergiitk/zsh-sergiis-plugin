@@ -1,6 +1,8 @@
 ## Sergii's plugin.
 ## -------------------------------------------------------------------------------------------------
-ZSH_SERGII="$(dirname $0)"
+# shellcheck disable=SC1091
+
+export ZSH_SERGII="$(dirname "$0")"
 
 ## Options
 ## man zshoptions
@@ -60,19 +62,21 @@ setopt INC_APPEND_HISTORY_TIME
 
 ## Imports
 ## -------------------------------------------------------------------------------------------------
-source $ZSH_SERGII/setup/zle.zsh
-source $ZSH_SERGII/setup/plugins.zsh
-source $ZSH_SERGII/setup/apps.zsh
 
-# source $ZSH_SERGII/universal/zle-completions.zsh
-source $ZSH_SERGII/universal/aliases.zsh
-source $ZSH_SERGII/universal/aliases-git.zsh
-source $ZSH_SERGII/universal/functions.zsh
+source "${ZSH_SERGII}/setup/zle.zsh"
+source "${ZSH_SERGII}/setup/plugins.zsh"
+source "${ZSH_SERGII}/setup/apps.zsh"
+
+# source "${ZSH_SERGII}/universal/zle-completions.zsh"
+source "${ZSH_SERGII}/universal/aliases.zsh"
+source "${ZSH_SERGII}/universal/aliases-git.zsh"
+source "${ZSH_SERGII}/universal/functions.zsh"
 
 if [[ "${OSTYPE}" == darwin* ]]; then
-  source $ZSH_SERGII/osx/aliases.zsh
-  source $ZSH_SERGII/osx/functions.zsh
+  source "${ZSH_SERGII}/osx/aliases.zsh"
+  source "${ZSH_SERGII}/osx/functions.zsh"
 fi
 
-source $ZSH_SERGII/custom/aliases.zsh
-source $ZSH_SERGII/custom/functions.zsh
+source "${ZSH_SERGII}/custom/settings.zsh"
+source "${ZSH_SERGII}/custom/aliases.zsh"
+source "${ZSH_SERGII}/custom/functions.zsh"
