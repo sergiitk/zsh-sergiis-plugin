@@ -126,6 +126,8 @@ alias 'exif?'="exiftool -a -u -g1"
 alias e='echo'
 # Print the arguments separated by newlines instead of spaces.
 alias p='print -l --'
+# Print directories with respect to named directory hash table.
+alias pd='print -D --'
 # Print no new line
 alias pn='print -n --'
 # Print the arguments separated by NULL character instead of spaces.

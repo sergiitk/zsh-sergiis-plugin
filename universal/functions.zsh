@@ -280,7 +280,7 @@ bin2dec() {
 date-from-timestamp() {
   local timestamp="${1:?arg timestamp must be set}"
   # Note: expecting GNU `date`.
-  date -d "@${timestamp}"
+  print-run-cmd date -d "@${timestamp}"
 }
 
 # ssh

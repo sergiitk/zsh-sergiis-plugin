@@ -2,7 +2,8 @@
 ## -------------------------------------------------------------------------------------------------
 # shellcheck disable=SC1091
 
-export ZSH_SERGII="$(dirname "$0")"
+typeset -gx ZSH_SERGII
+ZSH_SERGII="$(dirname "$0")"
 
 ## Options
 ## man zshoptions
