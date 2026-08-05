@@ -26,9 +26,9 @@ alias lf='l "$(pfd)"'
 alias f='open "$(pwd)"'
 alias o="open"
 
-## Macports
+## MacPorts
 ## Instead of https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macports,
-## uses better macports completion from zsh-completions.
+## uses better MacPort completion from zsh-completions.
 ## -------------------------------------------------------------------------------------------------
 alias pi='sudo port install'
 alias pu='sudo port uninstall'

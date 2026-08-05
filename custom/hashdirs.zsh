@@ -1,10 +1,12 @@
 ## Custom named directory hash table.
 ## -------------------------------------------------------------------------------------------------
-##
-## To undo the ~ for a path, you can use print -D:
-## $ print -D /Users/sergiitk/Development/grpc
-## ~d/grpc
-##
+#
+# To undo the ~ for a path, you can use print -D:
+# $ print -D /Users/sergiitk/Development/grpc
+# ~d/grpc
+#
+## -------------------------------------------------------------------------------------------------
+
 
 ### Apple and their weird folders...
 # Homedir Library
