@@ -1,35 +1,17 @@
 ## Work Profile: .profile
 ## -------------------------------------------------------------------------------------------------
 
-# Home folder setup
-PATH="${HOME}/.bin/gobin:${HOME}/.bin/gnu:${HOME}/.bin:${PATH}"
-
-## XDG
-# https://specifications.freedesktop.org/basedir-spec/latest/
-
-# XDG_CONFIG_HOME
-# Apparently this is _sometimes_ respected, but not by go or rust directories, unfortunately.
-# Go and rust default straight to ~libas on mac.
-#
-# Fun rabbithole on why bat (which is using rust directories) does use ~/.config/bat/:
-# - https://github.com/sharkdp/bat/issues/151 (first request)
-# - https://github.com/sharkdp/bat/issues/442 (issue by the maintainer)
-# - https://github.com/sharkdp/bat/pull/491   (the PR)
-#
-# Still, setting it just in case someone chooses to respect it.
-export XDG_CONFIG_HOME="${HOME}/.config"
-
-# XDG_BIN_HOME - not in the spec yet, but see the following for other non-official XDG_ vars:
-# https://gist.github.com/roalcantara/107ba66dfa3b9d023ac9329e639bc58c
-# For XDG_BIN_HOME: lk ~b ~/.local/bin, or
-export PATH="${HOME}/.local/bin:${PATH}"
+# Re-source the .zshenv file so we get our path in the beginning instead of getting borked by
+# /usr/libexec/path_helper -s from /etc/profile
+if [[ -f "${HOME}/.oh-my-zsh/custom/plugins/zsh-sergiis-plugin/dotfiles/work/.zshenv" ]]; then
+    # shellcheck disable=SC1091
+    source "${HOME}/.oh-my-zsh/custom/plugins/zsh-sergiis-plugin/dotfiles/work/.zshenv"
+fi
 
 # Env
-export LANG="en_US.UTF-8"
-export LC_ALL="${LANG}"
 export EDITOR="sublw"
 
-# Macport libs
+# MacPorts libs
 export CXXFLAGS="-I/opt/local/include"
 export LDFLAGS="-L/opt/local/lib"
 
