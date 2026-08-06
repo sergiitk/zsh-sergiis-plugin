@@ -1,17 +1,17 @@
 ## Work Profile: .zshrc
 ## -------------------------------------------------------------------------------------------------
 # ignore: unused vars, non-constant source
-# shellcheck disable=SC2034,SC1090,SC1091
+# shellcheck disable=SC2034,SC1090
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load.
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -99,15 +99,17 @@ plugins=(
 
 plugins+=(zsh-sergiis-plugin) # Load my plugin last
 if [[ -f "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh" ]]; then
+  # shellcheck source=./preload.zsh
   source "${ZSH}/custom/plugins/zsh-sergiis-plugin/preload.zsh"
 fi
 
-source $ZSH/oh-my-zsh.sh
+# shellcheck disable=SC1091
+source "${ZSH}/oh-my-zsh.sh"
 
 ## User configuration
 
 # Dedup $PATH. Fixes .profile path appending issue, useful for `exec zsh`.
-typeset -U path
+typeset -U PATH path
 
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices#how-do-i-use-shell-integration
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES

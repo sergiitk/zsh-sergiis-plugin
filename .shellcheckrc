@@ -13,3 +13,7 @@ enable=require-variable-braces
 # I don't want to shebang to non-executable files
 # alternatively, may specify shell rc directive.
 disable=SC2148
+external-sources=true
+
+source-path=SCRIPTDIR
+source-path=.
