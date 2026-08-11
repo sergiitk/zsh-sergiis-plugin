@@ -6,11 +6,30 @@ LOGFILE=~/Library/Logs/ssh-load-keychain.log
 
 /bin/date "+%Y-%m-%d %H:%M:%S" >> "${LOGFILE}"
 /usr/bin/ssh-add --apple-load-keychain >>& "${LOGFILE}"
+echo '<end loading>' >> "${LOGFILE}"
 echo >> "${LOGFILE}"
 
+
+# LaunchAgent notes:
+
 # lk $ZSH_SERGII/bin/LaunchAgents/ssh-load-keychain.plist ~/Library/LaunchAgents
+#
+# Unload / Load / Print:
+# launchctl unload -w ~/Library/LaunchAgents/ssh-load-keychain.plist
 # launchctl load -w ~/Library/LaunchAgents/ssh-load-keychain.plist
 # launchctl list org.sergii.ssh-load-keychain
+#
+# Unload / Load / Restart Loaded / Print [the new way]:
+# launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/ssh-load-keychain.plist
+# launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ssh-load-keychain.plist
+# launchctl kickstart -k -p gui/$(id -u)/org.sergii.ssh-load-keychain
+# launchctl print gui/$(id -u)/org.sergii.ssh-load-keychain
+#
+# Linting the plist:
+# plutil -lint ~/Library/LaunchAgents/ssh-load-keychain.plist
+
+
+# SSH notes:
 
 # ssh-add -l to list ssh authentication agent keys (-L) for full keys
 # ssh-add -L for full keys

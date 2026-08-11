@@ -7,11 +7,18 @@
     <string>org.sergii.ssh-load-keychain</string>
 
     <!-- Args -->
-    <key>ProgramArguments</key>
+    <!-- This way sudo sfltool dumpbtm shows the name as "zsh" -->
+    <!-- <key>ProgramArguments</key>
     <array>
         <string>/bin/zsh</string>
         <string>-c</string>
         <string>$HOME/.bin/ssh-load-keychain</string>
+    </array> -->
+    <!-- With this approach, the service is at least registered as ssh-load-keychain  -->
+    <!-- The alternative would be  -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/sergiitk/.bin/ssh-load-keychain</string>
     </array>
 
     <!-- Autoload -->
