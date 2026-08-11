@@ -385,7 +385,7 @@
   # print-unicode f7ac
   typeset -g POWERLEVEL9K_DIR_CLASSES=()
   POWERLEVEL9K_DIR_CLASSES+=(
-    '(*/.config(|/*)|*/Development/settings(|/*)|*/zsh-sergiis-plugin(|/*))'
+    '(*/.config(|/*)|*/Development/settings(|/*)|*/zsh-sergiis-plugin(|/*)|*/.gemini/config(|/*))'
     CFG      ''
   )
   # Google icon: see f7ac at https://www.nerdfonts.com/cheat-sheet
