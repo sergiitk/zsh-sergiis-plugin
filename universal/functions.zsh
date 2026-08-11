@@ -46,6 +46,30 @@ ls-autoload() {
   print -l $fpath
 }
 
+# -- directories ---
+# print realpath but respecting dir hash tables
+rpd() {
+  local target_path="${1:?arg1 target_path must be set}"
+  if [[ ! -e "${target_path}" ]]; then
+    print-warning "${target_path} does not exist"
+  fi
+
+  # For symlinks, we'll also print the path without resolving first.
+  # Note that this presumes we're using GNU realpath.
+  if [[ -L "$target_path" ]]; then
+    local real_path_symlink
+    real_path_symlink="$(realpath --strip ${target_path})"
+    print -n -- "${fg_bold[cyan]}"
+    print -nD -- "${real_path_symlink}"
+    print -n -- "${reset_color} -> "
+  fi
+
+  local real_path
+  real_path="$(realpath ${target_path})"
+  print -D -- "${real_path}"
+}
+
+
 # -- files ---
 
 touchx() {
@@ -108,6 +132,19 @@ print-error() {
   if (( last_status != 0 )); then
     msg+=" Exit code ${last_status}"
   fi
+
+  if (( $# > 0 )); then
+    msg+=":${reset_color} $@"
+  else
+    msg+="${reset_color}"
+  fi
+
+  print -u2 -- "${msg}"
+  return $last_status
+}
+
+print-warning() {
+  local msg="${fg_bold[yellow]}[  WARNING  ]"
 
   if (( $# > 0 )); then
     msg+=":${reset_color} $@"
