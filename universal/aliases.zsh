@@ -89,7 +89,7 @@ alias h='history'
 alias hl='history -r -iD 1 | bat --style="header,grid" -l vy'
 alias hlr='history -iD 1 | bat --style="header,grid" -l vy'
 # History search, without line number.
-alias hs='history -rn 1 | grep -Ei'
+alias hs='history -rn 1 | grep -v "^hs " | noglob grep --color=auto -E'
 # Show last N lines, no line number. Grep the second arg if set.
 hlast() {
   emulate -L zsh
@@ -116,7 +116,7 @@ hsw() {
 }
 # Search from the beginning
 hss() {
-  history -rn 1 | grep -Ei "^${argv}"
+  history -rn 1 | grep -E "^${argv}"
 }
 
 # Exif
@@ -185,8 +185,9 @@ alias py='python3'
 alias pbgen='pwgen --symbol 15 1 | tr -d "\n" > >(pbcopy) > >(cat); echo'
 
 # Show open ports.
-alias openports='_ lsof -Pn -i4TCP -sTCP:LISTEN | sort -t":" -k2n | grep -P "(?<=:)[0-9]+ "'
-alias showport='lsof -Pn -i'
+alias openports='lsof -Pn -i TCP -sTCP:LISTEN +c 0 | sort -t":" -k2n | grep -P "(?<=:)[0-9]+ " '
+alias openports6=$'lsof -Pn -i TCP -sTCP:LISTEN +c 0 | awk \'NR>1 { n=split($(NF-1), a, ":"); print a[n] "\t" $0 }\' | sort -n | cut -f2- | grep -P "(?<=:)[0-9]+ " '
+alias showport='lsof -Pn -i +c 0'
 
 # Serve current folder at :8000 with python HTTP Server.
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"

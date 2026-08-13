@@ -42,7 +42,7 @@ alias dl='delta'
 
 ################### uv extras ########################
 # Plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/uv
-alias uvpi='uv pip install'
+alias uvpi='noglob uv pip install'
 alias uvpl='uv pip list'
 alias uvpt='uv pip tree'
 

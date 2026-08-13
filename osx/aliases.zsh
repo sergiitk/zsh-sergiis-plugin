@@ -51,6 +51,12 @@ pup() {
   sudo port -N upgrade outdated
 }
 
+# port variants info
+# port cat gnupg2 | grep default_variants
+# port info --line --name installed and "variant:openldap"
+# port info --name --variants installed and "variant:openldap"
+# port info gnupg2 +openldap
+
 # requested ports that needs $1
 port-why() {
   local mode="requested"
