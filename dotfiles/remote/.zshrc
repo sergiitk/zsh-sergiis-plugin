@@ -83,7 +83,7 @@ plugins=(
   # fast-syntax-highlighting
   zsh-syntax-highlighting
   ## work stuff
-  gcloud
+  # gcloud
   kubectl
   uv
   bazel
@@ -125,3 +125,4 @@ export MANPAGER="manbat"
 
 # Easy cd to the repos folder.
 cdpath=($cdpath "${HOME}/Development/repos/")
+
