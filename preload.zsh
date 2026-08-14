@@ -32,17 +32,18 @@ FZF_CTRL_T_COMMAND=""
 # set -ga update-environment " TERM_PROGRAM TERM_PROGRAM_VERSION"
 () {
   if [[ -n "${TMUX}" ]]; then
-    local tmux_env_term_program tmux_env_term_program_version
-    tmux_env_term_program="$(tmux show-environment TERM_PROGRAM 2> /dev/null | cut -d'=' -f 2)"
-    if [[ -z "${tmux_env_term_program}" ]]; then
-      return
-    fi
-    export TERM_PROGRAM="${tmux_env_term_program}"
+    local -a env_lines
+    # (@f) splits the output by line into a Zsh array
+    env_lines=("${(@f)$(tmux show-environment 2>/dev/null)}")
 
-    tmux_env_term_program="$(tmux show-environment TERM_PROGRAM_VERSION 2> /dev/null | cut -d'=' -f 2)"
-    if [[ -n "${tmux_env_term_program}" ]]; then
-      export TERM_PROGRAM_VERSION="${tmux_env_term_program}"
-    fi
+    local line
+    for line in $env_lines; do
+      if [[ "$line" == TERM_PROGRAM=* ]]; then
+        export TERM_PROGRAM="${line#*=}"
+      elif [[ "$line" == TERM_PROGRAM_VERSION=* ]]; then
+        export TERM_PROGRAM_VERSION="${line#*=}"
+      fi
+    done
   fi
 }
 
