@@ -13,6 +13,19 @@
 [init]
   defaultBranch = main
 
+  # TODO(sergiitk): migrate to another git status if p10k is not fixed.
+  # Setting back from reftable to files now because p10k gitstatusd crashes, see
+  #  - https://github.com/romkatv/powerlevel10k/issues/2941
+  #  - https://github.com/romkatv/gitstatus/issues/455
+  #
+  # Manual change:
+  # git refs migrate --ref-format=files
+  #
+  # Check repo:
+  # git rev-parse --show-ref-format
+  # git config get extensions.refstorage
+  defaultRefFormat = files
+
 ## Aliases.
 [alias]
   hide = update-index --assume-unchanged
