@@ -29,7 +29,53 @@ alias o="open"
 ## MacPorts
 ## Instead of https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macports,
 ## uses better MacPort completion from zsh-completions.
+#
+# [Port useful commands]
+#
+# Most important: port help
+#   port help installed
+#   port help info
+#
+# Installed ports, including install time and requested variants:
+# (-v is what gives the full data; -q omits header line)
+#   port installed -qv clang-21
+#
+#
+# [Debugging variants]
+#
+# [+] means the default
+# (+) or (-) means variants.conf override (note this takes precedence over [])
+# + or - marks means explicitly enabled or disabled when installing with +variant
+#
+#   port variants info
+#   port cat gnupg2 | grep default_variants
+#   port info --line --name installed and "variant:openldap"
+#   port info --fullname --variants installed and "variant:openldap"
+#   port info --line --fullname --variants installed and "variant:openldap"
+#   port info installed and "variant:debug" | grep -B1 "Variants:" | column -t -l2
+#   port info gnupg2 +openldap
+#   port installed -v | grep -F -- '-debug'
+#
+# Figuring out what got enabled. First, modify variants.conf. Then run:
+#   port info installed and "variant:x11" | grep -vF "Sub-ports" | grep -B1 "Variants:" | column -t -l2 > x11.txt
+#   grep -B1 -F '[+]x11' x11.txt
+#
+#
+# [Debugging binary distributions (archives)]
+#
+# Fetch debug information:
+# (-d for debug mode; implies -v for verbose)
+#   sudo port -d fetch clang-21
+#
+# Checking the archives:
+#   curl -s https://packages.macports.org/llvm-21/ | grep darwin_25
+#   html2text -width 120 https://packages.macports.org/llvm-21/ | grep -v rmd160 | grep darwin_25
+#   glow https://packages.macports.org/llvm-21/ | grep darwin_25
+#   glow https://packages.macports.org/llvm-21/ | grep -oP '.+(darwin_25).+tbz2(?!\.)'
+#
 ## -------------------------------------------------------------------------------------------------
+
+# aliases
 alias pi='sudo port install'
 alias pu='sudo port uninstall'
 alias puni="sudo port uninstall inactive"
@@ -50,12 +96,6 @@ pup() {
   echo
   sudo port -N upgrade outdated
 }
-
-# port variants info
-# port cat gnupg2 | grep default_variants
-# port info --line --name installed and "variant:openldap"
-# port info --name --variants installed and "variant:openldap"
-# port info gnupg2 +openldap
 
 # requested ports that needs $1
 port-why() {

@@ -88,8 +88,15 @@ alias grbb='git rebase --interactive $(gbb)'
 
 ### Log
 alias gl='git log'
+
 # Note this overrides glp=_git_log_prettily, e.g. glp oneline
-alias glp='git --no-pager log --reverse --date=human @{push}..HEAD'
+# Update 2026-08-13: changed to from glp to glt (tracking),
+# but glp=_git_log_prettily is still seems useless, see
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+alias glt='git --no-pager log --reverse --date=human @{push}..HEAD'
+
+# Search.
+alias gl-search='git log -p -i -S'
 
 # graph log
 alias 'g-'='git log --pretty=graph --branches --tags --graph --date=short'
