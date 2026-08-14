@@ -27,10 +27,25 @@ FZF_CTRL_T_COMMAND=""
 
 ## Tmux
 ## -------------------------------------------------------------------------------------------------
-# export ZSH_TMUX_ITERM2=true
-# export ZSH_TMUX_FIXTERM=false
-# export ZSH_TMUX_FIXTERM_WITHOUT_256COLOR=xterm
-# export ZSH_TMUX_FIXTERM_WITH_256COLOR=xterm-256color
+
+# If running inside tmux, re-export TERM_PROGRAM and TERM_PROGRAM_VERSION. Must be in .tmux.conf:
+# set -ga update-environment " TERM_PROGRAM TERM_PROGRAM_VERSION"
+() {
+  if [[ -n "${TMUX}" ]]; then
+    local tmux_env_term_program tmux_env_term_program_version
+    tmux_env_term_program="$(tmux show-environment TERM_PROGRAM 2> /dev/null | cut -d'=' -f 2)"
+    if [[ -z "${tmux_env_term_program}" ]]; then
+      return
+    fi
+    export TERM_PROGRAM="${tmux_env_term_program}"
+
+    tmux_env_term_program="$(tmux show-environment TERM_PROGRAM_VERSION 2> /dev/null | cut -d'=' -f 2)"
+    if [[ -n "${tmux_env_term_program}" ]]; then
+      export TERM_PROGRAM_VERSION="${tmux_env_term_program}"
+    fi
+  fi
+}
+
 
 ## My customizations
 ## -------------------------------------------------------------------------------------------------
