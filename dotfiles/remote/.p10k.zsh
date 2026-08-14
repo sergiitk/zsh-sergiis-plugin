@@ -36,7 +36,10 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     os_icon                 # os identifier
-    dir                     # current directory
+    # dir                   # current directory
+    dir_sergiitk            # same as the regular prompt_dir, but switches from truncate_to_unique
+                            #   strategy in specific dirs to speed things up by not running
+                            #   the directory anchor search (e.g. .git, .citc).
     gcloud                  # google cloud cli account and project (https://cloud.google.com/)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
     vcs                     # git status
@@ -243,9 +246,9 @@
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=255
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
-  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_middle
+  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
-  typeset -g POWERLEVEL9K_SHORTEN_DELIMITER="…"
+  typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
   typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=255
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
@@ -293,13 +296,13 @@
   # typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=false
   typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER="last"
   # Don't shorten this many last directory segments. They are anchors.
-  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=5
+  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
   # Shorten directory if it's longer than this even if there is space for it. The value can
   # be either absolute (e.g., '80') or a percentage of terminal width (e.g, '50%'). If empty,
   # directory will be shortened only when prompt doesn't fit or when other parameters demand it
   # (see POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS and POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS_PCT below).
   # If set to `0`, directory will always be shortened to its minimum length.
-  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH="70%"
+  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=80
   # When `dir` segment is on the last prompt line, try to shorten it enough to leave at least this
   # many columns for typing commands.
   typeset -g POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS=40
@@ -1837,6 +1840,19 @@
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
+  }
+
+  function prompt_dir_sergiitk() {
+    if [[ "${PWD}" == /google/* ]]; then
+      # Custom settings to get rid of 6-second prompt load wait due to slow dir traverse.
+      _POWERLEVEL9K_SHORTEN_STRATEGY=truncate_middle \
+        _POWERLEVEL9K_SHORTEN_DELIMITER="…" \
+        _POWERLEVEL9K_SHORTEN_DIR_LENGTH=5 \
+        prompt_dir
+    else
+      # Regular nice settings that detects git folders and shortens prompt to the repo name
+      prompt_dir
+    fi
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
