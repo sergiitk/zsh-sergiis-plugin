@@ -322,7 +322,25 @@ date-from-timestamp() {
 
 # ssh
 function ssh-check-sockets() {
+  local verbose=false
+  if [[ $1 == "-v" ]]; then
+    verbose=true
+    shift
+  fi
   local host="${1:?arg 1 host must be set}"
+  local socket_search_dir="${2:-~/.ssh}"
+
+  # (N): no return glob when no matches found
+  local -a sockets=($~socket_search_dir/**/*(=N))
+  if (( $#sockets == 0 )); then
+    print -u2 -- "No sockets found at ${socket_search_dir}"
+    return 1
+  fi
+  local socket="${sockets[1]}"
+  if (( $#sockets > 1 )); then
+    print-warning "Multi sockets found at ${socket_search_dir}, choosing ${socket}"
+  fi
+
   # BSD stat
   # %HT %t %Sc %t %N
   # ===
@@ -335,10 +353,13 @@ function ssh-check-sockets() {
   # ===
   # %F = %Y-%m-%d
   # %r = %I:%M:%S %p
-  find ~/.ssh -type s -exec stat -f '%HT %t %Sc %t %N' -t '%F %r' {} \;
-  # find exit with status 0 even when nothing is found
-  # || echo 'No multiplexing sockets found in ~/.ssh'
-  /usr/local/bin/ssh -O check "${host}"
+  stat -f '%HT %t %Sc %t %N' -t '%F %r' "${socket}"
+
+  if $verbose; then
+    /usr/local/bin/ssh -O conninfo -S "${socket}" "${host}"
+    /usr/local/bin/ssh -O channels -S "${socket}" "${host}"
+  fi
+  /usr/local/bin/ssh -O check -S "${socket}" "${host}"
 }
 
 # rsync

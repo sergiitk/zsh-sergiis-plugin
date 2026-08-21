@@ -5,6 +5,10 @@
 # $ print -D /Users/sergiitk/Development/grpc
 # ~d/grpc
 #
+# This also can be done using var parameter expansion flags
+# $ my_dir="/Users/sergiitk/Development/grpc"
+# $ echo "${(D)my_dir}"
+# ~d/grpc
 ## -------------------------------------------------------------------------------------------------
 
 
