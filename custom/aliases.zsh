@@ -38,7 +38,13 @@ alias hlpl='bat -l help -p'
 # for gcloud --help
 alias mn='bat -l man -p --theme="Monokai Extended" --pager="less --jump-target=10 --status-column"'
 
+# delta
 alias dl='delta'
+
+# glow
+# https://github.com/charmbracelet/glow/issues/440
+# https://github.com/charmbracelet/glow/pull/954
+alias glow-color-always="COLORTERM=truecolor CLICOLOR_FORCE=1 glow --style=dark"
 
 ################### uv extras ########################
 # Plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/uv
