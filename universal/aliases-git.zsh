@@ -80,6 +80,7 @@ alias grp='git rev-parse --short'
 
 # Branch fork
 alias gbb='git merge-base $(git_main_branch) HEAD'
+alias gbbs='grp $(gbb)'
 # shellcheck disable=SC2154
 alias -g '$gbb'='$(gbb)'
 

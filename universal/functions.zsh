@@ -153,7 +153,18 @@ print-warning() {
   fi
 
   print -u2 -- "${msg}"
-  return $last_status
+}
+
+print-ok() {
+  local msg="${fg_bold[green]}[  SUCCESS  ]"
+
+  if (( $# > 0 )); then
+    msg+=":${reset_color} $@"
+  else
+    msg+="${reset_color}"
+  fi
+
+  print -- "${msg}"
 }
 
 print-run-cmd() {
@@ -320,8 +331,33 @@ date-from-timestamp() {
   print-run-cmd date -d "@${timestamp}"
 }
 
-# ssh
-function ssh-check-sockets() {
+
+## ssh
+## -------------------------------------------------------------------------------------------------
+
+function ssh-find-socket() {
+  local socket_search_dir="${1:?arg 1 socket_search_dir must be set}"
+
+  # (N): no return glob when no matches found
+  local -a sockets=($~socket_search_dir/**/*(=N))
+  if (( $#sockets == 0 )); then
+    print-warning "No sockets found at ${socket_search_dir}"
+    return 1
+  fi
+  local socket="${sockets[1]}"
+  if (( $#sockets > 1 )); then
+    print-warning "Multi sockets found at ${socket_search_dir}, choosing ${socket}"
+  fi
+  if [[ -z "$socket" ]]; then
+    print-error "Socket found at ${socket_search_dir}, but path empty - should not happen"
+    return 1
+  fi
+  REPLY="${socket}"
+  return 0
+}
+
+
+function ssh-check-socket() {
   local verbose=false
   if [[ $1 == "-v" ]]; then
     verbose=true
@@ -330,16 +366,8 @@ function ssh-check-sockets() {
   local host="${1:?arg 1 host must be set}"
   local socket_search_dir="${2:-~/.ssh}"
 
-  # (N): no return glob when no matches found
-  local -a sockets=($~socket_search_dir/**/*(=N))
-  if (( $#sockets == 0 )); then
-    print -u2 -- "No sockets found at ${socket_search_dir}"
-    return 1
-  fi
-  local socket="${sockets[1]}"
-  if (( $#sockets > 1 )); then
-    print-warning "Multi sockets found at ${socket_search_dir}, choosing ${socket}"
-  fi
+  ssh-find-socket "${socket_search_dir}" || return 1
+  local socket="${REPLY}"
 
   # BSD stat
   # %HT %t %Sc %t %N
@@ -361,6 +389,100 @@ function ssh-check-sockets() {
   fi
   /usr/local/bin/ssh -O check -S "${socket}" "${host}"
 }
+
+
+function ssh-exit-socket() {
+  local host="${1:?arg 1 host must be set}"
+  local socket_search_dir="${2:-~/.ssh}"
+  ssh-find-socket "${socket_search_dir}" || return 1
+  local socket="${REPLY}"
+
+  stat -f '%HT %t %Sc %t %N' -t '%F %r' "${socket}"
+  /usr/local/bin/ssh -O check -S "${socket}" "${host}"
+  print-run-cmd /usr/local/bin/ssh -O exit -S "${socket}" "${host}"
+  /usr/local/bin/ssh -O check -S "${socket}" "${host}"
+  if (( $? == 0 )); then
+      print-error "Socket control still running for host=${host} socket=${socket}"
+  else
+      print-ok "Socket control stopped host=${host} socket=${socket}"
+  fi
+}
+
+
+function ssh-interfaces() {
+  local verbose=false
+  if [[ $1 == "-v" ]]; then
+    verbose=true
+    shift
+  fi
+
+  lsof -c '/.*ssh.*/' -a -nP -iTCP -sTCP:ESTABLISHED +c 0
+  local -a ips
+  ips=(
+    ${(f)"$(
+      lsof -Fn -c '/.*ssh.*/' -a -nP -iTCP -sTCP:ESTABLISHED |
+        grep '^n' |
+        cut -d'>' -f2 |
+        sed -E 's/:[0-9]+$//' |
+        tr -d '[]' |
+        sort |
+        uniq
+    )"}
+  )
+  echo
+
+  if (( $#ips == 0 )); then
+    print -u2 -- "No SSH connections found"
+    return 1
+  fi
+
+  echo "[Unique SSH targets]\n"
+
+  for ip in "$ips[@]"; do
+    local header="=========== ${ip} ==========="
+    echo "${header}"
+    local interface ip_version ip_version_not
+    if [[ "$ip" == *":"* ]]; then
+        ip_version="IPv6"
+        ip_version_not="IPv4"
+        interface="$(route -n get -inet6 "${ip}" | awk '/interface:/ {print $2}')"
+    else
+        ip_version="IPv4"
+        ip_version_not="IPv6"
+        interface="$(route -n get "${ip}" | awk '/interface:/ {print $2}')"
+    fi
+    if [[ -z "${interface}" ]]; then
+      print-warning "Interface not found for ${ip}"
+      continue
+    fi
+    echo "ifconfig interface: ${interface}"
+
+    if [[ "${OSTYPE}" == darwin* ]]; then
+      echo
+      echo "macOS service info via networksetup"
+      echo "-----------------------------------"
+      networksetup -listallhardwareports | grep --color=never -A1 -B1 "Device: ${interface}"
+
+      if $verbose; then
+        echo
+        echo "Verbose via system_profiler"
+        echo "-----------------------------------"
+        system_profiler SPNetworkDataType -json |
+          jq \
+            --arg interface "${interface}" \
+            --arg delete "${ip_version_not}" \
+            '.SPNetworkDataType[] | select(.interface == $interface) |  del(.[$delete])' |
+          yq -Poy
+      fi
+    fi
+
+    # print "=" same number of times as $header chars
+    print ${(l:${#header}::=:)}
+  done
+}
+
+
+## -------------------------------------------------------------------------------------------------
 
 # rsync
 # usage: rsync-to host:path/dir

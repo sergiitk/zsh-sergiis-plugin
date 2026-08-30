@@ -97,10 +97,11 @@ logsha-p10k-instant-prompt() {
   echo -n "Last: "
   tail -n1 "$out"
 
+  local prompt_file="~/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
   local -a logsha
   logsha=(
     "$(date "+%F %T")"
-    "$(sha256sum ~/.cache/p10k-instant-prompt-*.zsh)"
+    "$(sha256sum ${~prompt_file})"
   )
   echo -n "New:  "
   print -C2 $logsha
