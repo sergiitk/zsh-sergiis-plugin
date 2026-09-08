@@ -410,9 +410,10 @@ function ssh-exit-socket() {
 
 
 function ssh-interfaces() {
-  local verbose=false
+  local verbose=false verbose_flag=""
   if [[ $1 == "-v" ]]; then
     verbose=true
+    verbose_flag="-v"
     shift
   fi
 
@@ -436,48 +437,72 @@ function ssh-interfaces() {
     return 1
   fi
 
-  echo "[Unique SSH targets]\n"
+  local interface inet_version ip_version ip_version_not
+  echo "[Unique SSH targets]"
 
   for ip in "$ips[@]"; do
-    local header="=========== ${ip} ==========="
-    echo "${header}"
-    local interface ip_version ip_version_not
+    local header="===================== ${ip} ====================="
+    echo "\n${fg_bold[blue]}${header}${reset_color}"
     if [[ "$ip" == *":"* ]]; then
-        ip_version="IPv6"
-        ip_version_not="IPv4"
+        # IPv6
         interface="$(route -n get -inet6 "${ip}" | awk '/interface:/ {print $2}')"
+        ip_version="IPv6"
     else
-        ip_version="IPv4"
-        ip_version_not="IPv6"
+        # IPv4
         interface="$(route -n get "${ip}" | awk '/interface:/ {print $2}')"
+        ip_version="IPv4"
     fi
+
     if [[ -z "${interface}" ]]; then
       print-warning "Interface not found for ${ip}"
       continue
     fi
+
+    # Some display helpers
+    if [[ "${ip_version}" == "IPv6" ]]; then
+      inet_version="inet6"
+      # The inverse of ip version
+      ip_version_not="IPv4"
+    else
+      inet_version="inet"
+      ip_version_not="IPv6"
+    fi
+
+    echo "────────────────────────────────────┐"
+    echo "ifconfig                            │"
+    echo "────────────────────────────────────┘"
     echo "ifconfig interface: ${interface}"
+    echo "address family: ${inet_version}"
+    ifconfig ${verbose_flag} -f inet6:cidr,inet:cidr "${interface}" "${inet_version}"
+
 
     if [[ "${OSTYPE}" == darwin* ]]; then
       echo
-      echo "macOS service info via networksetup"
-      echo "-----------------------------------"
+      echo "────────────────────────────────────┐"
+      echo "macOS service info via networksetup │"
+      echo "────────────────────────────────────┘"
       networksetup -listallhardwareports | grep --color=never -A1 -B1 "Device: ${interface}"
 
       if $verbose; then
         echo
-        echo "Verbose via system_profiler"
-        echo "-----------------------------------"
+        echo "────────────────────────────────────┐"
+        echo "Verbose via system_profiler         │"
+        echo "────────────────────────────────────┘"
+
         system_profiler SPNetworkDataType -json |
           jq \
             --arg interface "${interface}" \
             --arg delete "${ip_version_not}" \
             '.SPNetworkDataType[] | select(.interface == $interface) |  del(.[$delete])' |
-          yq -Poy
+          yq -P -o=toml
+        # -Poy equivalent to
+        # yq --prettyPrint -p=json -o=yaml
       fi
     fi
 
     # print "=" same number of times as $header chars
-    print ${(l:${#header}::=:)}
+    # echo "\n${fg_bold[blue]}${header}${reset_color}"
+    print "${fg_bold[blue]}${(l:${#header}::=:)}${reset_color}"
   done
 }
 
