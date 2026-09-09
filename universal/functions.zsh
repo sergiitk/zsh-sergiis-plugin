@@ -469,6 +469,12 @@ function ssh-interfaces() {
     fi
 
     echo "────────────────────────────────────┐"
+    echo "route                               │"
+    echo "────────────────────────────────────┘"
+    route -n get -${inet_version} "${ip}" | head -n 5
+
+    echo
+    echo "────────────────────────────────────┐"
     echo "ifconfig                            │"
     echo "────────────────────────────────────┘"
     echo "ifconfig interface: ${interface}"
@@ -501,7 +507,6 @@ function ssh-interfaces() {
     fi
 
     # print "=" same number of times as $header chars
-    # echo "\n${fg_bold[blue]}${header}${reset_color}"
     print "${fg_bold[blue]}${(l:${#header}::=:)}${reset_color}"
   done
 }
