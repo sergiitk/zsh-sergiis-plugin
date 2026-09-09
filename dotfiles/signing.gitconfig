@@ -6,10 +6,5 @@ signingKey = ~/.ssh/id_ed25519.pub
 [gpg]
 format = ssh
 
-[gpg "ssh"]
-# touch ~/.ssh/allowed_signers
-# echo "$(git config get user.email) namespaces=\"git\" $(cat ~/.ssh/id_ed25519.pub)" >> ~/.ssh/allowed_signers
-allowedSignersFile = /Users/sergiitk/.ssh/allowed_signers
-
 [commit]
 gpgSign = true

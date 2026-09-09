@@ -6,6 +6,12 @@
   email = sergiitk@google.com
   name  = Sergii Tkachenko
 
+# Signing - needed for verification.
+[gpg "ssh"]
+  # touch ~/.ssh/allowed_signers
+  # echo "$(git config get user.email) namespaces=\"git\" $(cat ~/.ssh/id_ed25519.pub)" >> ~/.ssh/allowed_signers
+  allowedSignersFile = ~/.ssh/allowed_signers
+
 ## Core settings.
 [core]
   # Disable word wrap for long lines.
