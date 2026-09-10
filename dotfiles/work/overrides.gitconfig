@@ -1,4 +1,0 @@
-# Enable signing for GitHub repos.
-# lk $(rp $ZSH_SERGII/dotfiles/signing.gitconfig) ~c/git/
-[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
-  path = ~/.config/git/signing.gitconfig

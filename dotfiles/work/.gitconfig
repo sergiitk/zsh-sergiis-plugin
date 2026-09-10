@@ -168,5 +168,4 @@
 
 # Include custom per-host overrides.
 [include]
-  # lk $(rp $ZSH_SERGII/dotfiles/work/overrides.gitconfig) ~c/git/
   path = ~/.config/git/overrides.gitconfig
