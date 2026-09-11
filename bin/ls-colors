@@ -34,6 +34,10 @@ echo "== iTerm2 Bold and High Intensity =="
 printf '\e[0;31mplain\n\e[1;31mbold\n\e[0;91mhighlight\n\e[1;91mbold+highlight\n\e[0m'
 printf '\e[0;30mplain\n\e[1;30mbold\n\e[0;90mhighlight\n\e[1;90mbold+highlight\n\e[0m'
 
+if [[ "$1" == "-4" ]]; then
+  exit
+fi
+
 # iTerm2
 # https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/tools/screenshotTable.sh
 echo
@@ -91,6 +95,10 @@ awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{
     }
     printf "\n";
 }'
+
+if [[ "$1" == "-8" ]]; then
+  exit
+fi
 
 # 24 bit (truecolor)
 # ESC[38;2;⟨r⟩;⟨g⟩;⟨b⟩m Select RGB foreground color

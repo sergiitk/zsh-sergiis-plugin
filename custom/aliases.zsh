@@ -40,6 +40,8 @@ alias mn='bat -l man -p --theme="Monokai Extended" --pager="less --jump-target=1
 
 # delta
 alias dl='delta'
+# no-pager version - and yes this is confusing with bat "pager versions". Let's see if this sticks.
+alias dll='delta --paging=never'
 
 # glow
 # https://github.com/charmbracelet/glow/issues/440

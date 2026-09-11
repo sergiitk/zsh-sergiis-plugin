@@ -145,7 +145,11 @@
   file-style = bold yellow "#7299df"
   file-decoration-style = royalblue cornflowerblue ol
   # word-diff-regex = \\w+|[^[:space:]]
+
   # line-numbers = true
+  # Normal is invisible on the "Desert" (tmux profile) background.
+  # "#2a2a2a" is a bit darker and looks great, but ANSI "black" is universal
+  line-numbers-zero-style = black
 
 # https://dandavison.github.io/delta/color-moved-support.html
 # https://dandavison.github.io/delta/custom-themes.html
