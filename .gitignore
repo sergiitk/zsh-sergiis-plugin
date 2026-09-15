@@ -1,4 +1,5 @@
 dotfiles/**/*-custom.zshrc
+dotfiles/**/custom-*.*
 # Don't ignore the workspace even if ignored globally.
 !zsh-sergiis-plugin.code-workspace
 # logs
