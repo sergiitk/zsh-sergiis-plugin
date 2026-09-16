@@ -93,6 +93,9 @@ after-first-word() {
 zle -N after-first-word
 bindkey "^[[1;10D" after-first-word
 
+# swap arguments on esc+t
+zle -N transpose-segments
+bindkey "^[t" transpose-segments
 
 ## p10k shell
 ## -------------------------------------------------------------------------------------------------
