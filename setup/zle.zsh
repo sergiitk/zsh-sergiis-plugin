@@ -94,6 +94,7 @@ zle -N after-first-word
 bindkey "^[[1;10D" after-first-word
 
 # swap arguments on esc+t
+autoload -U transpose-segments
 zle -N transpose-segments
 bindkey "^[t" transpose-segments
 
