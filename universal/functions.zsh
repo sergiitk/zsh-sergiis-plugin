@@ -515,22 +515,30 @@ function ssh-interfaces() {
 ## -------------------------------------------------------------------------------------------------
 
 # rsync
-# usage: rsync-to host:path/dir
-# usage: rsync-to host:path/dir --reverse
-# usage: rsync-to host:path/dir --delete
+# usage: rsync-to host:path/dir [local_dir] [--reverse] [--delete] [-- rsync_opts...]
 function rsync-to() {
-  local reverse="" delete=""
+  local -a extra_args=()
+  local dd_idx=${@[(i)--]}
+  if (( dd_idx <= $# )); then
+    extra_args=("${@[dd_idx+1,-1]}")
+    set -- "${@[1,dd_idx-1]}"
+  fi
 
-  local -a user_args=()
-  while [[ $# -gt 0 ]]; do
-    case $1 in
-      -d | --delete) delete="yes"; shift ;;
-      -r | --reverse) reverse="yes"; shift ;;
-      *) user_args+=("$1"); shift ;;
-    esac
-  done
+  local -a delete reverse
+  zparseopts -D -E -F -- \
+    -delete=delete \
+    {r,-reverse}=reverse || {
+      echo "usage: rsync-to host:path/dir [local_dir] [--reverse] [--delete] [-- rsync_opts...]" >&2
+      return 1
+    }
 
-  local remote_sync_path="${user_args[1]:?arg 1 remote_path must be set}"
+  local remote_sync_path="${1:?arg 1 remote_path must be set}"
+  local local_sync_path="${2:-.}"
+
+  if (( $# > 2 )); then
+    print-error "rsync-to: too many arguments (expected at most 2 positional arguments)"
+    return 1
+  fi
 
   local -a args=(
     --cvs-exclude --exclude-from=${HOME}/.config/git/ignore
@@ -541,23 +549,27 @@ function rsync-to() {
     --human-readable --verbose --progress
   )
 
-  if [[ "${delete}" == "yes" ]]; then
+  if (( $#delete )); then
     args+=(--delete-excluded --delete)
   fi
 
-  if [[ -z "${reverse}" ]]; then
+  if (( $#extra_args )); then
+    args+=("${extra_args[@]}")
+  fi
+
+  if (( ! $#reverse )); then
     # Local to remote
     echo "=== Syncing from local to remote ==="
     args+=(
-      ./
-      ${remote_sync_path}/
+      "${local_sync_path%/}/"
+      "${remote_sync_path%/}/"
     )
   else
     # Remote to local
     echo "=== Reverse-syncing from remote to local ==="
     args+=(
-      ${remote_sync_path}/
-      ./
+      "${remote_sync_path%/}/"
+      "${local_sync_path%/}/"
     )
   fi
 
