@@ -69,6 +69,12 @@ rpd() {
   print -D -- "${real_path}"
 }
 
+# print path relative to home
+rph() {
+  # Presumes gnu realpath
+  realpath --relative-base="${HOME}" "$@"
+}
+
 
 # -- files ---
 
