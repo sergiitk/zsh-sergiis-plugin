@@ -55,7 +55,13 @@ gs() {
 }
 
 # Branches
-alias b='git branch -vv --sort=refname'
+b() {
+  local pattern=""
+  if [[ -n "$1" ]]; then
+    pattern="*$1*"
+  fi
+  noglob git branch -vv --sort=refname --list "${pattern}"
+}
 bb() {
   git branch --color=always --all -vv | grep -v origin/HEAD | cut -c3- | gsed -r 's#([^ ]*).* ([a-f0-9]{6,}) (\[([^]]*)\])?.*#\2\x1b[m \1\x1b[m \4#' | sort -t"/" -k3,1
 }
