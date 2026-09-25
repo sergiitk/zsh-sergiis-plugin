@@ -75,6 +75,11 @@ rph() {
   realpath --relative-base="${HOME}" "$@"
 }
 
+# print path relative to home with the hostname in ssh format
+rps() {
+  print -- "${HOST%%.*}:$(rph "$@")"
+}
+
 
 # -- files ---
 
