@@ -92,7 +92,7 @@ plugins=(
   kubectl
   uv
   bazel
-  # gradle
+  gradle
   # gradle-completion
 )
 # Previously used: history-substring-search
