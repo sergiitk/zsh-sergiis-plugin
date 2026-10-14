@@ -190,7 +190,7 @@ alias openports6=$'lsof -Pn -i TCP -sTCP:LISTEN +c 0 | awk \'NR>1 { n=split($(NF
 alias showport='lsof -Pn -i +c 0'
 
 # Serve current folder at :8000 with python HTTP Server.
-alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias pyserver="python3 -m http.server"
 
 ### Noglob commands
 alias tldr='noglob tldr'
