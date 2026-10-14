@@ -98,6 +98,41 @@ autoload -U transpose-segments
 zle -N transpose-segments
 bindkey "^[t" transpose-segments
 
+# ----- Toggle quotes -----
+# Toggle between single and double quotes around the current argument
+toggle-quotes() {
+    # shellcheck disable=SC2329
+    _toggle_quotes_callback() {
+        local stripped
+        if [[ "$1" == "'"*"'" ]]; then
+            # It has single quotes: strip them and add double quotes
+            stripped="${1#\'}"
+            stripped="${stripped%\'}"
+            REPLY="\"${stripped}\""
+        elif [[ "$1" == '"'*'"' ]]; then
+            # It has double quotes: strip them and add single quotes
+            stripped="${1#\"}"
+            stripped="${stripped%\"}"
+            REPLY="'${stripped}'"
+        else
+            # Unquoted: default to adding single quotes
+            REPLY="'$1'"
+        fi
+    }
+
+    # Pass the function name directly as an argument
+    modify-current-argument _toggle_quotes_callback
+}
+
+autoload -U modify-current-argument
+zle -N toggle-quotes
+# TODO(sergiitk): consider re-binding esc+' and esc+"
+# $ bindkey | grep quote-
+# "^[\"" quote-region
+# "^['" quote-line
+bindkey '^Q' toggle-quotes
+# -------------------------
+
 ## p10k shell
 ## -------------------------------------------------------------------------------------------------
 # https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#extra-space-without-background-on-the-right-side-of-right-prompt
