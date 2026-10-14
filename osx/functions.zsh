@@ -100,7 +100,21 @@ function switch-resolution() {
     return 0
   }
 
-  local normal_mode="1" alt_mode="9" set_mode="${2:-}" serial_external serial_mbp
+  # LG 5K Apple screen (s30592)
+  # mode 9:  res:1600x900  hz:60 color_depth:8 scaling:on  <-- large text
+  # mode 14: res:2048x1152 hz:60 color_depth:8 scaling:on  <-- between large and default
+  local alt_mode="14"
+  if [[ "$1" == "--large" ]]; then
+    alt_mode="9"
+    shift
+  fi
+
+  local normal_mode="1"
+  if [[ "${CPUTYPE}" == "arm64" ]]; then
+    normal_mode="16"
+  fi
+
+  local set_mode="${2:-}" serial_external serial_mbp
 
   if [[ -n "${1}" ]]; then
     if [[ "${1}" != s[[:digit:]]## ]]; then
@@ -116,9 +130,6 @@ function switch-resolution() {
   get-screen-serial-from-description "MacBook built in screen" || return 1
   serial_mbp="${REPLY}"
 
-  if [[ "${CPUTYPE}" == "arm64" ]]; then
-    normal_mode="16"
-  fi
   local display_info current_mode_str current_mode_int set_mbp_origin
 
   display_info="$(displayplacer list | sed -n "/${serial_external}/,/^$/p" | grep -v "color_depth:4" | head -n-1)"
@@ -140,16 +151,26 @@ function switch-resolution() {
 
   echo "${current_mode_str}"
 
+  local msg
+
   # Origin: (<x>,<y>)
   if [[ -z "${set_mode}" ]]; then
     if [[ "${current_mode_int}" == "${normal_mode}" ]]; then
       set_mode="${alt_mode}"
-      # is -1728 simply -(mbp_res_x+128)?
-      set_mbp_origin="(-1728,-104)"
+      if [[ "${alt_mode}" == "9" ]]; then
+        msg="Switching to large text mode"
+        # is -1728 simply -(mbp_res_x+128)?
+        set_mbp_origin="(-1728,-104)"
+      elif [[ "${alt_mode}" == "14" ]]; then
+        msg="Switching to alt mode"
+        set_mbp_origin="(-1728,35)"
+      fi
     else
+      msg="Switching to default mode"
       set_mode="${normal_mode}"
       set_mbp_origin="(-1728,204)"
     fi
+    echo "${fg_bold[blue]:-}${msg}${reset_color:-}"
   elif [[ "${set_mode}" != [[:digit:]]## ]]; then
     print -u2 -- "Wrong mode format: ${set_mode}"
     return 1
