@@ -168,6 +168,7 @@ if [[ "${OSTYPE}" == darwin* ]]; then
   alias pklu='noglob pkill -U "${USER}" -l -if'
 else
   alias pkl="noglob pkill -e -if"
+  alias pklu='noglob pkill -U "${USER}" -e -if'
 fi
 alias pgr="noglob pgrep -al -if"
 alias pgru='noglob pgrep -U "${USER}" -al -if'
