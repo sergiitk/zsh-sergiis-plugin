@@ -93,8 +93,11 @@
 [pretty]
   # Add newline at the end: `format` places newlines between commits,
   #`tformat` places newlines after each commit, thus also after the last one.
-  cool = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
-  graph = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+  # alt for tree hashes C(auto,dim yellow)%t
+  cool      = tformat:%C(auto,yellow)%h %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+  cooltree  = tformat:%C(auto,yellow)%h %C(auto,magenta)%t%C(auto,reset) %C(auto,bold blue)%<(18,trunc)%aN%C(auto,red)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+  graph     = tformat:%C(auto,yellow)%h%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
+  graphtree = tformat:%C(auto,yellow)%h %C(auto,magenta)%t%C(auto,reset)%C(auto)%d %C(auto,reset)%s %C(auto,green dim)[%cd]%C(auto,reset)
   stash = tformat:%C(auto,yellow)%h %C(auto,bold blue)%gd %C(auto,reset)%s %C(auto,green dim)[%ch]%C(auto,reset)
 
 ## Git LFS
