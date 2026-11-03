@@ -96,6 +96,9 @@ alias grbb='git rebase --interactive $(gbb)'
 ### Log
 alias gl='git log'
 
+# Log with tree hashes
+alias gltr='git log --pretty="cooltree"'
+
 # Note this overrides glp=_git_log_prettily, e.g. glp oneline
 # Update 2026-08-13: changed to from glp to glt (tracking),
 # but glp=_git_log_prettily is still seems useless, see
@@ -107,6 +110,9 @@ alias gl-search='git log -p -i -S'
 
 # graph log
 alias 'g-'='git log --pretty=graph --branches --tags --graph --date=short'
+# same tree hashes
+alias 'gltr-'='git log --pretty=graphtree --branches --tags --graph --date=short'
+# with remotes
 alias 'gr-'='git log --pretty=graph --branches --tags --graph --date=short --remotes'
 
 # human log with no pager
