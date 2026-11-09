@@ -50,6 +50,15 @@ uv-completion-regen() {
   sha256sum "${dest}"
 }
 
+ruff-completion-regen() {
+  local dest="${ZSH_CUSTOM}/completions/_ruff"
+  cmd=(ruff generate-shell-completion zsh ">" "${dest}")
+  print-cmd-raw "${cmd[@]}"
+  sha256sum "${dest}"
+  eval "${cmd[@]}"
+  sha256sum "${dest}"
+}
+
 ########################## Python #############################
 # activate vent
 pv() {
