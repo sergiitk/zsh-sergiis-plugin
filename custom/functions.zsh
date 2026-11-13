@@ -63,8 +63,15 @@ ruff-completion-regen() {
 # activate vent
 pv() {
   if [[ -n "${VIRTUAL_ENV:-}" ]]; then
-    echo "${fg_bold[red]}WARNING! Venv already activated: ${VIRTUAL_ENV}${reset_color}" >&2
-    return 1
+    print-warning "Venv already activated: ${VIRTUAL_ENV}. Deactivating."
+    if (( ! $+functions[deactivate] )); then
+      print-warning \
+        "WARNING! The 'deactivate' function does not exist." \
+        "Unsetting VIRTUAL_ENV env instead. You may need to re-run the pv command."
+      unset VIRTUAL_ENV
+    else
+      deactivate
+    fi
   fi
 
   local venv_file venv_candidate local

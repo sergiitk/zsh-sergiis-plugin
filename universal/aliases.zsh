@@ -182,6 +182,9 @@ alias pgru='noglob pgrep -U "${USER}" -al -if'
 # python
 alias py='python3'
 
+# quick checksum for visual comparison
+alias checksum="cksum --untagged -a blake2b -l 32"
+
 # Generate password to clipboard.
 alias pbgen='pwgen --symbol 15 1 | tr -d "\n" > >(pbcopy) > >(cat); echo'
 

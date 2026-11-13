@@ -71,8 +71,10 @@ rpd() {
 
 # print path relative to home
 rph() {
+  local -a args
+  (( $# > 0 )) && args=("$@") || args=(".")
   # Presumes gnu realpath
-  realpath --relative-base="${HOME}" "$@"
+  realpath --relative-base="${HOME}" "${args[@]}"
 }
 
 # print path relative to home with the hostname in ssh format
