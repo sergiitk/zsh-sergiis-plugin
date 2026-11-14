@@ -16,6 +16,21 @@
 [core]
   # Disable word wrap for long lines.
   pager = less --chop-long-lines
+
+  ## Example: keep the commit size in the large repos same as on GitHub.
+  ## For the grpc/grpc repo, it does produce a few collisions at 7 chars as of (2026-11-14).
+  ##
+  ## only commits, < 10 collisions (2026-11-14)
+  ## git rev-list --all | cut -c1-7 | sort | uniq -d
+  ##
+  ## all objects, < 1700 collisions (same date)
+  ## git rev-list --all --objects | cut -c1-7 | sort | uniq -d | wc -l
+  # abbrev=7
+
+  ## To improve collision handling: Prefers objects that resolve to a commit (commits and annotated
+  ## tags) over trees and blobs.
+  # disambiguate=committish
+
 [init]
   defaultBranch = main
 
