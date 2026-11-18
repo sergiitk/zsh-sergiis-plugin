@@ -157,11 +157,11 @@ logsha-remote() {
 
 # https://github.com/gnachman/iTerm2-shell-integration
 logsha-iterm2-shell-integration-latest() {
-  logsha-remote "https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/refs/heads/main/shell_integration/zsh" "\n"
+  logsha-remote "https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/refs/heads/main/shell_integration/zsh"
 }
 
 logsha-iterm2-shell-integration-stable() {
-  logsha-remote "https://iterm2.com/shell_integration/zsh" "\n"
+  logsha-remote "https://iterm2.com/shell_integration/zsh"
 }
 
 
