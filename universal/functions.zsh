@@ -49,7 +49,7 @@ ls-autoload() {
 # -- directories ---
 # print realpath but respecting dir hash tables
 rpd() {
-  local target_path="${1:?arg1 target_path must be set}"
+  local target_path="${1:-.}"
   if [[ ! -e "${target_path}" ]]; then
     print-warning "${target_path} does not exist"
   fi
