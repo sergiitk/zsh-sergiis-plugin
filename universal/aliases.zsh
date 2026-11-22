@@ -139,18 +139,31 @@ alias pe='print -u2 --'
 # Easy decimal dump.
 alias od1='od -tc -tu1 -tx1'
 
-# UTF-8 to decimal unicode codepoints and regular hex
-# first line unsigned dec, second line hex
+# UTF-8 dumps
+# Note: UCS-2 is fixed-width 2-byte encoding, which essentially pads ascii and non-2-byte
+# chars with 00, e.g. 20 (whitespace) becomes 2000 in UCS-2 and 0020 in UCS-2LE.
+# Waning: UCS-2 this only covers the Basic Multilingual Plane (U+0000 to U+FFFF), so this
+# helpers will break with 3- and 4-byte unicode code points.
+
+# UTF-8 to decimal unicode code points and regular hex
+# first line unsigned dec (-tu2), second line hex (-tx2), both 2-byte
 alias ud1='iconv -f UTF-8 -t UCS-2LE | od -tu2 -tx2'
 
-# can be used with p '\uCODE'
-alias udx='iconv -f UTF-8 -t UCS-2LE | hexdump'
+
+# The new version with xxd color.
+# Can be used with p '\uCODE'
+# Not sure why it dumps the data correctly despite big-endianness, while hexdump shows the opposite.
+alias udx='iconv -f UTF-8 -t UCS-2 | xxd'
+# note that this does big-endian, but can equivalently be produced from little-endian
+# -e for little-endian, -g2 is needed because -e switches group size to 4
+# alias udx='iconv -f UTF-8 -t UCS-2LE | xxd -e -g2'
+# prev version:
+# alias udx='iconv -f UTF-8 -t UCS-2LE | hexdump'
 
 # big endian format.
-# was it useful when reversing codepoints or something?
+# was it useful when reversing code points or something?
 # or the "UTF-8 Encoding", f.e https://www.compart.com/en/unicode/U+24832
 alias udx-be='iconv -f UTF-8 -t UCS-2 | hexdump'
-
 
 
 ### Paths

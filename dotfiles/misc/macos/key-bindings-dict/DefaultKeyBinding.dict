@@ -1,0 +1,5 @@
+{
+    // Prevent beeps
+    // Ctrl + Cmd + down (in vscode and other electron-based apps)
+    "^@\UF701" = "noop:";
+}
